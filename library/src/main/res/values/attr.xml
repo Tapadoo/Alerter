@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Alerter">
+        <attr name="alertStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="Alert">
+        <attr name="alertIcon" format="reference"/>
+        <attr name="alertBackgroundColor" format="color"/>
+        <attr name="alertTitle" format="string"/>
+        <attr name="alertText" format="string"/>
+    </declare-styleable>
+
+</resources>

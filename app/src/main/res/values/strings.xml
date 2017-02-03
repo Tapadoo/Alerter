@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Alerter</string>
+    <string name="title_activity_example">Alerter Demo</string>
+    <string name="default_alert">Default Alert</string>
+    <string name="coloured_alert">Coloured Alert</string>
+    <string name="text_only_alert">Text Only Alert</string>
+    <string name="on_click_alert">On Click Alert</string>
+    <string name="verbose_alert">Verbose Alert</string>
+    <string name="custom_icon_alert">Custom Icon Alert</string>
+</resources>

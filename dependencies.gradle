@@ -1,0 +1,35 @@
+ext {
+    compileSdkVersion = 25
+    minSdkVersion     = 16
+    targetSdkVersion  = 25
+
+    supportLibVersion = '25.1.1'
+    buildToolsVersion = '25.0.2'
+
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_8
+    targetCompatibilityVersion = JavaVersion.VERSION_1_8
+
+    retrofitVersion = "2.1.0"
+    kotlin_version = "1.0.5-3"
+
+    libs = [
+            /* Application Dependencies */
+            android_gradle      : 'com.android.tools.build:gradle:2.2.3',
+            support_design      : "com.android.support:design:$supportLibVersion",
+            support_v4          : "com.android.support:support-v4:$supportLibVersion",
+            appcompat_v7        : "com.android.support:appcompat-v7:$supportLibVersion",
+            support_annotations : "com.android.support:support-annotations:$supportLibVersion",
+            kotlin              : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+
+            /* Test Dependencies */
+            junit              : 'junit:junit:4.12',
+            kotlin_junit       : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+            assertj            : 'com.squareup.assertj:assertj-android:1.1.1',
+            mockito            : 'org.mockito:mockito-core:2.1.0',
+            runner             : 'com.android.support.test:runner:0.5',
+            rules              : 'com.android.support.test:rules:0.5',
+            hamcrest           : 'org.hamcrest:hamcrest-library:1.3',
+            espresso           : 'com.android.support.test.espresso:espresso-core:2.2.2',
+            uiautomator        : 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    ]
+}

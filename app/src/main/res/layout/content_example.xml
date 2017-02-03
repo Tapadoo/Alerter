@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/content_example"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/alerter_activity_vertical_margin"
+    android:paddingLeft="@dimen/alerter_activity_horizontal_margin"
+    android:paddingRight="@dimen/alerter_activity_horizontal_margin"
+    android:paddingTop="@dimen/alerter_activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.tapadoo.example.ExampleActivity"
+    tools:showIn="@layout/activity_example">
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertDefault"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="@string/default_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertColoured"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coloured_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertCustomIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_icon_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertTextOnly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_only_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertOnClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/on_click_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertVerbose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verbose_alert"/>
+
+</LinearLayout>
