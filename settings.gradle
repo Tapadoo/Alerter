@@ -1,1 +1,1 @@
-include ':library', ':app'
+include ':alerter', ':app'

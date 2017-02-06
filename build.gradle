@@ -19,8 +19,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-task printRoot() {
-    println rootProject.rootDir
-    println rootProject.buildDir
-}
