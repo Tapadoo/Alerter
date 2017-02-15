@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
@@ -30,7 +29,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(":library")
+    compile project(':alerter')
 
     compile rootProject.ext.libs.support_v4
     compile rootProject.ext.libs.appcompat_v7

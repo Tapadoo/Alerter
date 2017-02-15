@@ -264,8 +264,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     /* Setters and Getters */
 
     /**
-     * Sets the Alert Background colour. Use {@link ContextCompat#getColor(Context, int)} to resolve
-     * the colour resource id
+     * Sets the Alert Background colour
      *
      * @param color The qualified colour integer
      */

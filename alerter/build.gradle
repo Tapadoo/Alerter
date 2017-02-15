@@ -1,0 +1,164 @@
+//Plugins
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: "maven-publish"
+
+//Quality Standards
+apply from: rootProject.file('quality.gradle')
+
+def final String PACKAGE_NAME = "com.tapadoo.android"
+def final String VERSION      = "1.0.0"
+def final String DESCRIPTION  = "An Android Alerting Library"
+def final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion    rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode 1
+        versionName VERSION
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+}
+
+//BinTray configuration - credentials stored in user's gradle.properties
+bintray {
+    user = BINTRAY_USER
+    key  = BINTRAY_KEY
+
+    publications = ['Alerter']
+
+    pkg {
+        repo            = 'maven'
+        name            = project.getName()
+        desc            = DESCRIPTION
+        vcsUrl          = GITHUB_URL + '.git'
+        websiteUrl      = GITHUB_URL
+        issueTrackerUrl = GITHUB_URL + '/issues'
+        licenses        = ['MIT']
+        publish         = true
+
+        githubRepo = 'Tapadoo/Alerter'
+        githubReleaseNotesFile = 'README.md'
+
+        version {
+            name     = VERSION // Version name i.e. "1.0"
+            desc     = DESCRIPTION
+            vcsTag   = VERSION
+            released = new Date()
+        }
+    }
+}
+
+// Create the POM configuration - required for jCenter uploading
+def pomConfig = {
+    licenses {
+        license {
+            name "MIT License"
+            url "https://opensource.org/licenses/MIT"
+            distribution "repo"
+        }
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        Alerter(MavenPublication) {
+            groupId PACKAGE_NAME
+            version VERSION
+            artifactId project.getName()
+
+            //from components.android
+            artifact sourcesJar
+            artifact javadocJar
+
+            // Tell maven to prepare the generated "*.aar" file for publishing
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', DESCRIPTION)
+                root.appendNode('name', project.getName())
+                root.appendNode('url', GITHUB_URL)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+configurations {
+    javadocDeps
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile rootProject.ext.libs.support_v4
+    compile rootProject.ext.libs.appcompat_v7
+    compile rootProject.ext.libs.support_annotations
+
+    // Local Unit Tests - in src/test
+    testCompile rootProject.ext.libs.junit
+
+    // Instrumentation Tests - in src/androidTest
+    androidTestCompile rootProject.ext.libs.junit
+    androidTestCompile rootProject.ext.libs.rules
+    androidTestCompile rootProject.ext.libs.hamcrest
+    androidTestCompile rootProject.ext.libs.espresso
+    androidTestCompile rootProject.ext.libs.runner
+    androidTestCompile rootProject.ext.libs.uiautomator
+
+    androidTestCompile(rootProject.ext.libs.espresso, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    //Javadocs References
+    javadocDeps rootProject.ext.libs.support_annotations
+    javadocDeps rootProject.ext.libs.support_v4
+    javadocDeps rootProject.ext.libs.appcompat_v7
+}
+
+bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
+
+// File: build.gradle
+task showBintrayProps {
+    doLast {
+        println "Bintray user/password: ${BINTRAY_USER}/${BINTRAY_KEY}"
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError true
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
