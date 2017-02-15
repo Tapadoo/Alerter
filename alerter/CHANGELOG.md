@@ -1,4 +1,4 @@
 # Alerter changelog
 
-### 0.3.7 - 09/12/2016
-* Update to comply with new PMD rules. 
+### 1.0.0 - 15/02/2017
+* Initial release preparation
