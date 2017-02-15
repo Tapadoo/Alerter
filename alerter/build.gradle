@@ -51,9 +51,6 @@ bintray {
         licenses        = ['MIT']
         publish         = true
 
-        githubRepo = 'Tapadoo/Alerter'
-        githubReleaseNotesFile = 'README.md'
-
         version {
             name     = VERSION // Version name i.e. "1.0"
             desc     = DESCRIPTION
