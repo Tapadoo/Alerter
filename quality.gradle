@@ -3,9 +3,9 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
-def final String QUALITY_DIR = "quality"
-def final String SOURCE = "src"
-def final String INCLUDE_JAVA = "**/*.java"
+def final String QUALITY_DIR       = "quality"
+def final String SOURCE            = "src"
+def final String INCLUDE_JAVA      = "**/*.java"
 def final String EXCLUDE_GENERATED = "**/gen/**"
 
 android {

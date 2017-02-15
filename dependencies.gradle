@@ -9,11 +9,10 @@ ext {
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
     supportLibVersion = '25.1.1'
-    retrofitVersion = "2.1.0"
-    kotlin_version = "1.0.5-3"
+    retrofitVersion   = "2.1.0"
+    kotlin_version    = "1.0.5-3"
 
     libs = [
-
             android_gradle      : 'com.android.tools.build:gradle:2.2.3',
 
             /* Application Dependencies */
