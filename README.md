@@ -113,7 +113,7 @@ Alerter.create(this)
 
 ```groovy
 dependecies {
-    compile 'com.tapadoo.android:alerter:1.0.0'
+    compile 'com.tapadoo.android:alerter:1.0.1'
 }
 ```
 

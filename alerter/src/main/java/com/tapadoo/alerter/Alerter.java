@@ -40,6 +40,10 @@ public final class Alerter {
      * @return This Alerter
      */
     public static Alerter create(@NonNull final Activity activity) {
+        if (activity == null) {
+            throw new IllegalArgumentException("Activity cannot be null!");
+        }
+
         final Alerter alerter = new Alerter();
 
         //Clear Current Alert, if one is Active
@@ -211,6 +215,19 @@ public final class Alerter {
     public Alerter setDuration(@NonNull final long milliseconds) {
         if (getAlert() != null) {
             getAlert().setDuration(milliseconds);
+        }
+        return this;
+    }
+
+    /**
+     * Enable or Disable Icon Pulse Animations
+     *
+     * @param pulse True if the icon should pulse
+     * @return This Alerter
+     */
+    public Alerter enableIconPulse(final boolean pulse) {
+        if (getAlert() != null) {
+            getAlert().pulseIcon(pulse);
         }
         return this;
     }

@@ -30,7 +30,6 @@ import android.widget.TextView;
  *
  * @author Kevin Murphy, Tapadoo, Dublin, Ireland, Europe, Earth.
  * @since 26/01/2016
- *
  **/
 public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener {
 
@@ -52,6 +51,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private Animation slideOutAnimation;
 
     private long duration = DISPLAY_TIME_IN_SECONDS;
+
+    private boolean enableIconPulse = true;
 
     /**
      * Flag to ensure we only set the margins once
@@ -187,10 +188,12 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public void onAnimationEnd(final Animation animation) {
         //Start the Icon Animation once the Alert is settled
-        try {
-            ivIcon.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.alerter_pulse));
-        } catch (Exception ex) {
-            Log.e(getClass().getSimpleName(), Log.getStackTraceString(ex));
+        if (enableIconPulse) {
+            try {
+                ivIcon.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.alerter_pulse));
+            } catch (Exception ex) {
+                Log.e(getClass().getSimpleName(), Log.getStackTraceString(ex));
+            }
         }
 
         //Start the Handler to clean up the Alert
@@ -357,6 +360,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setDuration(final long duration) {
         this.duration = duration;
+    }
+
+    /**
+     * Set if the Icon should pulse or not
+     *
+     * @param shouldPulse True if the icon should be animated
+     */
+    public void pulseIcon(final boolean shouldPulse) {
+        this.enableIconPulse = shouldPulse;
     }
 
     /**
