@@ -111,8 +111,6 @@ Alerter.create(this)
 
 ## Gradle
 
-A work in progress...
-
 ```groovy
 dependecies {
     compile 'com.tapadoo.android:alerter:1.0.0'
