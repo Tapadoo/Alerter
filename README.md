@@ -13,7 +13,7 @@ all content.
 ## Gradle
 
 ```groovy
-dependecies {
+dependencies {
     compile 'com.tapadoo.android:alerter:1.0.1'
 }
 ```
