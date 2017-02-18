@@ -1,6 +1,9 @@
 package com.tapadoo.alerter;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -10,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 import java.lang.ref.WeakReference;
 
@@ -177,7 +181,32 @@ public final class Alerter {
 
         return this;
     }
+/**
+     * Set the Alert's Background Colour
+     *
+     * @param color Color of background e.x : Color.parse("#ffffff")
+     * @return This Alerter
+     */
+    public Alerter setBackgroundColorCode(@ColorInt final int color) {
+        if (getAlert() != null && getActivityWeakReference() != null) {
+            getAlert().setAlertBackgroundColor(color);
+        }
 
+        return this;
+    }
+    /**
+     * Set the Alert's Background Colour
+     *
+     * @param color Color of background e.x : "#ffffff"
+     * @return This Alerter
+     */
+    public Alerter setBackgroundColorCode( final String color) {
+        if (getAlert() != null && getActivityWeakReference() != null) {
+            getAlert().setAlertBackgroundColor(Color.parseColor(color));
+        }
+
+        return this;
+    }
     /**
      * Set the Alert's Icon
      *
@@ -191,7 +220,19 @@ public final class Alerter {
 
         return this;
     }
+  /**
+     * Set the Alert's Icon
+     *
+     * @param iconDrawable The Drawable
+     * @return This Alerter
+     */
+    public Alerter setIcon(final Drawable iconDrawable) {
+        if (getAlert() != null) {
+            getAlert().setIcon(iconDrawable);
+        }
 
+        return this;
+    }
     /**
      * Set the onClickListener for the Alert
      *
