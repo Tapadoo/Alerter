@@ -131,7 +131,6 @@ dependencies {
 
 bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
 
-// File: build.gradle
 task showBintrayProps {
     doLast {
         println "Bintray user/password: ${BINTRAY_USER}/${BINTRAY_KEY}"
