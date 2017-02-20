@@ -36,8 +36,8 @@ android {
 
 //BinTray configuration - credentials stored in user's gradle.properties
 bintray {
-    user = project.hasProperty('BINTRAY_USER')? project.getProperty('BINTRAY_USER') : null
-    key  = project.hasProperty('BINTRAY_KEY')? project.getProperty('BINTRAY_KEY') : null
+    user = getBinTrayUser()
+    key  = getBinTrayKey()
 
     publications = ['Alerter']
 
@@ -133,7 +133,7 @@ bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
 
 task showBintrayProps {
     doLast {
-        println "Bintray user/password: ${project.hasProperty('BINTRAY_USER')? project.getProperty('BINTRAY_USER') : null}/${project.hasProperty('BINTRAY_KEY')? project.getProperty('BINTRAY_KEY') : null}"
+        println "Bintray user/password: ${getBinTrayUser()}/${getBinTrayKey()}"
     }
 }
 
@@ -157,4 +157,14 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+def final getBinTrayUser() {
+    def final String BINTRAY_USER = "BINTRAY_USER"
+    return project.hasProperty(BINTRAY_USER)? project.getProperty(BINTRAY_USER) : null
+}
+
+def final getBinTrayKey() {
+    def final String BINTRAY_KEY  = "BINTRAY_KEY"
+    return project.hasProperty(BINTRAY_KEY)? project.getProperty(BINTRAY_KEY) : null
 }
