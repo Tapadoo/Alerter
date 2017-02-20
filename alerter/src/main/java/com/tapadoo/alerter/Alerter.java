@@ -22,12 +22,9 @@ import java.lang.ref.WeakReference;
  */
 public final class Alerter {
 
-    private static final int Y_TRANSITION_VALUE = 200;
     private static WeakReference<Activity> activityWeakReference;
 
     private Alert alert;
-
-    private boolean shiftContent = true;
 
     /**
      * Constructor

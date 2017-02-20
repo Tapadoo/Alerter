@@ -118,16 +118,16 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
-                .setOnShownListener(new OnShowAlertListener() {
+                .setOnShowListener(new OnShowAlertListener() {
                     @Override
-                    public void onAlertShown() {
-                        Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
+                    public void onShow() {
+                        Toast.makeText(ExampleActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
                     }
                 })
-                .setOnHiddenListener(new OnHideAlertListener() {
+                .setOnHideListener(new OnHideAlertListener() {
                     @Override
-                    public void onAlertHidden() {
-                        Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
+                    public void onHide() {
+                        Toast.makeText(ExampleActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();

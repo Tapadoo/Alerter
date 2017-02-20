@@ -156,7 +156,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
         performClick();
-
         return super.onTouchEvent(event);
     }
 
@@ -199,7 +198,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             }
         }
 
-        if(onShowListener != null) {
+        if (onShowListener != null) {
             onShowListener.onShow();
         }
 
@@ -261,7 +260,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                         try {
                             ((ViewGroup) getParent()).removeView(Alert.this);
 
-                            if(onHideListener != null) {
+                            if (onHideListener != null) {
                                 onHideListener.onHide();
                             }
                         } catch (Exception ex) {
@@ -384,6 +383,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Set the alert's listener to be fired on the alert being fully shown
+     *
      * @param listener Listener to be fired
      */
     public void setOnShowListener(@NonNull final OnShowAlertListener listener) {
@@ -392,7 +392,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Set the alert's listener to be fired on the alert being fully hidden
-     *
      *
      * @param listener Listener to be fired
      */
