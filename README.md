@@ -122,16 +122,16 @@ Alerter.create(this)
 ```java
  Alerter.create(ExampleActivity.this)
         .setTitle("Alert Title")
-        .setOnShownListener(new OnAlertShownListener() {
+        .setOnShownListener(new OnShowAlertListener() {
             @Override
-            public void onAlertShown() {
-                Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
+            public void onShow() {
+                Toast.makeText(ExampleActivity.this, "Alert Shown", Toast.LENGTH_LONG).show();
             }
         })
-        .setOnHiddenListener(new OnAlertHiddenListener() {
+        .setOnHiddenListener(new OnHideListener() {
             @Override
-            public void onAlertHidden() {
-                Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
+            public void onHide() {
+                Toast.makeText(ExampleActivity.this, "Alert Hidden", Toast.LENGTH_LONG).show();
             }
          })
         .show();

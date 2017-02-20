@@ -238,12 +238,12 @@ public final class Alerter {
     /**
      * Sets the Alert Shown Listener
      *
-     * @param listener OnAlertShownListener of Alert
+     * @param listener OnShowAlertListener of Alert
      * @return This Alerter
      */
-    public Alerter setOnShownListener(final OnAlertShownListener listener) {
+    public Alerter setOnShowListener(@NonNull final OnShowAlertListener listener) {
         if (getAlert() != null) {
-            getAlert().setOnShownListener(listener);
+            getAlert().setOnShowListener(listener);
         }
         return this;
     }
@@ -251,12 +251,12 @@ public final class Alerter {
     /**
      * Sets the Alert Hidden Listener
      *
-     * @param listener OnAlertHiddenListener of Alert
+     * @param listener OnHideAlertListener of Alert
      * @return This Alerter
      */
-    public Alerter setOnHiddenListener(final OnAlertHiddenListener listener) {
+    public Alerter setOnHideListener(@NonNull final OnHideAlertListener listener) {
         if (getAlert() != null) {
-            getAlert().setOnHiddenListener(listener);
+            getAlert().setOnHideListener(listener);
         }
         return this;
     }

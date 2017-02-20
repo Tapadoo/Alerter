@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
-import com.tapadoo.alerter.OnAlertHiddenListener;
-import com.tapadoo.alerter.OnAlertShownListener;
+import com.tapadoo.alerter.OnHideAlertListener;
+import com.tapadoo.alerter.OnShowAlertListener;
 
 public class ExampleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -118,13 +118,13 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
-                .setOnShownListener(new OnAlertShownListener() {
+                .setOnShownListener(new OnShowAlertListener() {
                     @Override
                     public void onAlertShown() {
                         Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
                     }
                 })
-                .setOnHiddenListener(new OnAlertHiddenListener() {
+                .setOnHiddenListener(new OnHideAlertListener() {
                     @Override
                     public void onAlertHidden() {
                         Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
