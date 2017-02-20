@@ -2,6 +2,10 @@
 
 ### General
 
+[ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
+
 This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
 complexity of your layouts.
 
@@ -14,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.1'
+    compile 'com.tapadoo.android:alerter:1.0.2'
 }
 ```
 
@@ -122,16 +126,16 @@ Alerter.create(this)
 ```java
  Alerter.create(ExampleActivity.this)
         .setTitle("Alert Title")
-        .setOnShownListener(new OnAlertShownListener() {
+        .setOnShowListener(new OnShowAlertListener() {
             @Override
-            public void onAlertShown() {
-                Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
+            public void onShow() {
+                Toast.makeText(ExampleActivity.this, "Alert Shown", Toast.LENGTH_LONG).show();
             }
         })
-        .setOnHiddenListener(new OnAlertHiddenListener() {
+        .setOnHideListener(new OnHideListener() {
             @Override
-            public void onAlertHidden() {
-                Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
+            public void onHide() {
+                Toast.makeText(ExampleActivity.this, "Alert Hidden", Toast.LENGTH_LONG).show();
             }
          })
         .show();

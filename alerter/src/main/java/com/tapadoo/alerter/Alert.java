@@ -50,8 +50,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
 
-    private OnAlertShownListener onShowListener;
-    private OnAlertHiddenListener onHideListener;
+    private OnShowAlertListener onShowListener;
+    private OnHideAlertListener onHideListener;
 
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
@@ -156,7 +156,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
         performClick();
-
         return super.onTouchEvent(event);
     }
 
@@ -199,7 +198,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             }
         }
 
-        if(onShowListener != null) onShowListener.onAlertShown();
+        if (onShowListener != null) {
+            onShowListener.onShow();
+        }
 
         //Start the Handler to clean up the Alert
         postDelayed(new Runnable() {
@@ -258,7 +259,10 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                     } else {
                         try {
                             ((ViewGroup) getParent()).removeView(Alert.this);
-                            if(onHideListener != null) onHideListener.onAlertHidden();
+
+                            if (onHideListener != null) {
+                                onHideListener.onHide();
+                            }
                         } catch (Exception ex) {
                             Log.e(getClass().getSimpleName(), "Cannot remove from parent layout");
                         }
@@ -379,17 +383,19 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Set the alert's listener to be fired on the alert being fully shown
+     *
      * @param listener Listener to be fired
      */
-    public void setOnShownListener(OnAlertShownListener listener) {
+    public void setOnShowListener(@NonNull final OnShowAlertListener listener) {
         this.onShowListener = listener;
     }
 
     /**
      * Set the alert's listener to be fired on the alert being fully hidden
+     *
      * @param listener Listener to be fired
      */
-    public void setOnHiddenListener(OnAlertHiddenListener listener) {
+    public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
     }
 
