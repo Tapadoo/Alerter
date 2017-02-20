@@ -117,6 +117,26 @@ Alerter.create(this)
 
 ![Verbose Alert](./documentation/alert_verbose.gif)
 
+### Visibility Callbacks
+
+```java
+ Alerter.create(ExampleActivity.this)
+        .setTitle("Alert Title")
+        .setOnShownListener(new OnAlertShownListener() {
+            @Override
+            public void onAlertShown() {
+                Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
+            }
+        })
+        .setOnHiddenListener(new OnAlertHiddenListener() {
+            @Override
+            public void onAlertHidden() {
+                Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
+            }
+         })
+        .show();
+```
+
 ## Sample
 
 Clone this repo and check out the `app` module.
