@@ -233,6 +233,32 @@ public final class Alerter {
     }
 
     /**
+     * Sets the Alert Shown Listener
+     *
+     * @param listener OnAlertShownListener of Alert
+     * @return This Alerter
+     */
+    public Alerter setOnShownListener(final OnAlertShownListener listener) {
+        if (getAlert() != null) {
+            getAlert().setOnShownListener(listener);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the Alert Hidden Listener
+     *
+     * @param listener OnAlertHiddenListener of Alert
+     * @return This Alerter
+     */
+    public Alerter setOnHiddenListener(final OnAlertHiddenListener listener) {
+        if (getAlert() != null) {
+            getAlert().setOnHiddenListener(listener);
+        }
+        return this;
+    }
+
+    /**
      * Gets the Alert associated with the Alerter
      *
      * @return The current Alert

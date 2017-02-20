@@ -58,4 +58,11 @@
         android:layout_height="wrap_content"
         android:text="@string/verbose_alert"/>
 
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertCallback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/callback_alert"/>
+
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
+import com.tapadoo.alerter.OnAlertHiddenListener;
+import com.tapadoo.alerter.OnAlertShownListener;
 
 public class ExampleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +26,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAlertTextOnly).setOnClickListener(this);
         findViewById(R.id.btnAlertOnClick).setOnClickListener(this);
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
+        findViewById(R.id.btnAlertCallback).setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +50,10 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
             }
             case R.id.btnAlertVerbose: {
                 showAlertVerbose();
+                break;
+            }
+            case R.id.btnAlertCallback: {
+                showAlertCallbacks();
                 break;
             }
             default: {
@@ -105,4 +112,25 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                          "The alert scales to accommodate larger bodies of text.")
                 .show();
     }
+
+    private void showAlertCallbacks(){
+        Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .setDuration(10000)
+                .setOnShownListener(new OnAlertShownListener() {
+                    @Override
+                    public void onAlertShown() {
+                        Toast.makeText(ExampleActivity.this, "OnAlertShown", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setOnHiddenListener(new OnAlertHiddenListener() {
+                    @Override
+                    public void onAlertHidden() {
+                        Toast.makeText(ExampleActivity.this, "OnAlertHidden", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .show();
+    }
+
 }
