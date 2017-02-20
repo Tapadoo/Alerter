@@ -36,8 +36,8 @@ android {
 
 //BinTray configuration - credentials stored in user's gradle.properties
 bintray {
-    user = hasProperty('BINTRAY_USER')? getProperty('BINTRAY_USER') : null
-    key  = hasProperty('BINTRAY_KEY')? getProperty('BINTRAY_KEY') : null
+    user = project.hasProperty('BINTRAY_USER')? project.getProperty('BINTRAY_USER') : null
+    key  = project.hasProperty('BINTRAY_KEY')? project.getProperty('BINTRAY_KEY') : null
 
     publications = ['Alerter']
 
@@ -133,7 +133,7 @@ bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
 
 task showBintrayProps {
     doLast {
-        println "Bintray user/password: ${BINTRAY_USER}/${BINTRAY_KEY}"
+        println "Bintray user/password: ${project.hasProperty('BINTRAY_USER')? project.getProperty('BINTRAY_USER') : null}/${project.hasProperty('BINTRAY_KEY')? project.getProperty('BINTRAY_KEY') : null}"
     }
 }
 
