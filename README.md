@@ -2,6 +2,10 @@
 
 ### General
 
+[ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
+
 This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
 complexity of your layouts.
 
@@ -9,10 +13,6 @@ complexity of your layouts.
 
 A customisable Alert view is dynamically added to the Decor View of the Window, overlaying
 all content.
-
-[ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
 
 ## Gradle
 
@@ -126,13 +126,13 @@ Alerter.create(this)
 ```java
  Alerter.create(ExampleActivity.this)
         .setTitle("Alert Title")
-        .setOnShownListener(new OnShowAlertListener() {
+        .setOnShowListener(new OnShowAlertListener() {
             @Override
             public void onShow() {
                 Toast.makeText(ExampleActivity.this, "Alert Shown", Toast.LENGTH_LONG).show();
             }
         })
-        .setOnHiddenListener(new OnHideListener() {
+        .setOnHideListener(new OnHideListener() {
             @Override
             public void onHide() {
                 Toast.makeText(ExampleActivity.this, "Alert Hidden", Toast.LENGTH_LONG).show();
