@@ -36,8 +36,8 @@ android {
 
 //BinTray configuration - credentials stored in user's gradle.properties
 bintray {
-    user = BINTRAY_USER
-    key  = BINTRAY_KEY
+    user = hasProperty('BINTRAY_USER')? getProperty('BINTRAY_USER') : null
+    key  = hasProperty('BINTRAY_KEY')? getProperty('BINTRAY_KEY') : null
 
     publications = ['Alerter']
 

@@ -10,6 +10,14 @@ complexity of your layouts.
 A customisable Alert view is dynamically added to the Decor View of the Window, overlaying
 all content.
 
+## Gradle
+
+```groovy
+dependencies {
+    compile 'com.tapadoo.android:alerter:1.0.1'
+}
+```
+
 # Usage
 
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration
@@ -108,14 +116,6 @@ Alerter.create(this)
 ```
 
 ![Verbose Alert](./documentation/alert_verbose.gif)
-
-## Gradle
-
-```groovy
-dependecies {
-    compile 'com.tapadoo.android:alerter:1.0.1'
-}
-```
 
 ## Sample
 
