@@ -10,11 +10,15 @@ complexity of your layouts.
 A customisable Alert view is dynamically added to the Decor View of the Window, overlaying
 all content.
 
+[ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
+
 ## Gradle
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.1'
+    compile 'com.tapadoo.android:alerter:1.0.2'
 }
 ```
 
