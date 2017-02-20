@@ -50,6 +50,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
 
+    private OnAlertShownListener onShowListener;
+    private OnAlertHiddenListener onHideListener;
+
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
     private boolean enableIconPulse = true;
@@ -196,6 +199,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             }
         }
 
+        if(onShowListener != null) onShowListener.onAlertShown();
+
         //Start the Handler to clean up the Alert
         postDelayed(new Runnable() {
             @Override
@@ -253,6 +258,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                     } else {
                         try {
                             ((ViewGroup) getParent()).removeView(Alert.this);
+                            if(onHideListener != null) onHideListener.onAlertHidden();
                         } catch (Exception ex) {
                             Log.e(getClass().getSimpleName(), "Cannot remove from parent layout");
                         }
@@ -369,6 +375,22 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void pulseIcon(final boolean shouldPulse) {
         this.enableIconPulse = shouldPulse;
+    }
+
+    /**
+     * Set the alert's listener to be fired on the alert being fully shown
+     * @param listener Listener to be fired
+     */
+    public void setOnShownListener(OnAlertShownListener listener) {
+        this.onShowListener = listener;
+    }
+
+    /**
+     * Set the alert's listener to be fired on the alert being fully hidden
+     * @param listener Listener to be fired
+     */
+    public void setOnHiddenListener(OnAlertHiddenListener listener) {
+        this.onHideListener = listener;
     }
 
     /**
