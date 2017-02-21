@@ -4,19 +4,20 @@
     style="@style/AlertStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/darker_gray"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
-    tools:background="@android:color/black"
     tools:visibility="visible">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:padding="@dimen/alerter_activity_horizontal_margin"
+        android:layout_marginTop="@dimen/alerter_padding_half"
+        android:background="@null"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/alerter_padding_small">
+        android:padding="@dimen/alerter_activity_horizontal_margin">
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivIcon"
@@ -27,7 +28,8 @@
             android:layout_centerVertical="true"
             android:maxHeight="@dimen/alerter_alert_icn_size"
             android:maxWidth="@dimen/alerter_alert_icn_size"
-            tools:src="@android:drawable/ic_menu_info_details"/>
+            android:src="@drawable/ic_notifications"
+            android:tint="@android:color/white"/>
 
         <LinearLayout
             android:id="@+id/llAlertTextContainer"
@@ -40,6 +42,7 @@
             android:layout_marginStart="@dimen/alerter_activity_horizontal_margin"
             android:layout_toEndOf="@id/ivIcon"
             android:layout_toRightOf="@id/ivIcon"
+            android:background="@null"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical">

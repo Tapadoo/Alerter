@@ -1,8 +1,6 @@
 package com.tapadoo.alerter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -22,6 +20,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tapadoo.android.R;
 
 /**
  * Custom Alert View
@@ -53,6 +53,11 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
     private boolean enableIconPulse = true;
+
+    /**
+     * Flag to ensure we only set the margins once
+     */
+    private boolean marginSet;
 
     /**
      * This is the default view constructor. It requires a Context, and holds a reference to it.
@@ -101,10 +106,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         flBackground.setOnClickListener(this);
 
-        setIcon(R.drawable.ic_notifications);
-
-        setAlertBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.darker_gray));
-
         //Setup Enter & Exit Animations
         slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.alerter_slide_in_from_top);
         slideOutAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.alerter_slide_out_to_top);
@@ -112,6 +113,20 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         //Set Animation to be Run when View is added to Window
         setAnimation(slideInAnimation);
+    }
+
+    @Override
+    protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        if (!marginSet) {
+            marginSet = true;
+
+            // Add a negative top margin to compensate for overshoot enter animation
+            final ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) getLayoutParams();
+            params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top);
+            requestLayout();
+        }
     }
 
     // Release resources once view is detached.
@@ -320,7 +335,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setIcon(@DrawableRes final int iconId) {
         final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
-        iconDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         ivIcon.setImageDrawable(iconDrawable);
     }
 

@@ -28,4 +28,5 @@
     <style name="AlertTextAppearance.Text">
         <item name="android:textSize">@dimen/alerter_text_small</item>
     </style>
+
 </resources>

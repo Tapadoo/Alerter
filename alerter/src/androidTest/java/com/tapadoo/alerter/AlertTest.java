@@ -3,11 +3,14 @@ package com.tapadoo.alerter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+
+import com.tapadoo.android.R;
 
 import junit.framework.Assert;
 
@@ -124,7 +127,10 @@ public class AlertTest {
         alert.setAlertBackgroundColor(ContextCompat.getColor(mockActivity, android.R.color.darker_gray));
 
         Assert.assertNotNull(alert.getAlertBackground().getBackground());
-        Assert.assertEquals(((ColorDrawable) alert.getAlertBackground().getBackground()).getColor(), ContextCompat.getColor(mockActivity, android.R.color.darker_gray));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            Assert.assertEquals(((ColorDrawable) alert.getAlertBackground().getBackground()).getColor(), ContextCompat.getColor(mockActivity, android.R.color.darker_gray));
+        }
     }
 
     @Test
@@ -140,6 +146,10 @@ public class AlertTest {
 
     @Test
     public void testOnClickListener() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            return;
+        }
+
         //Check default onClickListener
         Assert.assertTrue(alert.getAlertBackground().hasOnClickListeners());
 
