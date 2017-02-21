@@ -7,12 +7,11 @@
     <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
 
     <application
-        android:allowBackup="true"
         android:supportsRtl="true">
 
         <!--This is just an Activity for Testing from within src/androidTest-->
         <activity
-            android:name="com.tapadoo.alerter.MockActivity"
+            android:name=".MockActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
 
     </application>

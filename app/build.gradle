@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.tapadoo.example"
 
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 9
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         versionCode 1

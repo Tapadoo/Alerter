@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:foreground="?attr/selectableItemBackground"
     tools:background="@android:color/black"
     tools:visibility="visible">
 
@@ -13,15 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="@dimen/alerter_padding_small"
-        android:paddingBottom="@dimen/alerter_padding_small"
-        android:layout_marginEnd="@dimen/alerter_activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/alerter_activity_horizontal_margin"
-        android:layout_marginRight="@dimen/alerter_activity_horizontal_margin"
-        android:layout_marginStart="@dimen/alerter_activity_horizontal_margin"
-        android:layout_marginTop="@dimen/alerter_padding_default"
+        android:padding="@dimen/alerter_activity_horizontal_margin"
         android:clipChildren="false"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/alerter_padding_small">
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivIcon"
@@ -45,13 +40,15 @@
             android:layout_marginStart="@dimen/alerter_activity_horizontal_margin"
             android:layout_toEndOf="@id/ivIcon"
             android:layout_toRightOf="@id/ivIcon"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/AlertStyle.TextAppearance.Title"
+                android:textAppearance="@style/AlertTextAppearance.Title"
                 android:textColor="@android:color/white"
                 android:visibility="gone"
                 tools:text="Title"
@@ -63,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/alerter_padding_small"
                 android:paddingTop="@dimen/alerter_padding_small"
-                android:textAppearance="@style/AlertStyle.TextAppearance"
+                android:textAppearance="@style/AlertTextAppearance.Text"
                 android:textColor="@android:color/white"
                 android:visibility="gone"
                 tools:text="Text"
