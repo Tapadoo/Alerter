@@ -3,12 +3,15 @@ package com.tapadoo.alerter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.tapadoo.android.R;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -112,27 +115,29 @@ public class AlerterTest {
                 .show();
 
         Assert.assertNotNull(alert.getAlertBackground().getBackground());
-        Assert.assertEquals(((ColorDrawable) alert.getAlertBackground().getBackground()).getColor(), ContextCompat.getColor(mockActivity, android.R.color.darker_gray));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            Assert.assertEquals(((ColorDrawable) alert.getAlertBackground().getBackground()).getColor(), ContextCompat.getColor(mockActivity, android.R.color.darker_gray));
+        }
     }
 
     @Test
     public void testBuilderOnClickListener() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            return;
+        }
+
         //Test default hide listener
-        final Alert alert1 = Alerter.create(mockActivity)
-                .show();
+        final Alert alert1 = Alerter.create(mockActivity).show();
 
         Assert.assertTrue(alert1.getAlertBackground().hasOnClickListeners());
 
         //Test nullifying listener
-        final Alert alert2 = Alerter.create(mockActivity)
-                .setOnClickListener(null)
-                .show();
+        final Alert alert2 = Alerter.create(mockActivity).setOnClickListener(null).show();
 
         Assert.assertFalse(alert2.getAlertBackground().hasOnClickListeners());
 
         //Test setting listener
-        final Alert alert3 = Alerter.create(mockActivity)
-                .setOnClickListener(new View.OnClickListener() {
+        final Alert alert3 = Alerter.create(mockActivity).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
                         //Ignore

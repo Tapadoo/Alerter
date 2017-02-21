@@ -11,7 +11,7 @@ apply plugin: "maven-publish"
 apply from: rootProject.file('quality.gradle')
 
 def final String PACKAGE_NAME = "com.tapadoo.android"
-def final String VERSION      = "1.0.2"
+def final String VERSION      = "1.0.3"
 def final String DESCRIPTION  = "An Android Alerting Library"
 def final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
@@ -36,8 +36,8 @@ android {
 
 //BinTray configuration - credentials stored in user's gradle.properties
 bintray {
-    user = hasProperty('BINTRAY_USER')? getProperty('BINTRAY_USER') : null
-    key  = hasProperty('BINTRAY_KEY')? getProperty('BINTRAY_KEY') : null
+    user = getBinTrayUser()
+    key  = getBinTrayKey()
 
     publications = ['Alerter']
 
@@ -133,7 +133,7 @@ bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
 
 task showBintrayProps {
     doLast {
-        println "Bintray user/password: ${BINTRAY_USER}/${BINTRAY_KEY}"
+        println "Bintray user/password: ${getBinTrayUser()}/${getBinTrayKey()}"
     }
 }
 
@@ -157,4 +157,14 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+def final getBinTrayUser() {
+    def final String BINTRAY_USER = "BINTRAY_USER"
+    return project.hasProperty(BINTRAY_USER)? project.getProperty(BINTRAY_USER) : null
+}
+
+def final getBinTrayKey() {
+    def final String BINTRAY_KEY  = "BINTRAY_KEY"
+    return project.hasProperty(BINTRAY_KEY)? project.getProperty(BINTRAY_KEY) : null
 }

@@ -1,8 +1,6 @@
 package com.tapadoo.alerter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -12,18 +10,18 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tapadoo.android.R;
 
 /**
  * Custom Alert View
@@ -34,7 +32,6 @@ import android.widget.TextView;
 public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener {
 
     private static final int CLEAN_UP_DELAY_MILLIS = 100;
-    private static final int SCREEN_SCALE_FACTOR = 6;
 
     /**
      * The amount of time the alert will be visible on screen in seconds
@@ -109,25 +106,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         flBackground.setOnClickListener(this);
 
-        setIcon(R.drawable.ic_notifications);
-
-        setAlertBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.darker_gray));
-
-        //Setup Enter Animation
+        //Setup Enter & Exit Animations
         slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.alerter_slide_in_from_top);
         slideOutAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.alerter_slide_out_to_top);
-
         slideInAnimation.setAnimationListener(this);
 
         //Set Animation to be Run when View is added to Window
         setAnimation(slideInAnimation);
-
-        flBackground.setPadding(
-                flBackground.getPaddingLeft(),
-                flBackground.getPaddingTop() + (getScreenHeight() / SCREEN_SCALE_FACTOR),
-                flBackground.getPaddingRight(),
-                flBackground.getPaddingBottom()
-        );
     }
 
     @Override
@@ -139,7 +124,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
             // Add a negative top margin to compensate for overshoot enter animation
             final ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) getLayoutParams();
-            params.topMargin = params.topMargin - (getScreenHeight() / SCREEN_SCALE_FACTOR);
+            params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top);
             requestLayout();
         }
     }
@@ -350,7 +335,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setIcon(@DrawableRes final int iconId) {
         final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
-        iconDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         ivIcon.setImageDrawable(iconDrawable);
     }
 
@@ -397,17 +381,5 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
-    }
-
-    /**
-     * Get the screen height in pixels
-     *
-     * @return The Screen height in pixels
-     */
-    private int getScreenHeight() {
-        final WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        final DisplayMetrics metrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(metrics);
-        return metrics.heightPixels;
     }
 }
