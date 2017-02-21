@@ -353,7 +353,16 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         iconDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         ivIcon.setImageDrawable(iconDrawable);
     }
+ /**
+     * Set the inline icon for the Alert
+     *
+     * @param iconDrawable Drawable  of the icon to use in the Alert
+     */
 
+    public void setIcon( final Drawable iconDrawable) {
+        iconDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        ivIcon.setImageDrawable(iconDrawable);
+    }
     /**
      * Get the Alert's on screen duration
      *
