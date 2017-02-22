@@ -53,7 +53,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
     private boolean enableIconPulse = true;
-    private boolean enableInfiniteDuration = false;
+    private boolean enableInfiniteDuration;
 
     /**
      * Flag to ensure we only set the margins once
@@ -373,7 +373,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      *
      * @param enableInfiniteDuration True if the duration of the alert is infinite
      */
-    public void setEnableInfiniteDuration(boolean enableInfiniteDuration) {
+    public void setEnableInfiniteDuration(final boolean enableInfiniteDuration) {
         this.enableInfiniteDuration = enableInfiniteDuration;
     }
 
