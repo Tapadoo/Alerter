@@ -236,6 +236,19 @@ public final class Alerter {
     }
 
     /**
+     * Enable or disable infinite duration of the alert
+     *
+     * @param infiniteDuration True if the duration of the alert is infinite
+     * @return This Alerter
+     */
+    public Alerter enableInfiniteDuration(final boolean infiniteDuration) {
+        if (getAlert() != null) {
+            getAlert().setEnableInfiniteDuration(infiniteDuration);
+        }
+        return this;
+    }
+
+    /**
      * Sets the Alert Shown Listener
      *
      * @param listener OnShowAlertListener of Alert

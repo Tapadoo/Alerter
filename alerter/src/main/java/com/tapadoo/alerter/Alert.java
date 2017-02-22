@@ -53,6 +53,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
     private boolean enableIconPulse = true;
+    private boolean enableInfiniteDuration = false;
 
     /**
      * Flag to ensure we only set the margins once
@@ -188,12 +189,14 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         }
 
         //Start the Handler to clean up the Alert
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hide();
-            }
-        }, duration);
+        if (!enableInfiniteDuration) {
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    hide();
+                }
+            }, duration);
+        }
     }
 
     @Override
@@ -363,6 +366,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void pulseIcon(final boolean shouldPulse) {
         this.enableIconPulse = shouldPulse;
+    }
+
+    /**
+     * Set if the duration of the alert is infinite
+     *
+     * @param enableInfiniteDuration True if the duration of the alert is infinite
+     */
+    public void setEnableInfiniteDuration(boolean enableInfiniteDuration) {
+        this.enableInfiniteDuration = enableInfiniteDuration;
     }
 
     /**
