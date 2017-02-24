@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.3'
+    compile 'com.tapadoo.android:alerter:1.0.4'
 }
 ```
 
@@ -132,7 +132,7 @@ Alerter.create(this)
                 Toast.makeText(ExampleActivity.this, "Alert Shown", Toast.LENGTH_LONG).show();
             }
         })
-        .setOnHideListener(new OnHideListener() {
+        .setOnHideListener(new OnHideAlertListener() {
             @Override
             public void onHide() {
                 Toast.makeText(ExampleActivity.this, "Alert Hidden", Toast.LENGTH_LONG).show();
