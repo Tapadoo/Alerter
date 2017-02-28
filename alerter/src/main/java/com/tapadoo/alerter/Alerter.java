@@ -25,7 +25,6 @@ import java.lang.ref.WeakReference;
  */
 public final class Alerter {
 
-    private static final String DEBUG_TAG = "DebugTag";
     private static WeakReference<Activity> activityWeakReference;
 
     private Alert alert;
