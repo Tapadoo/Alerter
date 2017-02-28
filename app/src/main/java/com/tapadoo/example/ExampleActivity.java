@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alert;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
@@ -25,9 +26,11 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAlertCustomIcon).setOnClickListener(this);
         findViewById(R.id.btnAlertTextOnly).setOnClickListener(this);
         findViewById(R.id.btnAlertOnClick).setOnClickListener(this);
+        findViewById(R.id.btnAlertOnClick).setOnClickListener(this);
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
         findViewById(R.id.btnAlertCallback).setOnClickListener(this);
         findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
+        findViewById(R.id.btnAlertFling).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +62,11 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
             }
             case R.id.btnAlertInfiniteDuration: {
                 showAlertInfiniteDuration();
+                break;
+            }
+            case R.id.btnAlertFling: {
+                showDismissFling();
+                break;
             }
             default: {
                 showAlertDefault();
@@ -79,6 +87,12 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColor(R.color.colorAccent)
+                .show();
+    }
+
+    private void showDismissFling() {
+        Alerter.create(ExampleActivity.this)
+                .enableDismissFling(true)
                 .show();
     }
 

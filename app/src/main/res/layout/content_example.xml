@@ -32,6 +32,13 @@
 
     <android.support.v7.widget.AppCompatButton
         style="@style/ExampleButton"
+        android:id="@+id/btnAlertFling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss_fling_alert"/>
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
         android:id="@+id/btnAlertCustomIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,5 +78,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/infinite_alert"/>
+
 
 </LinearLayout>

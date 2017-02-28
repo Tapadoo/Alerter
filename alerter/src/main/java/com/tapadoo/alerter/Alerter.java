@@ -205,7 +205,6 @@ public final class Alerter {
         if (getAlert() != null) {
             getAlert().setOnClickListener(onClickListener);
         }
-
         return this;
     }
 
@@ -231,6 +230,19 @@ public final class Alerter {
     public Alerter enableIconPulse(final boolean pulse) {
         if (getAlert() != null) {
             getAlert().pulseIcon(pulse);
+        }
+        return this;
+    }
+
+    /**
+     * Enable or Disable Dismiss Fling
+     *
+     * @param dismissFling True if the alert can be dismiss by a fling
+     * @return This Alerter
+     */
+    public Alerter enableDismissFling(boolean dismissFling) {
+        if (getAlert() != null) {
+            getAlert().setDismissFling(dismissFling);
         }
         return this;
     }
