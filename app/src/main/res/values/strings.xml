@@ -3,6 +3,7 @@
     <string name="title_activity_example">Alerter Demo</string>
     <string name="default_alert">Default Alert</string>
     <string name="coloured_alert">Coloured Alert</string>
+    <string name="dismiss_fling_alert">Dismiss Fling Alert</string>
     <string name="text_only_alert">Text Only Alert</string>
     <string name="on_click_alert">On Click Alert</string>
     <string name="verbose_alert">Verbose Alert</string>
