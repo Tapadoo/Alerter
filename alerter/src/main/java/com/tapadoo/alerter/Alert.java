@@ -8,9 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +31,7 @@ import com.tapadoo.android.R;
  * @author Kevin Murphy, Tapadoo, Dublin, Ireland, Europe, Earth.
  * @since 26/01/2016
  **/
-public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener {
+public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener, View.OnTouchListener {
 
     private static final int CLEAN_UP_DELAY_MILLIS = 100;
 
@@ -50,10 +52,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private OnShowAlertListener onShowListener;
     private OnHideAlertListener onHideListener;
 
+    private GestureDetectorCompat detector;
+
     private long duration = DISPLAY_TIME_IN_SECONDS;
 
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
+    private volatile boolean enableDismissFling;
 
     /**
      * Flag to ensure we only set the margins once
@@ -105,7 +110,11 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvText = (TextView) findViewById(R.id.tvText);
 
+        detector = new GestureDetectorCompat(getContext(), new AlertGesture());
+
         flBackground.setOnClickListener(this);
+
+        flBackground.setOnTouchListener(this);
 
         //Setup Enter & Exit Animations
         slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.alerter_slide_in_from_top);
@@ -147,7 +156,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     @Override
     public void onClick(final View v) {
-        hide();
+        if (!enableDismissFling) {
+            hide();
+        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        detector.onTouchEvent(event);
+        return false;
     }
 
     @Override
@@ -378,6 +395,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     /**
+     * Set the alert can be dismiss by a fling
+     *
+     * @param enableDismissFling True if the alert can be dismiss by a fling
+     */
+    public void setDismissFling(final boolean enableDismissFling) {
+        this.enableDismissFling = enableDismissFling;
+    }
+
+    /**
      * Set the alert's listener to be fired on the alert being fully shown
      *
      * @param listener Listener to be fired
@@ -394,4 +420,23 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
     }
+
+    /**
+     *
+     */
+
+    class AlertGesture extends GestureDetector.SimpleOnGestureListener {
+
+        private float previousYScroll;
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            previousYScroll = e1.getY();
+            if (enableDismissFling) {
+                hide();
+            }
+            return super.onScroll(e1, e2, distanceX, distanceY);
+        }
+    }
+
 }
