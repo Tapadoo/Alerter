@@ -55,6 +55,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
 
+    private boolean showIcon = true;
+
     /**
      * Flag to ensure we only set the margins once
      */
@@ -176,7 +178,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public void onAnimationEnd(final Animation animation) {
         //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse) {
+        if (enableIconPulse && showIcon) {
             try {
                 ivIcon.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.alerter_pulse));
             } catch (Exception ex) {
@@ -339,6 +341,16 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setIcon(@DrawableRes final int iconId) {
         final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
         ivIcon.setImageDrawable(iconDrawable);
+    }
+
+    /**
+     * Set whether to show the icon in the alert or not
+     *
+     * @param showIcon True to show the icon, false otherwise
+     */
+    public void showIcon(final boolean showIcon) {
+        this.showIcon = showIcon;
+        ivIcon.setVisibility(showIcon ? View.VISIBLE : View.GONE);
     }
 
     /**

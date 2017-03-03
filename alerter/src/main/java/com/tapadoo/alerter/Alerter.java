@@ -236,6 +236,19 @@ public final class Alerter {
     }
 
     /**
+     * Set whether to show the icon in the alert or not
+     *
+     * @param showIcon True to show the icon, false otherwise
+     * @return This Alerter
+     */
+    public Alerter showIcon(final boolean showIcon) {
+        if (getAlert() != null) {
+            getAlert().showIcon(showIcon);
+        }
+        return this;
+    }
+
+    /**
      * Enable or disable infinite duration of the alert
      *
      * @param infiniteDuration True if the duration of the alert is infinite
