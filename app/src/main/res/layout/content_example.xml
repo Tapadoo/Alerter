@@ -65,4 +65,12 @@
         android:layout_height="wrap_content"
         android:text="@string/callback_alert"/>
 
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ExampleButton"
+        android:id="@+id/btnAlertCustomAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_animation_alert"/>
+
+
 </LinearLayout>
