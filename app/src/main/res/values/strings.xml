@@ -9,4 +9,5 @@
     <string name="custom_icon_alert">Custom Icon Alert</string>
     <string name="callback_alert">Alert Callbacks</string>
     <string name="custom_animation_alert">Custom Animation Of Enter and Exit</string>
+    <string name="infinite_alert">Infinity Duration Alert</string>
 </resources>
