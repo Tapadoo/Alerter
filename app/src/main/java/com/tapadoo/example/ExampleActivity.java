@@ -85,7 +85,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     private void showAlertWithIcon() {
         Alerter.create(ExampleActivity.this)
                 .setText("Alert text...")
-                .setIcon(R.drawable.ic_face)
+                .setIcon(R.drawable.alerter_ic_face)
                 .show();
     }
 

@@ -28,7 +28,7 @@
             android:layout_centerVertical="true"
             android:maxHeight="@dimen/alerter_alert_icn_size"
             android:maxWidth="@dimen/alerter_alert_icn_size"
-            android:src="@drawable/ic_notifications"
+            android:src="@drawable/alerter_ic_notifications"
             android:tint="@android:color/white"/>
 
         <LinearLayout
