@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.5'
+    compile 'com.tapadoo.android:alerter:1.0.6'
 }
 ```
 
@@ -64,7 +64,7 @@ Alerter.create(this)
 ```java
 Alerter.create(this)
        .setText("Alert text...")
-       .setIcon(R.drawable.ic_face)
+       .setIcon(R.drawable.alerter_ic_face)
        .show();
 ```
 
