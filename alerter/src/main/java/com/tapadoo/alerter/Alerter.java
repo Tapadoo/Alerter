@@ -1,6 +1,7 @@
 package com.tapadoo.alerter;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -190,6 +191,20 @@ public final class Alerter {
     public Alerter setIcon(@DrawableRes final int iconId) {
         if (getAlert() != null) {
             getAlert().setIcon(iconId);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Alert's Icon
+     *
+     * @param bitmap The Bitmap object to use for the icon.
+     * @return This Alerter
+     */
+    public Alerter setIcon(final Bitmap bitmap) {
+        if (getAlert() != null) {
+            getAlert().setIcon(bitmap);
         }
 
         return this;
