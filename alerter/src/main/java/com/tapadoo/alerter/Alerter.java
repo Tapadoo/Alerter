@@ -153,6 +153,14 @@ public final class Alerter {
         return this;
     }
 
+    public Alerter OutsideClickable(boolean mOutsideClickable) {
+        if (getAlert() != null) {
+            getAlert().setmOutsideClickable(mOutsideClickable,activityWeakReference);
+        }
+
+        return this;
+    }
+
     /**
      * Sets the Alert Text
      *
