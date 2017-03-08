@@ -154,6 +154,20 @@ public final class Alerter {
     }
 
     /**
+     * set the outside click enable/disable
+     *
+     * @param mOutsideClickable boolean for enable/disable
+     * @return This Alerter
+     */
+    public Alerter setOutsideClickable(boolean mOutsideClickable) {
+        if (getAlert() != null) {
+            getAlert().setmOutsideClickable(mOutsideClickable, activityWeakReference);
+        }
+
+        return this;
+    }
+
+    /**
      * Sets the Alert Text
      *
      * @param text String of Alert Text

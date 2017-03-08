@@ -1,5 +1,6 @@
 package com.tapadoo.alerter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
@@ -22,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tapadoo.android.R;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Custom Alert View
@@ -54,6 +57,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
+
+    private ViewGroup mRootView;
+
+    /**
+     * Flag for outside touchable event
+     */
+    private boolean mOutsideClickable = true;
 
     /**
      * Flag to ensure we only set the margins once
@@ -124,7 +134,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             marginSet = true;
 
             // Add a negative top margin to compensate for overshoot enter animation
-            final ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) getLayoutParams();
+            final MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
             params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top);
             requestLayout();
         }
@@ -168,6 +178,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public void onAnimationStart(final Animation animation) {
         if (!isInEditMode()) {
+            if (!mOutsideClickable) {
+                outsideTouchable(mRootView, false);
+            }
             performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             setVisibility(View.VISIBLE);
         }
@@ -210,6 +223,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * Cleans up the currently showing alert view.
      */
     public void hide() {
+        if (!mOutsideClickable) {
+            outsideTouchable(mRootView, true);
+        }
         try {
             slideOutAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -271,6 +287,27 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setAlertBackgroundColor(@ColorInt final int color) {
         flBackground.setBackgroundColor(color);
+    }
+
+    /**
+     * get the current outsideclickable status
+     *
+     * @return boolean
+     */
+    public boolean ismOutsideClickable() {
+        return mOutsideClickable;
+    }
+
+    /**
+     * Set the outside click event
+     *
+     * @param mOutsideClickable     boolean that shows that outside event is true or false
+     * @param activityWeakReference for getting viewgroup from activity
+     */
+    public void setmOutsideClickable(boolean mOutsideClickable, WeakReference<Activity> activityWeakReference) {
+        this.mOutsideClickable = mOutsideClickable;
+        if (!mOutsideClickable)
+            mRootView = (ViewGroup) activityWeakReference.get().getWindow().getDecorView().getRootView();
     }
 
     /**
@@ -402,5 +439,22 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
+    }
+
+    /**
+     * method that enable/disable the outside touch events
+     *
+     * @param viewGroup screen view
+     * @param enabled   event that to be set
+     */
+    private static void outsideTouchable(ViewGroup viewGroup, boolean enabled) {
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View view = viewGroup.getChildAt(i);
+            view.setEnabled(enabled);
+            if (view instanceof ViewGroup) {
+                outsideTouchable((ViewGroup) view, enabled);
+            }
+        }
     }
 }
