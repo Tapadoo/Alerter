@@ -63,7 +63,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     /**
      * Flag for outside touchable event
      */
-    private boolean mOutsideClickable = false;
+    private boolean mOutsideClickable = true;
 
     /**
      * Flag to ensure we only set the margins once
@@ -134,7 +134,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             marginSet = true;
 
             // Add a negative top margin to compensate for overshoot enter animation
-            final ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) getLayoutParams();
+            final MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
             params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top);
             requestLayout();
         }
@@ -178,8 +178,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public void onAnimationStart(final Animation animation) {
         if (!isInEditMode()) {
-            if (mOutsideClickable) {
-                OutsideTouchable(mRootView, false);
+            if (!mOutsideClickable) {
+                outsideTouchable(mRootView, false);
             }
             performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             setVisibility(View.VISIBLE);
@@ -223,8 +223,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * Cleans up the currently showing alert view.
      */
     public void hide() {
-        if (mOutsideClickable) {
-            OutsideTouchable(mRootView, true);
+        if (!mOutsideClickable) {
+            outsideTouchable(mRootView, true);
         }
         try {
             slideOutAnimation.setAnimationListener(new Animation.AnimationListener() {
@@ -289,13 +289,24 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         flBackground.setBackgroundColor(color);
     }
 
+    /**
+     * get the current outsideclickable status
+     *
+     * @return boolean
+     */
     public boolean ismOutsideClickable() {
         return mOutsideClickable;
     }
 
+    /**
+     * Set the outside click event
+     *
+     * @param mOutsideClickable     boolean that shows that outside event is true or false
+     * @param activityWeakReference for getting viewgroup from activity
+     */
     public void setmOutsideClickable(boolean mOutsideClickable, WeakReference<Activity> activityWeakReference) {
         this.mOutsideClickable = mOutsideClickable;
-        if (mOutsideClickable)
+        if (!mOutsideClickable)
             mRootView = (ViewGroup) activityWeakReference.get().getWindow().getDecorView().getRootView();
     }
 
@@ -431,18 +442,18 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     /**
-     * method that enable/diasble the outside touch events
+     * method that enable/disable the outside touch events
      *
      * @param viewGroup screen view
      * @param enabled   event that to be set
      */
-    private static void OutsideTouchable(ViewGroup viewGroup, boolean enabled) {
+    private static void outsideTouchable(ViewGroup viewGroup, boolean enabled) {
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = viewGroup.getChildAt(i);
             view.setEnabled(enabled);
             if (view instanceof ViewGroup) {
-                OutsideTouchable((ViewGroup) view, enabled);
+                outsideTouchable((ViewGroup) view, enabled);
             }
         }
     }
