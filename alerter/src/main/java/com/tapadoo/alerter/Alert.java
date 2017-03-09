@@ -347,7 +347,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      *
      * @param bitmap Bitmap image of the icon to use in the Alert.
      */
-    public void setIcon(final Bitmap bitmap) {
+    public void setIcon(@NonNull final Bitmap bitmap) {
         ivIcon.setImageBitmap(bitmap);
     }
 

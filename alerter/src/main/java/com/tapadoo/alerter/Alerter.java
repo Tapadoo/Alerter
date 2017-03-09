@@ -202,7 +202,7 @@ public final class Alerter {
      * @param bitmap The Bitmap object to use for the icon.
      * @return This Alerter
      */
-    public Alerter setIcon(final Bitmap bitmap) {
+    public Alerter setIcon(@NonNull final Bitmap bitmap) {
         if (getAlert() != null) {
             getAlert().setIcon(bitmap);
         }
