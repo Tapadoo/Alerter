@@ -70,7 +70,6 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .enableInfiniteDuration(true)
                 .show();
     }
 
@@ -84,8 +83,10 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
 
     private void showAlertWithIcon() {
         Alerter.create(ExampleActivity.this)
-                .setText("Alert text...")
+                .setTitle("Upload Complete")
+                .setText("Successfully uploaded Image!")
                 .setIcon(R.drawable.alerter_ic_face)
+                .setBackgroundColor(android.R.color.darker_gray)
                 .show();
     }
 
@@ -97,13 +98,13 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
 
     private void showAlertWithOnClick() {
         Alerter.create(ExampleActivity.this)
-                .setTitle("Alert Title")
-                .setText("Alert text...")
+                .setTitle("Notification Received")
+                .setText("Click for info...")
                 .setDuration(10000)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(ExampleActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ExampleActivity.this, "On Click", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();

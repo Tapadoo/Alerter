@@ -79,13 +79,14 @@ publishing {
             version VERSION
             artifactId project.getName()
 
-            //from components.android
+            //Package the Source and Javadoc Jars
             artifact sourcesJar
             artifact javadocJar
 
-            // Tell maven to prepare the generated "*.aar" file for publishing
+            // Prepare the generated AAR file for publishing
             artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
+            //Generate POM
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', DESCRIPTION)
