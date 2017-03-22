@@ -10,7 +10,8 @@
     tools:visibility="visible">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/rlContainer"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="@dimen/alerter_padding_half"
