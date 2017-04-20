@@ -1,6 +1,7 @@
 package com.tapadoo.alerter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -378,6 +379,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setIcon(@DrawableRes final int iconId) {
         final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
         ivIcon.setImageDrawable(iconDrawable);
+    }
+
+    /**
+     * Set the inline icon for the Alert
+     *
+     * @param bitmap Bitmap image of the icon to use in the Alert.
+     */
+    public void setIcon(@NonNull final Bitmap bitmap) {
+        ivIcon.setImageBitmap(bitmap);
     }
 
     /**
