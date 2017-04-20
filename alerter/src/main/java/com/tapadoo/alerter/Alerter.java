@@ -141,6 +141,20 @@ public final class Alerter {
     }
 
     /**
+     * Set Gravity of the Alert
+     *
+     * @param gravity Gravity of Alert
+     * @return This Alerter
+     */
+    public Alerter setContentGravity(final int gravity) {
+        if (getAlert() != null) {
+            getAlert().setContentGravity(gravity);
+        }
+
+        return this;
+    }
+
+    /**
      * Sets the Alert Text
      *
      * @param textId Text String Resource
