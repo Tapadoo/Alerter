@@ -2,6 +2,7 @@ package com.tapadoo.alerter;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -177,6 +178,34 @@ public final class Alerter {
     public Alerter setBackgroundColor(@ColorRes final int colorResId) {
         if (getAlert() != null && getActivityWeakReference() != null) {
             getAlert().setAlertBackgroundColor(ContextCompat.getColor(getActivityWeakReference().get(), colorResId));
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Alert's Background Drawable
+     *
+     * @param drawable Drawable
+     * @return This Alerter
+     */
+    public Alerter setBackgroundDrawable(final Drawable drawable) {
+        if (getAlert() != null) {
+            getAlert().setAlertBackgroundDrawable(drawable);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Alert's Background Drawable Resource
+     *
+     * @param drawableResId Drawable Resource Id
+     * @return This Alerter
+     */
+    public Alerter setBackgroundResource(@DrawableRes final int drawableResId) {
+        if (getAlert() != null) {
+            getAlert().setAlertBackgroundResource(drawableResId);
         }
 
         return this;

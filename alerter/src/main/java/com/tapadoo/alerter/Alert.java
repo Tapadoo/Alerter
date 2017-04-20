@@ -3,6 +3,7 @@ package com.tapadoo.alerter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -272,6 +273,28 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setAlertBackgroundColor(@ColorInt final int color) {
         flBackground.setBackgroundColor(color);
+    }
+
+    /**
+     * Sets the Alert Background Drawable Resource
+     *
+     * @param resource The qualified drawable integer
+     */
+    public void setAlertBackgroundResource(@DrawableRes final int resource) {
+        flBackground.setBackgroundResource(resource);
+    }
+
+    /**
+     * Sets the Alert Background Drawable
+     *
+     * @param drawable The qualified drawable
+     */
+    public void setAlertBackgroundDrawable(final Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            flBackground.setBackground(drawable);
+        } else {
+            flBackground.setBackgroundDrawable(drawable);
+        }
     }
 
     /**
