@@ -113,6 +113,15 @@ public final class Alerter {
     }
 
     /**
+     * Hides currently showing alert.
+     */
+    public void hide() {
+        if (getAlert() != null) {
+            getAlert().hide();
+        }
+    }
+
+    /**
      * Sets the title of the Alert
      *
      * @param titleId Title String Resource
