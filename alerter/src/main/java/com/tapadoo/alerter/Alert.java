@@ -59,6 +59,10 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * Flag to ensure we only set the margins once
      */
     private boolean marginSet;
+    /**
+     * Flag to enable / disable haptic feedbacl
+     */
+    private boolean vibrationEnabled = true;
 
     /**
      * This is the default view constructor. It requires a Context, and holds a reference to it.
@@ -168,7 +172,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     @Override
     public void onAnimationStart(final Animation animation) {
         if (!isInEditMode()) {
-            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (vibrationEnabled) {
+                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            }
             setVisibility(View.VISIBLE);
         }
     }
@@ -402,5 +408,14 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
+    }
+
+    /**
+     * Enable or Disable haptic feedback
+     *
+     * @param vibrationEnabled True to enable, false to disable
+     */
+    public void setVibrationEnabled(boolean vibrationEnabled) {
+        this.vibrationEnabled = vibrationEnabled;
     }
 }

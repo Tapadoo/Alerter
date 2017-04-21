@@ -288,6 +288,20 @@ public final class Alerter {
     }
 
     /**
+     * Enable Vibration
+     *
+     * @param enable True to enable, False to disable
+     * @return This Alerter
+     */
+    public Alerter enableVibration(final boolean enable) {
+        if (getAlert() != null) {
+            getAlert().setVibrationEnabled(enable);
+        }
+
+        return this;
+    }
+
+    /**
      * Gets the Alert associated with the Alerter
      *
      * @return The current Alert
