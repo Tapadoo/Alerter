@@ -69,21 +69,22 @@ public final class Alerter {
         }
 
         try {
-            final View alertView = activity.getWindow().getDecorView().findViewById(R.id.flAlertBackground);
-            //Check if the Alert is added to the Window
-            if (alertView == null || alertView.getWindowToken() == null) {
-                Log.d(Alerter.class.getClass().getSimpleName(), activity.getString(R.string.msg_no_alert_showing));
-            } else {
-                //Animate the Alpha
-                ViewCompat.animate(alertView).alpha(0).withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        //And remove the view for the parent layout
-                        ((ViewGroup) alertView.getParent()).removeView(alertView);
+            final ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+            for (int i = 0; i < decorView.getChildCount(); i++) {
+                View childView = decorView.getChildAt(i);
+                if (childView instanceof Alert) {
+                    final Alert alertView = (Alert) childView;
+                    if (alertView.getWindowToken() != null) {
+                        //Animate the Alpha
+                        ViewCompat.animate(alertView).alpha(0).withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                //And remove the view for the parent layout
+                                ((ViewGroup) alertView.getParent()).removeView(alertView);
+                            }
+                        }).start();
                     }
-                }).start();
-
-                Log.d(Alerter.class.getClass().getSimpleName(), activity.getString(R.string.msg_alert_cleared));
+                }
             }
         } catch (Exception ex) {
             Log.e(Alerter.class.getClass().getSimpleName(), Log.getStackTraceString(ex));
