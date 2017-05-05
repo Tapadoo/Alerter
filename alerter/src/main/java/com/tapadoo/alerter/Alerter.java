@@ -14,8 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tapadoo.android.R;
-
 import java.lang.ref.WeakReference;
 
 /**
@@ -258,6 +256,19 @@ public final class Alerter {
     public Alerter setIcon(@NonNull final Bitmap bitmap) {
         if (getAlert() != null) {
             getAlert().setIcon(bitmap);
+        }
+
+        return this;
+    }
+
+    /**
+     * Hide the Icon
+     *
+     * @return This Alerter
+     */
+    public Alerter hideIcon() {
+        if (getAlert() != null) {
+            getAlert().getIcon().setVisibility(View.GONE);
         }
 
         return this;
