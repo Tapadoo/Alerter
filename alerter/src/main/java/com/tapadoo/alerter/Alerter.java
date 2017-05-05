@@ -1,6 +1,8 @@
 package com.tapadoo.alerter;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -112,6 +114,15 @@ public final class Alerter {
     }
 
     /**
+     * Hides currently showing alert.
+     */
+    public void hide() {
+        if (getAlert() != null) {
+            getAlert().hide();
+        }
+    }
+
+    /**
      * Sets the title of the Alert
      *
      * @param titleId Title String Resource
@@ -134,6 +145,20 @@ public final class Alerter {
     public Alerter setTitle(final String title) {
         if (getAlert() != null) {
             getAlert().setTitle(title);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set Gravity of the Alert
+     *
+     * @param gravity Gravity of Alert
+     * @return This Alerter
+     */
+    public Alerter setContentGravity(final int gravity) {
+        if (getAlert() != null) {
+            getAlert().setContentGravity(gravity);
         }
 
         return this;
@@ -182,6 +207,34 @@ public final class Alerter {
     }
 
     /**
+     * Set the Alert's Background Drawable
+     *
+     * @param drawable Drawable
+     * @return This Alerter
+     */
+    public Alerter setBackgroundDrawable(final Drawable drawable) {
+        if (getAlert() != null) {
+            getAlert().setAlertBackgroundDrawable(drawable);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Alert's Background Drawable Resource
+     *
+     * @param drawableResId Drawable Resource Id
+     * @return This Alerter
+     */
+    public Alerter setBackgroundResource(@DrawableRes final int drawableResId) {
+        if (getAlert() != null) {
+            getAlert().setAlertBackgroundResource(drawableResId);
+        }
+
+        return this;
+    }
+
+    /**
      * Set the Alert's Icon
      *
      * @param iconId The Drawable's Resource Idw
@@ -190,6 +243,20 @@ public final class Alerter {
     public Alerter setIcon(@DrawableRes final int iconId) {
         if (getAlert() != null) {
             getAlert().setIcon(iconId);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Alert's Icon
+     *
+     * @param bitmap The Bitmap object to use for the icon.
+     * @return This Alerter
+     */
+    public Alerter setIcon(@NonNull final Bitmap bitmap) {
+        if (getAlert() != null) {
+            getAlert().setIcon(bitmap);
         }
 
         return this;

@@ -1,7 +1,9 @@
 package com.tapadoo.alerter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -43,6 +45,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private TextView tvTitle;
     private TextView tvText;
     private ImageView ivIcon;
+    private ViewGroup rlContainer;
 
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
@@ -108,6 +111,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         ivIcon = (ImageView) findViewById(R.id.ivIcon);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvText = (TextView) findViewById(R.id.tvText);
+        rlContainer = (ViewGroup) findViewById(R.id.rlContainer);
 
         flBackground.setOnClickListener(this);
 
@@ -280,6 +284,28 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     /**
+     * Sets the Alert Background Drawable Resource
+     *
+     * @param resource The qualified drawable integer
+     */
+    public void setAlertBackgroundResource(@DrawableRes final int resource) {
+        flBackground.setBackgroundResource(resource);
+    }
+
+    /**
+     * Sets the Alert Background Drawable
+     *
+     * @param drawable The qualified drawable
+     */
+    public void setAlertBackgroundDrawable(final Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            flBackground.setBackground(drawable);
+        } else {
+            flBackground.setBackgroundDrawable(drawable);
+        }
+    }
+
+    /**
      * Sets the Title of the Alert
      *
      * @param titleId String resource id of the Alert title
@@ -295,6 +321,20 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setText(@StringRes final int textId) {
         setText(getContext().getString(textId));
+    }
+
+    /**
+     * Sets the Gravity of the Alert
+     *
+     * @param contentGravity Gravity of the Alert
+     */
+    public void setContentGravity(final int contentGravity) {
+        ((LayoutParams) rlContainer.getLayoutParams()).gravity = contentGravity;
+        rlContainer.requestLayout();
+    }
+
+    public int getContentGravity() {
+        return ((LayoutParams) rlContainer.getLayoutParams()).gravity;
     }
 
     public FrameLayout getAlertBackground() {
@@ -345,6 +385,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setIcon(@DrawableRes final int iconId) {
         final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
         ivIcon.setImageDrawable(iconDrawable);
+    }
+
+    /**
+     * Set the inline icon for the Alert
+     *
+     * @param bitmap Bitmap image of the icon to use in the Alert.
+     */
+    public void setIcon(@NonNull final Bitmap bitmap) {
+        ivIcon.setImageBitmap(bitmap);
     }
 
     /**
