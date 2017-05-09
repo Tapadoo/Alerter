@@ -68,25 +68,28 @@ public final class Alerter {
 
         try {
             final ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+
+            //Find all Alert Views in Parent layout
             for (int i = 0; i < decorView.getChildCount(); i++) {
-                View childView = decorView.getChildAt(i);
-                if (childView instanceof Alert) {
-                    final Alert alertView = (Alert) childView;
-                    if (alertView.getWindowToken() != null) {
-                        //Animate the Alpha
-                        ViewCompat.animate(alertView).alpha(0).withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                //And remove the view for the parent layout
-                                ((ViewGroup) alertView.getParent()).removeView(alertView);
-                            }
-                        }).start();
-                    }
+                final Alert childView = decorView.getChildAt(i) instanceof Alert ? (Alert) decorView.getChildAt(i) : null;
+                if (childView != null && childView.getWindowToken() != null) {
+                    ViewCompat.animate(childView).alpha(0).withEndAction(getRemoveViewRunnable(childView));
                 }
             }
+
         } catch (Exception ex) {
             Log.e(Alerter.class.getClass().getSimpleName(), Log.getStackTraceString(ex));
         }
+    }
+
+    @NonNull
+    private static Runnable getRemoveViewRunnable(final Alert childView) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                ((ViewGroup) childView.getParent()).removeView(childView);
+            }
+        };
     }
 
     /**
