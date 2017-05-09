@@ -401,4 +401,28 @@ public final class Alerter {
     private void setActivity(@NonNull final Activity activity) {
         activityWeakReference = new WeakReference<>(activity);
     }
+
+    /**
+     * Sets the custom enter animation of the Alerter given by the resource id of the Anim File in the res folder.
+     * @param enterAnimationResourceId The resource id of the anim file in the res folder for the animation when alert enter.
+     * @return The Alerter Object
+     */
+    public Alerter setEnterAnimation(@NonNull int enterAnimationResourceId) {
+        if (getAlert() != null) {
+            getAlert().setEnterAnimation(enterAnimationResourceId);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the custom exit animation of the Alerter given by the resource id of the Anim File in the res folder.
+     * @param exitAnimationResourceId The resource id of the anim file in the res folder for the animation when alert exit.
+     * @return The Alerter Object
+     */
+    public Alerter setExitAnimation(@NonNull int exitAnimationResourceId) {
+        if (getAlert() != null) {
+            getAlert().setEnterAnimation(exitAnimationResourceId);
+        }
+        return this;
+    }
 }

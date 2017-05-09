@@ -27,7 +27,9 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAlertOnClick).setOnClickListener(this);
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
         findViewById(R.id.btnAlertCallback).setOnClickListener(this);
+        findViewById(R.id.btnAlertCustomAnimation).setOnClickListener(this);
         findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
+
     }
 
     @Override
@@ -57,8 +59,14 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 showAlertCallbacks();
                 break;
             }
+            case R.id.btnAlertCustomAnimation: {
+                showAlertWithCustomAnimation();
+                break;
+
+            }
             case R.id.btnAlertInfiniteDuration: {
                 showAlertInfiniteDuration();
+                break;
             }
             default: {
                 showAlertDefault();
@@ -137,6 +145,11 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 })
                 .show();
     }
+
+    private void showAlertWithCustomAnimation(){
+        Alerter.create(ExampleActivity.this).setTitle("Alert Title").setText("Alert Text").setEnterAnimation(R.anim.alerter_slide_in_from_top).setExitAnimation(R.anim.alerter_slide_out_to_top).show();
+    }
+
 
     private void showAlertInfiniteDuration() {
         Alerter.create(ExampleActivity.this)

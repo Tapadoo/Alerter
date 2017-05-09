@@ -452,4 +452,20 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setOnHideListener(@NonNull final OnHideAlertListener listener) {
         this.onHideListener = listener;
     }
+
+    /**
+     * Set the enter animation for the alert  given in the resource id of the anim file in the res folder.
+     * @param enterAnimationResourceId  The resource id of the anim file in the res folder for the animation when alert enter.
+     */
+    public void setEnterAnimation(@NonNull int enterAnimationResourceId) {
+        this.slideInAnimation = AnimationUtils.loadAnimation(getContext(), enterAnimationResourceId);
+    }
+
+    /**
+     * Set the exit animation for the alert  given in the resource id of the anim file in the res folder.
+     * @param exitAnimationResourceId The resource id of the anim file in the res folder for the animation when alert exit.
+     */
+    public void setExitAnimation(@NonNull int exitAnimationResourceId) {
+        this.slideOutAnimation = AnimationUtils.loadAnimation(getContext(), exitAnimationResourceId);
+    }
 }
