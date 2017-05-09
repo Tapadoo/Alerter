@@ -64,7 +64,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     private boolean marginSet;
     /**
-     * Flag to enable / disable haptic feedbacl
+     * Flag to enable / disable haptic feedback
      */
     private boolean vibrationEnabled = true;
 

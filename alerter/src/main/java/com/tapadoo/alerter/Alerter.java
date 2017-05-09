@@ -367,7 +367,7 @@ public final class Alerter {
     }
 
     /**
-     * Enable Vibration
+     * Enable or Disable Vibration
      *
      * @param enable True to enable, False to disable
      * @return This Alerter
