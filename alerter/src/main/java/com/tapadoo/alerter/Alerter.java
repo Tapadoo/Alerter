@@ -14,8 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tapadoo.android.R;
-
 import java.lang.ref.WeakReference;
 
 /**
@@ -69,25 +67,29 @@ public final class Alerter {
         }
 
         try {
-            final View alertView = activity.getWindow().getDecorView().findViewById(R.id.flAlertBackground);
-            //Check if the Alert is added to the Window
-            if (alertView == null || alertView.getWindowToken() == null) {
-                Log.d(Alerter.class.getClass().getSimpleName(), activity.getString(R.string.msg_no_alert_showing));
-            } else {
-                //Animate the Alpha
-                ViewCompat.animate(alertView).alpha(0).withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        //And remove the view for the parent layout
-                        ((ViewGroup) alertView.getParent()).removeView(alertView);
-                    }
-                }).start();
+            final ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
 
-                Log.d(Alerter.class.getClass().getSimpleName(), activity.getString(R.string.msg_alert_cleared));
+            //Find all Alert Views in Parent layout
+            for (int i = 0; i < decorView.getChildCount(); i++) {
+                final Alert childView = decorView.getChildAt(i) instanceof Alert ? (Alert) decorView.getChildAt(i) : null;
+                if (childView != null && childView.getWindowToken() != null) {
+                    ViewCompat.animate(childView).alpha(0).withEndAction(getRemoveViewRunnable(childView));
+                }
             }
+
         } catch (Exception ex) {
             Log.e(Alerter.class.getClass().getSimpleName(), Log.getStackTraceString(ex));
         }
+    }
+
+    @NonNull
+    private static Runnable getRemoveViewRunnable(final Alert childView) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                ((ViewGroup) childView.getParent()).removeView(childView);
+            }
+        };
     }
 
     /**
@@ -263,6 +265,19 @@ public final class Alerter {
     }
 
     /**
+     * Hide the Icon
+     *
+     * @return This Alerter
+     */
+    public Alerter hideIcon() {
+        if (getAlert() != null) {
+            getAlert().getIcon().setVisibility(View.GONE);
+        }
+
+        return this;
+    }
+
+    /**
      * Set the onClickListener for the Alert
      *
      * @param onClickListener The onClickListener for the Alert
@@ -351,6 +366,33 @@ public final class Alerter {
         if (getAlert() != null) {
             getAlert().setOnHideListener(listener);
         }
+        return this;
+    }
+
+    /**
+     * Enable or Disable Vibration
+     *
+     * @param enable True to enable, False to disable
+     * @return This Alerter
+     */
+    public Alerter enableVibration(final boolean enable) {
+        if (getAlert() != null) {
+            getAlert().setVibrationEnabled(enable);
+        }
+
+        return this;
+    }
+
+    /**
+     * Disable touch events outside of the Alert
+     *
+     * @return This Alerter
+     */
+    public Alerter disableOutsideTouch() {
+        if (getAlert() != null) {
+            getAlert().disableOutsideTouch();
+        }
+
         return this;
     }
 

@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.8 - 2017-05-09
+* Added disable vibration option 
+* Updated Alert dismiss method
+* Added method to hide icon
+* Added method to disable outside touch
+
 ## 1.0.7 - 2017-03-07
 * Added the ability to use bitmap images for the icon.
 

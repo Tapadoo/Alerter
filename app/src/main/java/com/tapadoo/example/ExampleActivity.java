@@ -70,7 +70,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .enableInfiniteDuration(true)
+                .disableOutsideTouch()
                 .show();
     }
 

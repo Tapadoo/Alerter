@@ -1,77 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/flAlertBackground"
-    style="@style/AlertStyle"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/darker_gray"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    tools:visibility="visible">
+<FrameLayout android:id="@+id/flClickShield"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@android:color/transparent"
+             android:clickable="false">
 
-    <RelativeLayout
-        android:id="@+id/rlContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="@dimen/alerter_padding_half"
-        android:background="@null"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:padding="@dimen/alerter_activity_horizontal_margin">
+    <FrameLayout
+        android:id="@+id/flAlertBackground"
+        style="@style/AlertStyle"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        tools:visibility="visible">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/ivIcon"
-            android:layout_width="@dimen/alerter_alert_icn_size"
-            android:layout_height="@dimen/alerter_alert_icn_size"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:maxHeight="@dimen/alerter_alert_icn_size"
-            android:maxWidth="@dimen/alerter_alert_icn_size"
-            android:src="@drawable/alerter_ic_notifications"
-            android:tint="@android:color/white"/>
-
-        <LinearLayout
-            android:id="@+id/llAlertTextContainer"
+        <RelativeLayout
+            android:id="@+id/rlContainer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/alerter_activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/alerter_activity_horizontal_margin"
-            android:layout_marginRight="@dimen/alerter_activity_horizontal_margin"
-            android:layout_marginStart="@dimen/alerter_activity_horizontal_margin"
-            android:layout_toEndOf="@id/ivIcon"
-            android:layout_toRightOf="@id/ivIcon"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/alerter_padding_half"
             android:background="@null"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:orientation="vertical">
+            android:padding="@dimen/alerter_activity_horizontal_margin">
 
-            <TextView
-                android:id="@+id/tvTitle"
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="@dimen/alerter_alert_icn_size"
+                android:layout_height="@dimen/alerter_alert_icn_size"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:maxHeight="@dimen/alerter_alert_icn_size"
+                android:maxWidth="@dimen/alerter_alert_icn_size"
+                android:src="@drawable/alerter_ic_notifications"
+                android:tint="@android:color/white"/>
+
+            <LinearLayout
+                android:id="@+id/llAlertTextContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/AlertTextAppearance.Title"
-                android:textColor="@android:color/white"
-                android:visibility="gone"
-                tools:text="Title"
-                tools:visibility="visible"/>
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/alerter_activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/alerter_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/alerter_activity_horizontal_margin"
+                android:layout_marginStart="@dimen/alerter_activity_horizontal_margin"
+                android:layout_toEndOf="@id/ivIcon"
+                android:layout_toRightOf="@id/ivIcon"
+                android:background="@null"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/alerter_padding_small"
-                android:paddingTop="@dimen/alerter_padding_small"
-                android:textAppearance="@style/AlertTextAppearance.Text"
-                android:textColor="@android:color/white"
-                android:visibility="gone"
-                tools:text="Text"
-                tools:visibility="visible"/>
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/AlertTextAppearance.Title"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    tools:text="Title"
+                    tools:visibility="visible"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/alerter_padding_small"
+                    android:paddingTop="@dimen/alerter_padding_small"
+                    android:textAppearance="@style/AlertTextAppearance.Text"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    tools:text="Text"
+                    tools:visibility="visible"/>
 
-    </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
 
 </FrameLayout>
