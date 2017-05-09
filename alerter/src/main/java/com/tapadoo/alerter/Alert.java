@@ -66,7 +66,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     /**
      * Flag to enable / disable haptic feedback
      */
-    private boolean vibrationEnabled;
+    private boolean vibrationEnabled = true;
 
     /**
      * This is the default view constructor. It requires a Context, and holds a reference to it.
@@ -124,8 +124,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         //Set Animation to be Run when View is added to Window
         setAnimation(slideInAnimation);
-
-        vibrationEnabled = true;
     }
 
     @Override
