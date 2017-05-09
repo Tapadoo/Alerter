@@ -9,7 +9,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -325,6 +325,10 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         setText(getContext().getString(textId));
     }
 
+    public int getContentGravity() {
+        return ((LayoutParams) rlContainer.getLayoutParams()).gravity;
+    }
+
     /**
      * Sets the Gravity of the Alert
      *
@@ -340,10 +344,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void disableOutsideTouch() {
         flClickShield.setClickable(true);
-    }
-
-    public int getContentGravity() {
-        return ((LayoutParams) rlContainer.getLayoutParams()).gravity;
     }
 
     public FrameLayout getAlertBackground() {
@@ -392,7 +392,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * @param iconId Drawable resource id of the icon to use in the Alert
      */
     public void setIcon(@DrawableRes final int iconId) {
-        final Drawable iconDrawable = ContextCompat.getDrawable(getContext(), iconId);
+        final Drawable iconDrawable = VectorDrawableCompat.create(getContext().getResources(), iconId, null);
         ivIcon.setImageDrawable(iconDrawable);
     }
 
