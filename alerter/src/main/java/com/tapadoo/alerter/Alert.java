@@ -41,6 +41,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private static final long DISPLAY_TIME_IN_SECONDS = 3000;
 
     //UI
+    private FrameLayout flClickShield;
     private FrameLayout flBackground;
     private TextView tvTitle;
     private TextView tvText;
@@ -108,6 +109,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         setHapticFeedbackEnabled(true);
 
         flBackground = (FrameLayout) findViewById(R.id.flAlertBackground);
+        flClickShield = (FrameLayout) findViewById(R.id.flClickShield);
         ivIcon = (ImageView) findViewById(R.id.ivIcon);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvText = (TextView) findViewById(R.id.tvText);
@@ -331,6 +333,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setContentGravity(final int contentGravity) {
         ((LayoutParams) rlContainer.getLayoutParams()).gravity = contentGravity;
         rlContainer.requestLayout();
+    }
+
+    /**
+     * Disable touches while the Alert is showing
+     */
+    public void disableOutsideTouch() {
+        flClickShield.setClickable(true);
     }
 
     public int getContentGravity() {

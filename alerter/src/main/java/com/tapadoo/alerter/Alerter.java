@@ -381,6 +381,19 @@ public final class Alerter {
     }
 
     /**
+     * Disable touch events outside of the Alert
+     *
+     * @return This Alerter
+     */
+    public Alerter disableOutsideTouch() {
+        if (getAlert() != null) {
+            getAlert().disableOutsideTouch();
+        }
+
+        return this;
+    }
+
+    /**
      * Gets the Alert associated with the Alerter
      *
      * @return The current Alert
