@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.8 - 2017-05-09
+* git 
+* Added the ability to use bitmap images for the icon.
+
 ## 1.0.7 - 2017-03-07
 * Added the ability to use bitmap images for the icon.
 
