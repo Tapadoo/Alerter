@@ -224,6 +224,20 @@ public final class Alerter {
     }
 
     /**
+     * Set the Alert's Background Colour
+     *
+     * @param colorInt Colour Int
+     * @return This Alerter
+     */
+    public Alerter setBackgroundColorInt(@ColorInt final int colorInt) {
+        if (getAlert() != null) {
+            getAlert().setAlertBackgroundColor(colorInt);
+        }
+
+        return this;
+    }
+
+    /**
      * Set the Alert's Background Drawable
      *
      * @param drawable Drawable

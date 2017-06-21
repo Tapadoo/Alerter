@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.7'
+    compile 'com.tapadoo.android:alerter:1.0.9'
 }
 ```
 
@@ -53,7 +53,7 @@ Alerter.create(getActivity())
 Alerter.create(this)
        .setTitle("Alert Title")
        .setText("Alert text...")
-       .setBackgroundColor(R.color.colorAccent)
+       .setBackgroundColor(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
        .show();
 ```
 
@@ -152,9 +152,3 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 Copyright 2016 Tapadoo, Dublin.
 
 ![Alt Text](http://tapadoo.com/wp-content/themes/tapadoo/img/tapadoo-logo@2x.png)
-
-
-
-
-
-
