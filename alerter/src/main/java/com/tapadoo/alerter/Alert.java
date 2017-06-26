@@ -31,7 +31,7 @@ import com.tapadoo.android.R;
  * @author Kevin Murphy, Tapadoo, Dublin, Ireland, Europe, Earth.
  * @since 26/01/2016
  **/
-public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener {
+public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
 
     private static final int CLEAN_UP_DELAY_MILLIS = 100;
 
@@ -423,33 +423,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Set whether to enable swipe to dismiss or not
-     *
-     * @param swipeToDismiss True to enable swipe to dismiss, false otherwise
      */
-    public void enableSwipeToDismiss(final boolean swipeToDismiss) {
-        flBackground.setOnTouchListener(new SwipeDismissTouchListener(
-                flBackground,
-                null,
-                new SwipeDismissTouchListener.DismissCallbacks() {
-                    @Override
-                    public boolean canDismiss(Object token) {
-                        return swipeToDismiss;
-                    }
-
-                    @Override
-                    public void onDismiss(View view, Object token) {
-                        flClickShield.removeView(flBackground);
-                    }
-
-                    @Override
-                    public void onTouch(View view, boolean touch) {
-                        if (touch) {
-                            removeCallbacks(runningAnimation);
-                        } else {
-                            startHideAnimation();
-                        }
-                    }
-                }));
+    public void enableSwipeToDismiss() {
+        flBackground.setOnTouchListener(new SwipeDismissTouchListener(flBackground, null, this));
     }
 
     /**
@@ -513,5 +489,24 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setVibrationEnabled(final boolean vibrationEnabled) {
         this.vibrationEnabled = vibrationEnabled;
+    }
+
+    @Override
+    public boolean canDismiss(Object token) {
+        return true;
+    }
+
+    @Override
+    public void onDismiss(View view, Object token) {
+        flClickShield.removeView(flBackground);
+    }
+
+    @Override
+    public void onTouch(View view, boolean touch) {
+        if (touch) {
+            removeCallbacks(runningAnimation);
+        } else {
+            startHideAnimation();
+        }
     }
 }

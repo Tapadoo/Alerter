@@ -156,7 +156,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .enableSwipeToDismiss(true)
+                .enableSwipeToDismiss()
                 .show();
     }
 }

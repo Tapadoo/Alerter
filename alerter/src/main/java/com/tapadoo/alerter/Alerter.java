@@ -387,12 +387,11 @@ public final class Alerter {
     /**
      * Enables swipe to dismiss
      *
-     * @param swipeToDismiss True to swipe to dismiss, false to disable
      * @return This Alerter
      */
-    public Alerter enableSwipeToDismiss(final boolean swipeToDismiss) {
+    public Alerter enableSwipeToDismiss() {
         if (getAlert() != null) {
-            getAlert().enableSwipeToDismiss(swipeToDismiss);
+            getAlert().enableSwipeToDismiss();
         }
         return this;
     }
