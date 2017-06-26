@@ -28,6 +28,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
         findViewById(R.id.btnAlertCallback).setOnClickListener(this);
         findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
+        findViewById(R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +60,11 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
             }
             case R.id.btnAlertInfiniteDuration: {
                 showAlertInfiniteDuration();
+                break;
+            }
+            case R.id.btnAlertSwipeToDismissEnabled: {
+                showAlertSwipeToDismissEnabled();
+                break;
             }
             default: {
                 showAlertDefault();
@@ -113,8 +119,8 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text.")
+                        "The alert scales to accommodate larger bodies of text. " +
+                        "The alert scales to accommodate larger bodies of text.")
                 .show();
     }
 
@@ -143,6 +149,14 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
+                .show();
+    }
+
+    private void showAlertSwipeToDismissEnabled() {
+        Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableSwipeToDismiss(true)
                 .show();
     }
 }

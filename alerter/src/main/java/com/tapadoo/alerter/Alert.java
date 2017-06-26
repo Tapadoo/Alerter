@@ -59,6 +59,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
 
+    private Runnable runningAnimation;
+
     /**
      * Flag to ensure we only set the margins once
      */
@@ -200,14 +202,19 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             onShowListener.onShow();
         }
 
+        startHideAnimation();
+    }
+
+    private void startHideAnimation() {
         //Start the Handler to clean up the Alert
         if (!enableInfiniteDuration) {
-            postDelayed(new Runnable() {
+            runningAnimation = new Runnable() {
                 @Override
                 public void run() {
                     hide();
                 }
-            }, duration);
+            };
+            postDelayed(runningAnimation, duration);
         }
     }
 
@@ -412,6 +419,37 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void showIcon(final boolean showIcon) {
         ivIcon.setVisibility(showIcon ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Set whether to enable swipe to dismiss or not
+     *
+     * @param swipeToDismiss True to enable swipe to dismiss, false otherwise
+     */
+    public void enableSwipeToDismiss(final boolean swipeToDismiss) {
+        flBackground.setOnTouchListener(new SwipeDismissTouchListener(
+                flBackground,
+                null,
+                new SwipeDismissTouchListener.DismissCallbacks() {
+                    @Override
+                    public boolean canDismiss(Object token) {
+                        return swipeToDismiss;
+                    }
+
+                    @Override
+                    public void onDismiss(View view, Object token) {
+                        flClickShield.removeView(flBackground);
+                    }
+
+                    @Override
+                    public void onTouch(View view, boolean touch) {
+                        if (touch) {
+                            removeCallbacks(runningAnimation);
+                        } else {
+                            startHideAnimation();
+                        }
+                    }
+                }));
     }
 
     /**

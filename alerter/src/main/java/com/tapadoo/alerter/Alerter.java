@@ -385,6 +385,19 @@ public final class Alerter {
     }
 
     /**
+     * Enables swipe to dismiss
+     *
+     * @param swipeToDismiss True to swipe to dismiss, false to disable
+     * @return This Alerter
+     */
+    public Alerter enableSwipeToDismiss(final boolean swipeToDismiss) {
+        if (getAlert() != null) {
+            getAlert().enableSwipeToDismiss(swipeToDismiss);
+        }
+        return this;
+    }
+
+    /**
      * Enable or Disable Vibration
      *
      * @param enable True to enable, False to disable

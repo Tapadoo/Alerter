@@ -9,4 +9,5 @@
     <string name="custom_icon_alert">Custom Icon Alert</string>
     <string name="callback_alert">Alert Callbacks</string>
     <string name="infinite_alert">Infinity Duration Alert</string>
+    <string name="swipe_to_dismiss">Swipe To Dismiss Alert</string>
 </resources>
