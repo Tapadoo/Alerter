@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 1.0.9 - 09/05/2017
+## 1.0.9 - 27/06/2017
 * Added Swipe to Dismiss
 * Added setAlertBackgroundColor to allow the use of color ints
 
