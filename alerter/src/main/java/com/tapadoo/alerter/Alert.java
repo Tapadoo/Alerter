@@ -492,17 +492,17 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     @Override
-    public boolean canDismiss(Object token) {
+    public boolean canDismiss(final Object token) {
         return true;
     }
 
     @Override
-    public void onDismiss(View view, Object token) {
+    public void onDismiss(final View view, final Object token) {
         flClickShield.removeView(flBackground);
     }
 
     @Override
-    public void onTouch(View view, boolean touch) {
+    public void onTouch(final View view, final boolean touch) {
         if (touch) {
             removeCallbacks(runningAnimation);
         } else {

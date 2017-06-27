@@ -50,17 +50,16 @@ import android.view.ViewGroup;
  * android.view.ViewPropertyAnimator}.</p>
  *
  */
-
+@SuppressWarnings("PMD")
 class SwipeDismissTouchListener implements View.OnTouchListener {
     // Cached ViewConfiguration and system-wide constant values
-    private int mSlop;
-    private int mMinFlingVelocity;
-    private int mMaxFlingVelocity;
-    private long mAnimationTime;
+    private final int mSlop;
+    private final int mMinFlingVelocity;
+    private final long mAnimationTime;
 
     // Fixed properties
-    private View mView;
-    private DismissCallbacks mCallbacks;
+    private final View mView;
+    private final DismissCallbacks mCallbacks;
     private int mViewWidth = 1; // 1 and not 0 to prevent dividing by zero
 
     // Transient properties
@@ -84,7 +83,6 @@ class SwipeDismissTouchListener implements View.OnTouchListener {
         ViewConfiguration vc = ViewConfiguration.get(view.getContext());
         mSlop = vc.getScaledTouchSlop();
         mMinFlingVelocity = vc.getScaledMinimumFlingVelocity() * 16;
-        mMaxFlingVelocity = vc.getScaledMaximumFlingVelocity();
         mAnimationTime = view.getContext().getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
         mView = view;
