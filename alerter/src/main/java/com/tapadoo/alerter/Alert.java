@@ -475,6 +475,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     /**
+     * Set the inline icon for the Alert
+     *
+     * @param drawable Drawable image of the icon to use in the Alert.
+     */
+    public void setIcon(@NonNull final Drawable drawable) {
+        ivIcon.setImageDrawable(drawable);
+    }
+
+    /**
      * Set whether to show the icon in the alert or not
      *
      * @param showIcon True to show the icon, false otherwise

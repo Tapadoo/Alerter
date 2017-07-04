@@ -351,6 +351,20 @@ public final class Alerter {
     }
 
     /**
+     * Set the Alert's Icon
+     *
+     * @param drawable The Drawable to use for the icon.
+     * @return This Alerter
+     */
+    public Alerter setIcon(@NonNull final Drawable drawable) {
+        if (getAlert() != null) {
+            getAlert().setIcon(drawable);
+        }
+
+        return this;
+    }
+
+    /**
      * Hide the Icon
      *
      * @return This Alerter

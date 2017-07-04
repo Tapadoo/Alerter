@@ -59,7 +59,7 @@ Alerter.clearCurrent(this);
 Alerter.create(this)
        .setTitle("Alert Title")
        .setText("Alert text...")
-       .setBackgroundColor(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
+       .setBackgroundColorRes(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
        .show();
 ```
 
