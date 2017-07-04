@@ -2,6 +2,6 @@
 <resources>
     <style name="AlertTextAppearance">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/alert_default_text_color</item>
     </style>
 </resources>
