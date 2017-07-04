@@ -29,10 +29,4 @@
         <item name="android:textSize">@dimen/alerter_text_small</item>
     </style>
 
-    <style name="AlertTextAppearance.Huge">
-        <item name="android:textSize">56sp</item>
-        <item name="android:textColor">@android:color/holo_purple</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
 </resources>
