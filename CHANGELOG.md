@@ -1,23 +1,27 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 1.0.8 - 2017-05-09
+## 1.0.9 - 27/06/2017
+* Added Swipe to Dismiss
+* Added setAlertBackgroundColor to allow the use of color ints
+
+## 1.0.8 - 09/05/2017
 * Added disable vibration option 
 * Updated Alert dismiss method
 * Added method to hide icon
 * Added method to disable outside touch
 
-## 1.0.7 - 2017-03-07
+## 1.0.7 - 07/03/2017
 * Added the ability to use bitmap images for the icon.
 
-## 1.0.6 - 2017-03-07
+## 1.0.6 - 07/03/2017
 * Removed RtL support in Manifest
 * Updated icon resource names to resolve conflicts
 
-## 1.0.5 - 2017-03-06
+## 1.0.5 - 06/03/2017
 * Add ability to hide the icon.
 
-## 1.0.3 - 2017-02-21
+## 1.0.3 - 21/02/2017
 - Back Ported to API Level 9
 - Updated BinTray uploading in build script
 

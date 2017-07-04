@@ -36,7 +36,7 @@ import com.tapadoo.android.R;
  * @author Kevin Murphy, Tapadoo, Dublin, Ireland, Europe, Earth.
  * @since 26/01/2016
  **/
-public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener {
+public class Alert extends FrameLayout implements View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
 
     private static final int CLEAN_UP_DELAY_MILLIS = 100;
 
@@ -65,6 +65,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
     private boolean enableProgress;
+
+    private Runnable runningAnimation;
 
     /**
      * Flag to ensure we only set the margins once
@@ -209,14 +211,19 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             onShowListener.onShow();
         }
 
+        startHideAnimation();
+    }
+
+    private void startHideAnimation() {
         //Start the Handler to clean up the Alert
         if (!enableInfiniteDuration) {
-            postDelayed(new Runnable() {
+            runningAnimation = new Runnable() {
                 @Override
                 public void run() {
                     hide();
                 }
-            }, duration);
+            };
+            postDelayed(runningAnimation, duration);
         }
 
         if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
@@ -493,6 +500,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     }
 
     /**
+     * Set whether to enable swipe to dismiss or not
+     */
+    public void enableSwipeToDismiss() {
+        flBackground.setOnTouchListener(new SwipeDismissTouchListener(flBackground, null, this));
+    }
+
+    /**
      * Get the Alert's on screen duration
      *
      * @return The given duration, defaulting to 3000 milliseconds
@@ -562,5 +576,24 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setVibrationEnabled(final boolean vibrationEnabled) {
         this.vibrationEnabled = vibrationEnabled;
+    }
+
+    @Override
+    public boolean canDismiss(final Object token) {
+        return true;
+    }
+
+    @Override
+    public void onDismiss(final View view, final Object token) {
+        flClickShield.removeView(flBackground);
+    }
+
+    @Override
+    public void onTouch(final View view, final boolean touch) {
+        if (touch) {
+            removeCallbacks(runningAnimation);
+        } else {
+            startHideAnimation();
+        }
     }
 }
