@@ -1,5 +1,6 @@
 package com.tapadoo.alerter;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -19,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tapadoo.android.R;
@@ -47,6 +50,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private TextView tvText;
     private ImageView ivIcon;
     private ViewGroup rlContainer;
+    private ProgressBar pbProgress;
 
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
@@ -58,6 +62,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     private boolean enableIconPulse = true;
     private boolean enableInfiniteDuration;
+    private boolean enableProgress;
 
     /**
      * Flag to ensure we only set the margins once
@@ -114,6 +119,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvText = (TextView) findViewById(R.id.tvText);
         rlContainer = (ViewGroup) findViewById(R.id.rlContainer);
+        pbProgress = (ProgressBar) findViewById(R.id.pbProgress);
 
         flBackground.setOnClickListener(this);
 
@@ -181,6 +187,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             }
+
             setVisibility(View.VISIBLE);
         }
     }
@@ -209,6 +216,22 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                 }
             }, duration);
         }
+
+        if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
+            valueAnimator.setDuration(duration);
+            valueAnimator.setInterpolator(new LinearInterpolator());
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        pbProgress.setProgress((int) animation.getAnimatedValue());
+                    }
+                }
+            });
+            valueAnimator.start();
+        }
+
     }
 
     @Override
@@ -448,6 +471,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setEnableInfiniteDuration(final boolean enableInfiniteDuration) {
         this.enableInfiniteDuration = enableInfiniteDuration;
+    }
+
+    /**
+     * Enable or disable progress bar
+     *
+     * @param enableProgress True to enable, False to disable
+     */
+    public void setEnableProgress(final boolean enableProgress) {
+        this.enableProgress = enableProgress;
     }
 
     /**

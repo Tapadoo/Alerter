@@ -28,6 +28,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
         findViewById(R.id.btnAlertCallback).setOnClickListener(this);
         findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
+        findViewById(R.id.btnAlertWithProgress).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +60,11 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
             }
             case R.id.btnAlertInfiniteDuration: {
                 showAlertInfiniteDuration();
+                break;
+            }
+            case R.id.btnAlertWithProgress: {
+                showAlertWithProgress();
+                break;
             }
             default: {
                 showAlertDefault();
@@ -143,6 +149,14 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
+                .show();
+    }
+
+    private void showAlertWithProgress() {
+        Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableProgress(true)
                 .show();
     }
 }

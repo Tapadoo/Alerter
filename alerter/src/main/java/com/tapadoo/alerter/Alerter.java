@@ -224,20 +224,6 @@ public final class Alerter {
     }
 
     /**
-     * Set the Alert's Background Colour
-     *
-     * @param colorInt Colour Int
-     * @return This Alerter
-     */
-    public Alerter setBackgroundColorInt(@ColorInt final int colorInt) {
-        if (getAlert() != null) {
-            getAlert().setAlertBackgroundColor(colorInt);
-        }
-
-        return this;
-    }
-
-    /**
      * Set the Alert's Background Drawable
      *
      * @param drawable Drawable
@@ -420,6 +406,20 @@ public final class Alerter {
     public Alerter disableOutsideTouch() {
         if (getAlert() != null) {
             getAlert().disableOutsideTouch();
+        }
+
+        return this;
+    }
+
+    /**
+     * Enable or disable progress bar
+     *
+     * @param enable True to enable, False to disable
+     * @return This Alerter
+     */
+    public Alerter enableProgress(final boolean enable) {
+        if (getAlert() != null) {
+            getAlert().setEnableProgress(enable);
         }
 
         return this;

@@ -4,6 +4,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:background="@android:color/transparent"
              android:clickable="false">
 
@@ -79,6 +80,14 @@
             </LinearLayout>
 
         </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/pbProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/alerter_progress_bar_size"
+            android:layout_gravity="bottom"
+            tools:progress="45"/>
 
     </FrameLayout>
 
