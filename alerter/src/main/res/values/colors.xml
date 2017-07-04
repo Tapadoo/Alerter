@@ -2,4 +2,6 @@
 <resources>
     <color name="alerter_default_success_background">#4CAF50</color>
     <color name="alert_default_error_background">#F44336</color>
+    <color name="alert_default_text_color">@android:color/white</color>
+    <color name="alert_default_icon_color">@android:color/white</color>
 </resources>

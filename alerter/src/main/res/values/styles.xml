@@ -17,7 +17,7 @@
     </style>
 
     <style name="AlertTextAppearance">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/alert_default_text_color</item>
     </style>
 
     <style name="AlertTextAppearance.Title">
