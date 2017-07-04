@@ -84,7 +84,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .setBackgroundColor(R.color.colorAccent)
+                .setBackgroundColorRes(R.color.colorAccent)
                 .show();
     }
 

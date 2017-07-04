@@ -10,6 +10,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -389,6 +390,19 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         }
     }
 
+    /**
+     * Set the Title's text appearance of the Title
+     *
+     * @param textAppearance The style resource id
+     */
+    public void setTitleAppearance(@StyleRes final int textAppearance) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tvTitle.setTextAppearance(textAppearance);
+        } else {
+            tvTitle.setTextAppearance(tvTitle.getContext(), textAppearance);
+        }
+    }
+
     public TextView getText() {
         return tvText;
     }
@@ -402,6 +416,19 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         if (!TextUtils.isEmpty(text)) {
             tvText.setVisibility(VISIBLE);
             tvText.setText(text);
+        }
+    }
+
+    /**
+     * Set the Text's text appearance of the Title
+     *
+     * @param textAppearance The style resource id
+     */
+    public void setTextAppearance(@StyleRes final int textAppearance) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tvText.setTextAppearance(textAppearance);
+        } else {
+            tvText.setTextAppearance(tvText.getContext(), textAppearance);
         }
     }
 

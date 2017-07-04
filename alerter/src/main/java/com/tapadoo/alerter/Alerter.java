@@ -235,7 +235,7 @@ public final class Alerter {
      * @param colorResId Colour Resource Id
      * @return This Alerter
      */
-    public Alerter setBackgroundColor(@ColorRes final int colorResId) {
+    public Alerter setBackgroundColorRes(@ColorRes final int colorResId) {
         if (getAlert() != null && getActivityWeakReference() != null) {
             getAlert().setAlertBackgroundColor(ContextCompat.getColor(getActivityWeakReference().get(), colorResId));
         }
