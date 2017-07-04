@@ -1,5 +1,6 @@
 package com.tapadoo.example;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -166,6 +167,13 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithCustomFont() {
-       Alerter.clearCurrent(this);
+        Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setTitleAppearance(R.style.AlertTextAppearance_Title)
+                .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
+                .setText("Alert text...")
+                .setTextAppearance(R.style.AlertTextAppearance_Text)
+                .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
+                .show();
     }
 }
