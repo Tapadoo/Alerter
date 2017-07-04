@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tapadoo.android.R;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -88,9 +90,27 @@ public final class Alerter {
         return new Runnable() {
             @Override
             public void run() {
-                ((ViewGroup) childView.getParent()).removeView(childView);
+                try {
+                    ((ViewGroup) childView.getParent()).removeView(childView);
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), Log.getStackTraceString(e));
+                }
             }
         };
+    }
+
+    /**
+     * Check if an Alert is currently showing
+     *
+     * @param activity The current Activity
+     * @return True if an Alert is showing, false otherwise
+     */
+    public static boolean isShowing(@NonNull final Activity activity) {
+        if (activity == null) {
+            return false;
+        }
+
+        return activity.findViewById(R.id.flAlertBackground) != null;
     }
 
     /**
