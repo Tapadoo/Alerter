@@ -45,6 +45,12 @@ Alerter.create(getActivity())
        .show();
 ```
 
+To hide a currently showing Alert - 
+
+```java
+Alerter.clearCurrent(this);
+```
+
 # Customisation
 
 ### Background Colour

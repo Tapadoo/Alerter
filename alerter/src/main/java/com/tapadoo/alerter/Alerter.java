@@ -65,8 +65,10 @@ public final class Alerter {
 
     /**
      * Cleans up the currently showing alert view, if one is present
+     *
+     * @param activity The current Activity
      */
-    private static void clearCurrent(@NonNull final Activity activity) {
+    public static void clearCurrent(@NonNull final Activity activity) {
         if (activity == null) {
             return;
         }
@@ -136,15 +138,6 @@ public final class Alerter {
         }
 
         return getAlert();
-    }
-
-    /**
-     * Hides currently showing alert.
-     */
-    public void hide() {
-        if (getAlert() != null) {
-            getAlert().hide();
-        }
     }
 
     /**
