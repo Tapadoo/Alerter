@@ -85,6 +85,13 @@
             android:layout_height="wrap_content"
             android:text="@string/progress_alert"/>
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnAlertWithCustomFont"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_font"/>
+
     </LinearLayout>
 
 </ScrollView>

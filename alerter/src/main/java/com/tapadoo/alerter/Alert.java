@@ -3,6 +3,7 @@ package com.tapadoo.alerter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -401,6 +402,24 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         } else {
             tvTitle.setTextAppearance(tvTitle.getContext(), textAppearance);
         }
+    }
+
+    /**
+     * Set the Title's typeface
+     *
+     * @param typeface The typeface to use
+     */
+    public void setTitleTypeface(@NonNull final Typeface typeface) {
+        tvTitle.setTypeface(typeface);
+    }
+
+    /**
+     * Set the Text's typeface
+     *
+     * @param typeface The typeface to use
+     */
+    public void setTextTypeface(@NonNull final Typeface typeface) {
+        tvText.setTypeface(typeface);
     }
 
     public TextView getText() {

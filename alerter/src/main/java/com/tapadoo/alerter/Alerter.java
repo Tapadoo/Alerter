@@ -2,6 +2,7 @@ package com.tapadoo.alerter;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -9,6 +10,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.Log;
@@ -174,6 +176,34 @@ public final class Alerter {
     }
 
     /**
+     * Set the Title's Typeface
+     *
+     * @param typeface Typeface to use
+     * @return This Alerter
+     */
+    public Alerter setTitleTypeface(@NonNull final Typeface typeface) {
+        if (getAlert() != null) {
+            getAlert().setTitleTypeface(typeface);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Title's text appearance
+     *
+     * @param textAppearance The style resource id
+     * @return This Alerter
+     */
+    public Alerter setTitleAppearance(@StyleRes final int textAppearance) {
+        if (getAlert() != null) {
+            getAlert().setTitleAppearance(textAppearance);
+        }
+
+        return this;
+    }
+
+    /**
      * Set Gravity of the Alert
      *
      * @param gravity Gravity of Alert
@@ -210,6 +240,34 @@ public final class Alerter {
     public Alerter setText(final String text) {
         if (getAlert() != null) {
             getAlert().setText(text);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Text's Typeface
+     *
+     * @param typeface Typeface to use
+     * @return This Alerter
+     */
+    public Alerter setTextTypeface(@NonNull final Typeface typeface) {
+        if (getAlert() != null) {
+            getAlert().setTextTypeface(typeface);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the Text's text appearance
+     *
+     * @param textAppearance The style resource id
+     * @return This Alerter
+     */
+    public Alerter setTextAppearance(@StyleRes final int textAppearance) {
+        if (getAlert() != null) {
+            getAlert().setTextAppearance(textAppearance);
         }
 
         return this;

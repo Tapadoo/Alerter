@@ -111,7 +111,7 @@ public class AlerterTest {
     @Test
     public void testBuilderBackground() {
         final Alert alert = Alerter.create(mockActivity)
-                .setBackgroundColor(android.R.color.darker_gray)
+                .setBackgroundColorRes(android.R.color.darker_gray)
                 .show();
 
         Assert.assertNotNull(alert.getAlertBackground().getBackground());

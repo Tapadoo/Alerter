@@ -141,6 +141,19 @@ Alerter.create(this)
         .show();
 ```
 
+### Custom Fonts and Text Appearance
+
+```java 
+ Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setTitleAppearance(R.style.AlertTextAppearance_Title)
+                .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
+                .setText("Alert text...")
+                .setTextAppearance(R.style.AlertTextAppearance_Text)
+                .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
+                .show();
+```
+
 ## Sample
 
 Clone this repo and check out the `app` module.

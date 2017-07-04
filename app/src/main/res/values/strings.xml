@@ -10,4 +10,5 @@
     <string name="callback_alert">Alert Callbacks</string>
     <string name="infinite_alert">Infinity Duration Alert</string>
     <string name="progress_alert">Progress Alert</string>
+    <string name="custom_font">Custom Font</string>
 </resources>
