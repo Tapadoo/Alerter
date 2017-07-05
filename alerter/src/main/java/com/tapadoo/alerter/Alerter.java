@@ -180,6 +180,20 @@ public final class Alerter {
 
         return this;
     }
+    
+     /**
+     * Set the Alert's Text Colour
+     *
+     * @param colorResId Colour Resource Id
+     * @return This Alerter
+     */
+    public Alerter setTextColor(@ColorRes final int colorResId) {
+        if (getAlert() != null && getActivityWeakReference() != null) {
+            getAlert().setTextColor(ContextCompat.getColor(getActivityWeakReference().get(), colorResId));
+        }
+
+        return this;
+    }
 
     /**
      * Set the Alert's Icon
