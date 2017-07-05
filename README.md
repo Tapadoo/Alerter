@@ -45,6 +45,13 @@ Alerter.create(getActivity())
        .show();
 ```
 
+To check if an alert is showing - 
+
+
+```java
+Alerter.isShowing();
+```
+
 To hide a currently showing Alert - 
 
 ```java

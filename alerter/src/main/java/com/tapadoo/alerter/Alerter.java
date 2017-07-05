@@ -115,15 +115,15 @@ public final class Alerter {
     /**
      * Check if an Alert is currently showing
      *
-     * @param activity The current Activity
      * @return True if an Alert is showing, false otherwise
      */
-    public static boolean isShowing(@NonNull final Activity activity) {
-        if (activity == null) {
-            return false;
+    public static boolean isShowing() {
+        boolean isShowing = false;
+        if (activityWeakReference != null && activityWeakReference.get() != null) {
+            isShowing = activityWeakReference.get().findViewById(R.id.flAlertBackground) != null;
         }
 
-        return activity.findViewById(R.id.flAlertBackground) != null;
+        return isShowing;
     }
 
     /**
