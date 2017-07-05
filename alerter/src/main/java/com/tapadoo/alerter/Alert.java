@@ -269,7 +269,16 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     public void setAlertBackgroundColor(@ColorInt final int color) {
         flBackground.setBackgroundColor(color);
     }
-
+    
+    /**
+     * Sets the Alert Text colour
+     *
+     * @param color The qualified colour integer
+     */
+    public void setTextColor(@ColorInt int color) {
+        tvText.setTextColor(color);
+    }
+    
     /**
      * Sets the Title of the Alert
      *
