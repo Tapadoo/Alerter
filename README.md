@@ -48,7 +48,7 @@ Alerter.create(getActivity())
 To hide a currently showing Alert - 
 
 ```java
-Alerter.clearCurrent(this);
+Alerter.hide();
 ```
 
 # Customisation

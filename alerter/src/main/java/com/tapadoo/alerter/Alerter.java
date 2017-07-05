@@ -54,7 +54,7 @@ public final class Alerter {
 
         final Alerter alerter = new Alerter();
 
-        //Clear Current Alert, if one is Active
+        //Hide current Alert, if one is active
         Alerter.clearCurrent(activity);
 
         alerter.setActivity(activity);
@@ -86,6 +86,15 @@ public final class Alerter {
 
         } catch (Exception ex) {
             Log.e(Alerter.class.getClass().getSimpleName(), Log.getStackTraceString(ex));
+        }
+    }
+
+    /**
+     * Hides the currently showing alert view, if one is present
+     */
+    public static void hide() {
+        if (activityWeakReference != null && activityWeakReference.get() != null) {
+            clearCurrent(activityWeakReference.get());
         }
     }
 

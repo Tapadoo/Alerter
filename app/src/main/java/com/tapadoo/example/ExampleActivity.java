@@ -74,7 +74,8 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             }
             case R.id.btnAlertSwipeToDismissEnabled: {
-                showAlertSwipeToDismissEnabled();
+                //showAlertSwipeToDismissEnabled();
+                Alerter.hide();
                 break;
             }
             default: {
