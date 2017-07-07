@@ -6,12 +6,4 @@
     <!-- Our Min SDK is 16, UI Automator requires Min 18, so this will force its use -->
     <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
 
-    <application>
-        <!--This is just an Activity for Testing from within src/androidTest-->
-        <activity
-            android:name=".MockActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-
-    </application>
-
 </manifest>
