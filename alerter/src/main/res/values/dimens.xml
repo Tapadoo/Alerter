@@ -10,6 +10,8 @@
     <dimen name="alerter_alert_padding">30dp</dimen>
     <dimen name="alerter_alert_negative_margin_top">-26dp</dimen>
 
+    <dimen name="alerter_progress_bar_size">2dp</dimen>
+
     <!--Alerts-->
     <dimen name="alerter_alert_min_height">64dp</dimen>
     <dimen name="alerter_alert_max_height">84dp</dimen>

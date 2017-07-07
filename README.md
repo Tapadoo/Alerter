@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:1.0.9'
+    compile 'com.tapadoo.android:alerter:2.0.0'
 }
 ```
 
@@ -45,6 +45,19 @@ Alerter.create(getActivity())
        .show();
 ```
 
+To check if an alert is showing - 
+
+
+```java
+Alerter.isShowing();
+```
+
+To hide a currently showing Alert - 
+
+```java
+Alerter.hide();
+```
+
 # Customisation
 
 ### Background Colour
@@ -53,7 +66,7 @@ Alerter.create(getActivity())
 Alerter.create(this)
        .setTitle("Alert Title")
        .setText("Alert text...")
-       .setBackgroundColor(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
+       .setBackgroundColorRes(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
        .show();
 ```
 
@@ -139,6 +152,19 @@ Alerter.create(this)
             }
          })
         .show();
+```
+
+### Custom Fonts and Text Appearance
+
+```java 
+ Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setTitleAppearance(R.style.AlertTextAppearance_Title)
+                .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
+                .setText("Alert text...")
+                .setTextAppearance(R.style.AlertTextAppearance_Text)
+                .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
+                .show();
 ```
 
 ## Sample
