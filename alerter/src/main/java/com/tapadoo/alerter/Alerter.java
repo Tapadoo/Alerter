@@ -532,6 +532,58 @@ public final class Alerter {
     }
 
     /**
+     * Update The Positive Action Text (Makes the positive action TextView Visible too)
+     *
+     * @param positiveActionText Set This text for Positive Text
+     * @return This Alerter
+     */
+    public Alerter setPositiveActionText(@NonNull String positiveActionText) {
+        if (getAlert() != null) {
+            getAlert().setPositiveActionText(positiveActionText);
+        }
+        return this;
+    }
+
+    /**
+     * Set Negative Action Text (Makes the positive action TextView Visible too)
+     *
+     * @param negativeActionText Positive Text
+     * @return This Alerter
+     */
+    public Alerter setNegativeActionText(@NonNull String negativeActionText) {
+        if (getAlert() != null) {
+            getAlert().setNegativeActionText(negativeActionText);
+        }
+        return this;
+    }
+
+    /**
+     * Set Positive Action Click Listener
+     *
+     * @param onPositiveActionClickListener Set This Listener
+     * @return This Alerter
+     */
+    public Alerter setOnPositiveActionClickListener(@NonNull View.OnClickListener onPositiveActionClickListener) {
+        if (getAlert() != null) {
+            getAlert().setOnPositiveActionClickListener(onPositiveActionClickListener);
+        }
+        return this;
+    }
+
+    /**
+     * Set Negative Action Click Listener
+     *
+     * @param onNegativeActionClickListener Set this Listener
+     * @return This Alerter
+     */
+    public Alerter setOnNegativeActionClickListener(@NonNull View.OnClickListener onNegativeActionClickListener) {
+        if (getAlert() != null) {
+            getAlert().setOnNegativeActionClickListener(onNegativeActionClickListener);
+        }
+        return this;
+    }
+
+    /**
      * Gets the Alert associated with the Alerter
      *
      * @return The current Alert

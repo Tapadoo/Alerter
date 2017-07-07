@@ -51,6 +51,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private FrameLayout flBackground;
     private TextView tvTitle;
     private TextView tvText;
+    private TextView tvPositiveAction;
+    private TextView tvNegativeAction;
     private ImageView ivIcon;
     private ViewGroup rlContainer;
     private ProgressBar pbProgress;
@@ -123,6 +125,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         ivIcon = (ImageView) findViewById(R.id.ivIcon);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvText = (TextView) findViewById(R.id.tvText);
+        tvPositiveAction = (TextView) findViewById(R.id.tvPositiveAction);
+        tvNegativeAction = (TextView) findViewById(R.id.tvNegativeAction);
         rlContainer = (ViewGroup) findViewById(R.id.rlContainer);
         pbProgress = (ProgressBar) findViewById(R.id.pbProgress);
 
@@ -576,6 +580,50 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setVibrationEnabled(final boolean vibrationEnabled) {
         this.vibrationEnabled = vibrationEnabled;
+    }
+
+    /**
+     * Set Text for Positive Action (Positive Action text will be visible only if this method is called)
+     *
+     * @param positiveActionText Text To set For Positive Action
+     */
+    public void setPositiveActionText(final String positiveActionText) {
+        if (!TextUtils.isEmpty(positiveActionText)) {
+            tvPositiveAction.setVisibility(VISIBLE);
+            tvPositiveAction.setText(positiveActionText);
+        }
+    }
+
+    /**
+     * Set Text for Negative Action (Negative Action text will be visible only if this method is called)
+     *
+     * @param negativeActionText Text To set For Negative Action
+     */
+    public void setNegativeActionText(final String negativeActionText) {
+        if (!TextUtils.isEmpty(negativeActionText)) {
+            tvNegativeAction.setVisibility(VISIBLE);
+            tvNegativeAction.setText(negativeActionText);
+        }
+    }
+
+    /**
+     * Click Listener for Positive Action
+     *
+     * @param onPositiveActionClickListener Set this Listener for Positive Action
+     */
+    public void setOnPositiveActionClickListener(@NonNull final View.OnClickListener onPositiveActionClickListener) {
+        tvPositiveAction.setVisibility(VISIBLE);
+        tvPositiveAction.setOnClickListener(onPositiveActionClickListener);
+    }
+
+    /**
+     * Click Listener For Negative Action
+     *
+     * @param onNegativeActionClickListener Set this Listener for Positive Action
+     */
+    public void setOnNegativeActionClickListener(@NonNull final View.OnClickListener onNegativeActionClickListener) {
+        tvNegativeAction.setVisibility(VISIBLE);
+        tvNegativeAction.setOnClickListener(onNegativeActionClickListener);
     }
 
     @Override
