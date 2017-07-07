@@ -1,6 +1,7 @@
 package com.tapadoo.alerter;
 
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -214,6 +215,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         startHideAnimation();
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void startHideAnimation() {
         //Start the Handler to clean up the Alert
         if (!enableInfiniteDuration) {
@@ -227,15 +229,13 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         }
 
         if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
+            final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
             valueAnimator.setDuration(duration);
             valueAnimator.setInterpolator(new LinearInterpolator());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        pbProgress.setProgress((int) animation.getAnimatedValue());
-                    }
+                public void onAnimationUpdate(final ValueAnimator animation) {
+                    pbProgress.setProgress((int) animation.getAnimatedValue());
                 }
             });
             valueAnimator.start();

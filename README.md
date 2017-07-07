@@ -167,6 +167,31 @@ Alerter.create(this)
                 .show();
 ```
 
+![Verbose Alert](./documentation/alert_custom_font.gif)
+
+### Swipe to Dismiss
+
+```java
+ Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableSwipeToDismiss()
+                .show();
+```
+![Verbose Alert](./documentation/alert_swipe_to_dismiss.gif)
+
+### Progress Bar
+
+```java
+Alerter.create(ExampleActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableProgress(true)
+                .show();
+```
+
+![Verbose Alert](./documentation/alert_progress_bar.gif)
+
 ## Sample
 
 Clone this repo and check out the `app` module.

@@ -102,7 +102,6 @@ class SwipeDismissTouchListener implements View.OnTouchListener {
 
         switch (motionEvent.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
-                // TODO: ensure this is a finger, and set a flag
                 mDownX = motionEvent.getRawX();
                 mDownY = motionEvent.getRawY();
                 if (mCallbacks.canDismiss(mToken)) {
@@ -217,7 +216,10 @@ class SwipeDismissTouchListener implements View.OnTouchListener {
                 break;
             }
 
-            default: return false;
+            default: {
+                view.performClick();
+                return false;
+            }
         }
         return false;
     }
