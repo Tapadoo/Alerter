@@ -139,8 +139,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         //Set Animation to be Run when View is added to Window
         setAnimation(slideInAnimation);
-
-        setProgressColorInt(ContextCompat.getColor(getContext(), R.color.alerter_default_success_background));
     }
 
     @Override
@@ -235,6 +233,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         }
 
         if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            pbProgress.setVisibility(View.VISIBLE);
+
             final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
             valueAnimator.setDuration(duration);
             valueAnimator.setInterpolator(new LinearInterpolator());

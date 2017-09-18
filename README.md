@@ -187,6 +187,7 @@ Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
+                .setProgressColorRes(R.color.colorAccent)
                 .show();
 ```
 

@@ -168,6 +168,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
+                .setProgressColorRes(R.color.colorPrimary)
                 .show();
     }
 
