@@ -84,6 +84,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/alerter_progress_bar_size"
+            android:visibility="gone"
             android:layout_gravity="bottom"
             tools:progress="45"/>
 
