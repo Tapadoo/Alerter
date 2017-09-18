@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0.1 - 18/09/2017
+* Added Progress Bar colour change methods
+* Fixed crashes on icon loading
+
+## 2.0.0 - 07/02/2017
+* Added isShowing method
+* Added additional icon setting methods
+* Added styling methods
+* added progress bar
+
 ## 1.0.9 - 27/06/2017
 * Added Swipe to Dismiss
 * Added setAlertBackgroundColor to allow the use of color ints
