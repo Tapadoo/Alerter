@@ -102,7 +102,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     private void showAlertWithIcon() {
         Alerter.create(ExampleActivity.this)
                 .setText("Alert text...")
-                .setIcon(R.drawable.alerter_ic_face)
+                .setIcon(R.drawable.alerter_ic_mail_outline)
                 .show();
     }
 
@@ -168,6 +168,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
+                .setProgressColorRes(R.color.colorPrimary)
                 .show();
     }
 

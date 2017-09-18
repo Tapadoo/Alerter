@@ -4,16 +4,19 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.LightingColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
-import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -45,6 +48,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * The amount of time the alert will be visible on screen in seconds
      */
     private static final long DISPLAY_TIME_IN_SECONDS = 3000;
+    private static final int MUL = 0xFF000000;
 
     //UI
     private FrameLayout flClickShield;
@@ -229,6 +233,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         }
 
         if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            pbProgress.setVisibility(View.VISIBLE);
+
             final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
             valueAnimator.setDuration(duration);
             valueAnimator.setInterpolator(new LinearInterpolator());
@@ -468,8 +474,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * @param iconId Drawable resource id of the icon to use in the Alert
      */
     public void setIcon(@DrawableRes final int iconId) {
-        final Drawable iconDrawable = VectorDrawableCompat.create(getContext().getResources(), iconId, null);
-        ivIcon.setImageDrawable(iconDrawable);
+        ivIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), iconId));
     }
 
     /**
@@ -549,6 +554,24 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setEnableProgress(final boolean enableProgress) {
         this.enableProgress = enableProgress;
+    }
+
+    /**
+     * Set the Progress bar color from a color resource
+     *
+     * @param color The color resource
+     */
+    public void setProgressColorRes(@ColorRes final int color) {
+        pbProgress.getProgressDrawable().setColorFilter(new LightingColorFilter(MUL, ContextCompat.getColor(getContext(), color)));
+    }
+
+    /**
+     * Set the Progress bar color from a color resource
+     *
+     * @param color The color resource
+     */
+    public void setProgressColorInt(@ColorInt final int color) {
+        pbProgress.getProgressDrawable().setColorFilter(new LightingColorFilter(MUL, color));
     }
 
     /**

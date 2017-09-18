@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:2.0.0'
+    compile 'com.tapadoo.android:alerter:2.0.1'
 }
 ```
 
@@ -187,6 +187,7 @@ Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
+                .setProgressColorRes(R.color.colorAccent)
                 .show();
 ```
 
