@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0.2 - 11/12/2017 
+* Added fixed for the Alert drawing under the status bar
+
 ## 2.0.1 - 18/09/2017
 * Added Progress Bar colour change methods
 * Fixed crashes on icon loading
