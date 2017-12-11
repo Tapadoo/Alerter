@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -121,6 +122,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private void initView() {
         inflate(getContext(), R.layout.alerter_alert_view, this);
         setHapticFeedbackEnabled(true);
+
+        ViewCompat.setTranslationZ(this, Integer.MAX_VALUE);
 
         flBackground = (FrameLayout) findViewById(R.id.flAlertBackground);
         flClickShield = (FrameLayout) findViewById(R.id.flClickShield);
