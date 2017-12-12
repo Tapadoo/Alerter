@@ -4,8 +4,12 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -21,6 +25,7 @@ import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Display;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -478,6 +483,37 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      */
     public void setIcon(@DrawableRes final int iconId) {
         ivIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), iconId));
+    }
+
+    /**
+     * Set the icon color for the Alert
+     * @param color int
+     */
+    public void setIconColorFilter(int color) {
+        if(ivIcon != null) {
+            ivIcon.setColorFilter(color);
+        }
+    }
+
+    /**
+     * Set the icon color for the Alert
+     * @param colorFilter ColorFilter
+     */
+    public void setIconColorFilter(@NonNull ColorFilter colorFilter) {
+        if(ivIcon != null) {
+            ivIcon.setColorFilter(colorFilter);
+        }
+    }
+
+    /**
+     * Set the icon color for the Alert
+     * @param color int
+     * @param mode PorterDuff.Mode
+     */
+    public void setIconColorFilter(int color, PorterDuff.Mode mode) {
+        if(ivIcon != null) {
+            ivIcon.setColorFilter(color, mode);
+        }
     }
 
     /**
