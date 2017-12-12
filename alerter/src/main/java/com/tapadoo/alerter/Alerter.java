@@ -564,7 +564,7 @@ public final class Alerter {
      *
      * @return The current Alert
      */
-    private Alert getAlert() {
+    Alert getAlert() {
         return alert;
     }
 
@@ -578,7 +578,7 @@ public final class Alerter {
     }
 
     @Nullable
-    private WeakReference<Activity> getActivityWeakReference() {
+    WeakReference<Activity> getActivityWeakReference() {
         return activityWeakReference;
     }
 
@@ -588,7 +588,7 @@ public final class Alerter {
      * @return The Decor View of the Activity the Alerter was called from
      */
     @Nullable
-    private ViewGroup getActivityDecorView() {
+    ViewGroup getActivityDecorView() {
         ViewGroup decorView = null;
 
         if (getActivityWeakReference() != null && getActivityWeakReference().get() != null) {

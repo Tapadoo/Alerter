@@ -32,6 +32,7 @@ android {
     lintOptions {
         abortOnError true
     }
+    buildToolsVersion '26.0.2'
 }
 
 //BinTray configuration - credentials stored in user's gradle.properties

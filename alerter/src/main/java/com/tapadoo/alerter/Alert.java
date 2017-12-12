@@ -4,12 +4,10 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -25,7 +23,6 @@ import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Display;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -244,12 +241,12 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             pbProgress.setVisibility(View.VISIBLE);
 
             final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
-            valueAnimator.setDuration(duration);
+            valueAnimator.setDuration(getDuration());
             valueAnimator.setInterpolator(new LinearInterpolator());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(final ValueAnimator animation) {
-                    pbProgress.setProgress((int) animation.getAnimatedValue());
+                    getProgressBar().setProgress((int) animation.getAnimatedValue());
                 }
             });
             valueAnimator.start();
@@ -272,8 +269,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             slideOutAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(final Animation animation) {
-                    flBackground.setOnClickListener(null);
-                    flBackground.setClickable(false);
+                    getAlertBackground().setOnClickListener(null);
+                    getAlertBackground().setClickable(false);
                 }
 
                 @Override
@@ -286,6 +283,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                     //Ignore
                 }
             });
+
             startAnimation(slideOutAnimation);
         } catch (Exception ex) {
             Log.e(getClass().getSimpleName(), Log.getStackTraceString(ex));
@@ -295,7 +293,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     /**
      * Removes Alert View from its Parent Layout
      */
-    private void removeFromParent() {
+    void removeFromParent() {
         postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -306,8 +304,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                         try {
                             ((ViewGroup) getParent()).removeView(Alert.this);
 
-                            if (onHideListener != null) {
-                                onHideListener.onHide();
+                            if (getOnHideListener() != null) {
+                                getOnHideListener().onHide();
                             }
                         } catch (Exception ex) {
                             Log.e(getClass().getSimpleName(), "Cannot remove from parent layout");
@@ -487,31 +485,34 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Set the icon color for the Alert
-     * @param color int
+     *
+     * @param color Color int
      */
-    public void setIconColorFilter(int color) {
-        if(ivIcon != null) {
+    public void setIconColorFilter(@ColorInt final int color) {
+        if (ivIcon != null) {
             ivIcon.setColorFilter(color);
         }
     }
 
     /**
      * Set the icon color for the Alert
+     *
      * @param colorFilter ColorFilter
      */
-    public void setIconColorFilter(@NonNull ColorFilter colorFilter) {
-        if(ivIcon != null) {
+    public void setIconColorFilter(@NonNull final ColorFilter colorFilter) {
+        if (ivIcon != null) {
             ivIcon.setColorFilter(colorFilter);
         }
     }
 
     /**
      * Set the icon color for the Alert
-     * @param color int
-     * @param mode PorterDuff.Mode
+     *
+     * @param color Color int
+     * @param mode  PorterDuff.Mode
      */
-    public void setIconColorFilter(int color, PorterDuff.Mode mode) {
-        if(ivIcon != null) {
+    public void setIconColorFilter(@ColorInt final int color, final PorterDuff.Mode mode) {
+        if (ivIcon != null) {
             ivIcon.setColorFilter(color, mode);
         }
     }
@@ -657,5 +658,23 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
         } else {
             startHideAnimation();
         }
+    }
+
+    /**
+     * Get the progress bar
+     *
+     * @return Progress bar
+     */
+    public ProgressBar getProgressBar() {
+        return pbProgress;
+    }
+
+    /**
+     * Get the on hide listener
+     *
+     * @return On hide listener
+     */
+    public OnHideAlertListener getOnHideListener() {
+        return onHideListener;
     }
 }
