@@ -1,14 +1,14 @@
 ext {
-    compileSdkVersion = 25
-    minSdkVersion     = 9
-    targetSdkVersion  = 25
+    compileSdkVersion = 27
+    minSdkVersion     = 14
+    targetSdkVersion  = 27
 
-    buildToolsVersion = '26.0.2'
+    buildToolsVersion = '27.0.2'
 
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
-    supportLibVersion = '25.1.1'
+    supportLibVersion = '27.0.2'
     retrofitVersion   = "2.1.0"
     kotlin_version    = "1.0.5-3"
 
