@@ -2,6 +2,8 @@ package com.tapadoo.alerter;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
@@ -368,6 +370,49 @@ public final class Alerter {
     public Alerter setIcon(@NonNull final Drawable drawable) {
         if (getAlert() != null) {
             getAlert().setIcon(drawable);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the icon color for the Alert
+     *
+     * @param color Color int
+     * @return This Alerter
+     */
+    public Alerter setIconColorFilter(@ColorInt final int color) {
+        if (getAlert() != null) {
+            getAlert().setIconColorFilter(color);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the icon color for the Alert
+     *
+     * @param colorFilter ColorFilter
+     * @return This Alerter
+     */
+    public Alerter setIconColorFilter(@NonNull final ColorFilter colorFilter) {
+        if (getAlert() != null) {
+            getAlert().setIconColorFilter(colorFilter);
+        }
+
+        return this;
+    }
+
+    /**
+     * Set the icon color for the Alert
+     *
+     * @param color Color int
+     * @param mode  PorterDuff.Mode
+     * @return This Alerter
+     */
+    public Alerter setIconColorFilter(@ColorInt final int color, final PorterDuff.Mode mode) {
+        if (getAlert() != null) {
+            getAlert().setIconColorFilter(color, mode);
         }
 
         return this;
