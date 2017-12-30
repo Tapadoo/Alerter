@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:id="@+id/rlContainer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/alerter_padding_half"
@@ -40,7 +40,7 @@
 
             <LinearLayout
                 android:id="@+id/llAlertTextContainer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/alerter_activity_horizontal_margin"
