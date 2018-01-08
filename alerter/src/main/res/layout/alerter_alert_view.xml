@@ -4,7 +4,6 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:background="@android:color/transparent"
              android:clickable="false">
 
@@ -36,7 +35,8 @@
                 android:layout_centerVertical="true"
                 android:maxHeight="@dimen/alerter_alert_icn_size"
                 android:maxWidth="@dimen/alerter_alert_icn_size"
-                android:src="@drawable/alerter_ic_notifications"/>
+                android:src="@drawable/alerter_ic_notifications"
+                android:tint="@color/alert_default_icon_color"/>
 
             <LinearLayout
                 android:id="@+id/llAlertTextContainer"
@@ -83,8 +83,8 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/alerter_progress_bar_size"
-            android:visibility="gone"
             android:layout_gravity="bottom"
+            android:visibility="gone"
             tools:progress="45"/>
 
     </FrameLayout>

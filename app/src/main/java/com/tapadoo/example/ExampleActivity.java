@@ -87,7 +87,6 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .disableOutsideTouch()
                 .show();
     }
 
@@ -103,6 +102,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         Alerter.create(ExampleActivity.this)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
+                .setIconColorFilter(0) // Optional - Removes white tint
                 .show();
     }
 
@@ -190,4 +190,5 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 .enableSwipeToDismiss()
                 .show();
     }
+
 }
