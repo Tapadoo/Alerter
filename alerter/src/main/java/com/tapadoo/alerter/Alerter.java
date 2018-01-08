@@ -106,7 +106,9 @@ public final class Alerter {
             @Override
             public void run() {
                 try {
-                    ((ViewGroup) childView.getParent()).removeView(childView);
+                    if (childView != null) {
+                        ((ViewGroup) childView.getParent()).removeView(childView);
+                    }
                 } catch (Exception e) {
                     Log.e(getClass().getSimpleName(), Log.getStackTraceString(e));
                 }

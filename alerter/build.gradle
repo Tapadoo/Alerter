@@ -10,10 +10,10 @@ apply plugin: "maven-publish"
 //Quality Standards
 apply from: rootProject.file('quality.gradle')
 
-def final String PACKAGE_NAME = "com.tapadoo.android"
-def final String VERSION      = "2.0.2"
-def final String DESCRIPTION  = "An Android Alerting Library"
-def final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
+final String PACKAGE_NAME = "com.tapadoo.android"
+final String VERSION      = "2.0.3"
+final String DESCRIPTION  = "An Android Alerting Library"
+final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -32,7 +32,6 @@ android {
     lintOptions {
         abortOnError true
     }
-    buildToolsVersion '26.0.2'
 }
 
 //BinTray configuration - credentials stored in user's gradle.properties
@@ -103,24 +102,22 @@ configurations {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile rootProject.ext.libs.support_v4
-    compile rootProject.ext.libs.appcompat_v7
-    compile rootProject.ext.libs.support_annotations
+    implementation rootProject.ext.libs.support_v4
+    implementation rootProject.ext.libs.appcompat_v7
+    implementation rootProject.ext.libs.support_annotations
 
     // Local Unit Tests - in src/test
-    testCompile rootProject.ext.libs.junit
+    testImplementation rootProject.ext.libs.junit
 
     // Instrumentation Tests - in src/androidTest
-    androidTestCompile rootProject.ext.libs.junit
-    androidTestCompile rootProject.ext.libs.rules
-    androidTestCompile rootProject.ext.libs.hamcrest
-    androidTestCompile rootProject.ext.libs.espresso
-    androidTestCompile rootProject.ext.libs.runner
-    androidTestCompile rootProject.ext.libs.uiautomator
+    androidTestImplementation rootProject.ext.libs.junit
+    androidTestImplementation rootProject.ext.libs.rules
+    androidTestImplementation rootProject.ext.libs.hamcrest
+    androidTestImplementation rootProject.ext.libs.espresso
+    androidTestImplementation rootProject.ext.libs.runner
+    androidTestImplementation rootProject.ext.libs.uiautomator
 
-    androidTestCompile(rootProject.ext.libs.espresso, {
+    androidTestImplementation(rootProject.ext.libs.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
@@ -161,11 +158,11 @@ artifacts {
 }
 
 def final getBinTrayUser() {
-    def final String BINTRAY_USER = "BINTRAY_USER"
+    final String BINTRAY_USER = "BINTRAY_USER"
     return project.hasProperty(BINTRAY_USER)? project.getProperty(BINTRAY_USER) : null
 }
 
 def final getBinTrayKey() {
-    def final String BINTRAY_KEY  = "BINTRAY_KEY"
+    final String BINTRAY_KEY  = "BINTRAY_KEY"
     return project.hasProperty(BINTRAY_KEY)? project.getProperty(BINTRAY_KEY) : null
 }
