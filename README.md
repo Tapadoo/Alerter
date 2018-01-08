@@ -1,5 +1,7 @@
 # Alerter
 
+![Default Alert](./app/src/ic_launcher-web.png)
+
 ### General
 
 [ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
