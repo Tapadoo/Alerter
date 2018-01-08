@@ -1,6 +1,6 @@
 # Alerter
 
-![Icon](./app/src/main/ic_launcher-web.png)
+![Icon](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
 ### General
 
