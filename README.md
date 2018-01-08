@@ -1,5 +1,7 @@
 # Alerter
 
+![Icon](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
 ### General
 
 [ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
@@ -202,6 +204,6 @@ Clone this repo and check out the `app` module.
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
-Copyright 2018 Tapadoo, Dublin.
+Copyright 2017 Tapadoo, Dublin.
 
 ![Alt Text](http://tapadoo.com/wp-content/themes/tapadoo/img/tapadoo-logo@2x.png)
