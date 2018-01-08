@@ -11,7 +11,7 @@
 This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
 complexity of your layouts.
 
-![Default Alert](./documentation/alert_default.gif)
+![Icon](./documentation/alert_default.gif)
 
 A customisable Alert view is dynamically added to the Decor View of the Window, overlaying
 all content.
