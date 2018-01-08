@@ -77,7 +77,8 @@ Alerter.create(this)
 ```java
 Alerter.create(this)
        .setText("Alert text...")
-       .setIcon(R.drawable.alerter_ic_face)
+       .setIcon(R.drawable.alerter_ic_mail_outline)
+       .setIconColorFilter(0) // Optional - Removes white tint
        .show();
 ```
 
@@ -201,6 +202,6 @@ Clone this repo and check out the `app` module.
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
-Copyright 2016 Tapadoo, Dublin.
+Copyright 2018 Tapadoo, Dublin.
 
 ![Alt Text](http://tapadoo.com/wp-content/themes/tapadoo/img/tapadoo-logo@2x.png)
