@@ -18,7 +18,7 @@ all content.
 
 ```groovy
 dependencies {
-    compile 'com.tapadoo.android:alerter:2.0.2'
+    compile 'com.tapadoo.android:alerter:2.0.3'
 }
 ```
 
