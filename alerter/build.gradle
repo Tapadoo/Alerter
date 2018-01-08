@@ -102,24 +102,22 @@ configurations {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile rootProject.ext.libs.support_v4
-    compile rootProject.ext.libs.appcompat_v7
-    compile rootProject.ext.libs.support_annotations
+    implementation rootProject.ext.libs.support_v4
+    implementation rootProject.ext.libs.appcompat_v7
+    implementation rootProject.ext.libs.support_annotations
 
     // Local Unit Tests - in src/test
-    testCompile rootProject.ext.libs.junit
+    testImplementation rootProject.ext.libs.junit
 
     // Instrumentation Tests - in src/androidTest
-    androidTestCompile rootProject.ext.libs.junit
-    androidTestCompile rootProject.ext.libs.rules
-    androidTestCompile rootProject.ext.libs.hamcrest
-    androidTestCompile rootProject.ext.libs.espresso
-    androidTestCompile rootProject.ext.libs.runner
-    androidTestCompile rootProject.ext.libs.uiautomator
+    androidTestImplementation rootProject.ext.libs.junit
+    androidTestImplementation rootProject.ext.libs.rules
+    androidTestImplementation rootProject.ext.libs.hamcrest
+    androidTestImplementation rootProject.ext.libs.espresso
+    androidTestImplementation rootProject.ext.libs.runner
+    androidTestImplementation rootProject.ext.libs.uiautomator
 
-    androidTestCompile(rootProject.ext.libs.espresso, {
+    androidTestImplementation(rootProject.ext.libs.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
