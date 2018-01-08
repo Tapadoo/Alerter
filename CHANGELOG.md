@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0.3 - 08/1/2018
+* Updated build tools & support libs
+* Added methods to set icon tint
+
 ## 2.0.2 - 11/12/2017 
 * Added fixed for the Alert drawing under the status bar
 

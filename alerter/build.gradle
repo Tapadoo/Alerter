@@ -10,10 +10,10 @@ apply plugin: "maven-publish"
 //Quality Standards
 apply from: rootProject.file('quality.gradle')
 
-def final String PACKAGE_NAME = "com.tapadoo.android"
-def final String VERSION      = "2.0.2"
-def final String DESCRIPTION  = "An Android Alerting Library"
-def final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
+final String PACKAGE_NAME = "com.tapadoo.android"
+final String VERSION      = "2.0.3"
+final String DESCRIPTION  = "An Android Alerting Library"
+final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -160,11 +160,11 @@ artifacts {
 }
 
 def final getBinTrayUser() {
-    def final String BINTRAY_USER = "BINTRAY_USER"
+    final String BINTRAY_USER = "BINTRAY_USER"
     return project.hasProperty(BINTRAY_USER)? project.getProperty(BINTRAY_USER) : null
 }
 
 def final getBinTrayKey() {
-    def final String BINTRAY_KEY  = "BINTRAY_KEY"
+    final String BINTRAY_KEY  = "BINTRAY_KEY"
     return project.hasProperty(BINTRAY_KEY)? project.getProperty(BINTRAY_KEY) : null
 }
