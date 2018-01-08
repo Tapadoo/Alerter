@@ -204,6 +204,6 @@ Clone this repo and check out the `app` module.
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
-Copyright 2018 Tapadoo, Dublin.
+Copyright 2017 Tapadoo, Dublin.
 
 ![Alt Text](http://tapadoo.com/wp-content/themes/tapadoo/img/tapadoo-logo@2x.png)
