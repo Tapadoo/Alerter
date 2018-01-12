@@ -36,50 +36,29 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnAlertColoured: {
-                showAlertColoured();
-                break;
-            }
-            case R.id.btnAlertCustomIcon: {
-                showAlertWithIcon();
-                break;
-            }
-            case R.id.btnAlertTextOnly: {
-                showAlertTextOnly();
-                break;
-            }
-            case R.id.btnAlertOnClick: {
-                showAlertWithOnClick();
-                break;
-            }
-            case R.id.btnAlertVerbose: {
-                showAlertVerbose();
-                break;
-            }
-            case R.id.btnAlertCallback: {
-                showAlertCallbacks();
-                break;
-            }
-            case R.id.btnAlertInfiniteDuration: {
-                showAlertInfiniteDuration();
-                break;
-            }
-            case R.id.btnAlertWithProgress: {
-                showAlertWithProgress();
-                break;
-            }
-            case R.id.btnAlertWithCustomFont: {
-                showAlertWithCustomFont();
-                break;
-            }
-            case R.id.btnAlertSwipeToDismissEnabled: {
-                showAlertSwipeToDismissEnabled();
-                break;
-            }
-            default: {
-                showAlertDefault();
-            }
+        int i = view.getId();
+        if (i == R.id.btnAlertColoured) {
+            showAlertColoured();
+        } else if (i == R.id.btnAlertCustomIcon) {
+            showAlertWithIcon();
+        } else if (i == R.id.btnAlertTextOnly) {
+            showAlertTextOnly();
+        } else if (i == R.id.btnAlertOnClick) {
+            showAlertWithOnClick();
+        } else if (i == R.id.btnAlertVerbose) {
+            showAlertVerbose();
+        } else if (i == R.id.btnAlertCallback) {
+            showAlertCallbacks();
+        } else if (i == R.id.btnAlertInfiniteDuration) {
+            showAlertInfiniteDuration();
+        } else if (i == R.id.btnAlertWithProgress) {
+            showAlertWithProgress();
+        } else if (i == R.id.btnAlertWithCustomFont) {
+            showAlertWithCustomFont();
+        } else if (i == R.id.btnAlertSwipeToDismissEnabled) {
+            showAlertSwipeToDismissEnabled();
+        } else {
+            showAlertDefault();
         }
     }
 

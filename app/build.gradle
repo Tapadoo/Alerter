@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 26
+
+
 
     defaultConfig {
-        applicationId "com.tapadoo.example"
-
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-
+        applicationId "com.tapadoo.alerter_example"
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -21,17 +20,8 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError true
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile project(':alerter')
-
-    compile rootProject.ext.libs.support_v4
-    compile rootProject.ext.libs.appcompat_v7
-    compile rootProject.ext.libs.support_design
+    implementation project(':app-base')
 }
