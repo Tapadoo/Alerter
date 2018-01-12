@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.tapadoo.android.R;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,12 +30,6 @@ public class AlerterTest {
     //Rule which sets the Activity to be used
     @Rule
     public final ActivityTestRule<MockActivity> activityRule = new ActivityTestRule<>(MockActivity.class, false, true);
-
-    @Before // Called once before all tests
-    public void init() {
-        //Start our activity
-        //activityRule.launchActivity(null);
-    }
 
     @Test
     public void testConstruction() {
