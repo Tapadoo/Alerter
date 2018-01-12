@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ExampleActivity"
+            android:name=".DemoActivity"
             android:label="@string/title_activity_example"
             android:theme="@style/AppTheme">
 

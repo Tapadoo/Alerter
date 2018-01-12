@@ -11,7 +11,7 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
-public class ExampleActivity extends AppCompatActivity implements View.OnClickListener {
+public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,14 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertDefault() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertColoured() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
@@ -78,7 +78,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithIcon() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
@@ -86,27 +86,27 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertTextOnly() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertWithOnClick() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(ExampleActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertVerbose() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
                         "The alert scales to accommodate larger bodies of text. " +
@@ -115,27 +115,27 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertCallbacks(){
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnShowListener(new OnShowAlertListener() {
                     @Override
                     public void onShow() {
-                        Toast.makeText(ExampleActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setOnHideListener(new OnHideAlertListener() {
                     @Override
                     public void onHide() {
-                        Toast.makeText(ExampleActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertInfiniteDuration() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
@@ -143,7 +143,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithProgress() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
@@ -152,7 +152,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithCustomFont() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
@@ -163,7 +163,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertSwipeToDismissEnabled() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()

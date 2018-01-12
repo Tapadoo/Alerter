@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.tapadoo.alerter_example"
-        minSdkVersion 14
-        targetSdkVersion 27
+        applicationId "com.tapadoo.android.alerter_demo"
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         versionCode 1
         versionName "1.0"
     }
