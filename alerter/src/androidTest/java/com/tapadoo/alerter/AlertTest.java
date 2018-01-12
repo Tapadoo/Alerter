@@ -30,7 +30,7 @@ public class AlertTest {
 
     //Rule which sets the Activity to be used
     @Rule
-    public final ActivityTestRule<MockActivity> activityRule = new ActivityTestRule<>(MockActivity.class, false, true);
+    public final ActivityTestRule<MockActivity> activityRule = new ActivityTestRule<>(MockActivity.class);
 
     /**
      * Test Strings
