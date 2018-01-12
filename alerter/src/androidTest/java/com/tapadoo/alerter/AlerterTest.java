@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
@@ -26,6 +27,7 @@ import org.junit.runner.RunWith;
  * @since 05/10/2016
  **/
 @RunWith(AndroidJUnit4.class)
+@LargeTest
 public class AlerterTest {
 
     //Rule which sets the Activity to be used
