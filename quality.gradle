@@ -59,10 +59,10 @@ task findbugs(type: FindBugs) {
         html.enabled = true
 
         xml {
-            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+            destination new File("$project.buildDir/reports/findbugs/findbugs.xml")
         }
         html {
-            destination "$project.buildDir/reports/findbugs/findbugs.html"
+            destination new File("$project.buildDir/reports/findbugs/findbugs.html")
         }
     }
 
@@ -85,10 +85,10 @@ task pmd(type: Pmd) {
         xml.enabled = false
         html.enabled = true
         xml {
-            destination "$project.buildDir/reports/pmd/pmd.xml"
+            destination new File("$project.buildDir/reports/pmd/pmd.xml")
         }
         html {
-            destination "$project.buildDir/reports/pmd/pmd.html"
+            destination new File("$project.buildDir/reports/pmd/pmd.html")
         }
     }
 }
