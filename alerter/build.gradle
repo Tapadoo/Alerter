@@ -16,8 +16,8 @@ final String DESCRIPTION  = "An Android Alerting Library"
 final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion    rootProject.ext.minSdkVersion
