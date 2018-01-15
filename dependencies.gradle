@@ -3,14 +3,12 @@ ext {
     minSdkVersion     = 14
     targetSdkVersion  = 27
 
-    buildToolsVersion = '27.0.2'
+    buildToolsVersion = '27.0.3'
 
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
     supportLibVersion = '27.0.2'
-    retrofitVersion   = "2.1.0"
-    kotlin_version    = "1.0.5-3"
 
     libs = [
             android_gradle      : 'com.android.tools.build:gradle:2.2.3',

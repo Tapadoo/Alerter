@@ -44,3 +44,5 @@ captures/
 #NDK
 obj/
 libs/
+
+keystore.properties
