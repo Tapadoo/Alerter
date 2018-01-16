@@ -3,6 +3,8 @@ ext {
     minSdkVersion     = 14
     targetSdkVersion  = 27
 
+    keystoreProperties = '../keystore/release.properties'
+
     buildToolsVersion = '27.0.2'
 
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
