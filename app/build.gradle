@@ -46,10 +46,3 @@ android {
 dependencies {
     implementation project(':app-base')
 }
-
-task testProps() {
-    if (file(rootProject.ext.keystoreProperties).exists()) {
-        println "Yes"
-    }
-    println rootProject.ext.keystoreProperties
-}
