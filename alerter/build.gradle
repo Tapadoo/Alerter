@@ -10,7 +10,7 @@ apply plugin: "maven-publish"
 //Quality Standards
 apply from: rootProject.file('quality.gradle')
 
-final String PACKAGE_NAME = "com.tapadoo.android"
+final String GROUP_ID = "com.tapadoo.android"
 final String VERSION      = "2.0.3"
 final String DESCRIPTION  = "An Android Alerting Library"
 final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
@@ -80,7 +80,7 @@ def pomConfig = {
 publishing {
     publications {
         Alerter(MavenPublication) {
-            groupId PACKAGE_NAME
+            groupId GROUP_ID
             version VERSION
             artifactId project.getName()
 

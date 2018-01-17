@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.tapadoo.example"
+<manifest package="com.tapadoo.alerter_demo_base"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -30,9 +30,9 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:scheme="https"
                     android:host="apps.tapadoo.com"
-                    android:pathPrefix="/android/alerter-demo"/>
+                    android:pathPrefix="/android/alerter-demo"
+                    android:scheme="https"/>
             </intent-filter>
 
         </activity>

@@ -23,7 +23,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false // TODO Revert
+        abortOnError false
     }
 }
 

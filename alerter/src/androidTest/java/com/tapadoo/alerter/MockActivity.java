@@ -3,8 +3,6 @@ package com.tapadoo.alerter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.tapadoo.android.R;
-
 /**
  * Mock Activity for Testing
  *
