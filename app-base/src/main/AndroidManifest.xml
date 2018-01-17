@@ -31,7 +31,7 @@
 
                 <data
                     android:host="apps.tapadoo.com"
-                    android:pathPrefix="/android/alerter-demo"
+                    android:pathPrefix="/"
                     android:scheme="https"/>
             </intent-filter>
 
