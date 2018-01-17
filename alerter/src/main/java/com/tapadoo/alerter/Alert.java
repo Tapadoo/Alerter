@@ -35,8 +35,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.tapadoo.android.R;
-
 /**
  * Custom Alert View
  *

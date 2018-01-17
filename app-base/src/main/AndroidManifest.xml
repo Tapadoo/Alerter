@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements"/>
         <activity
             android:name=".DemoActivity"
             android:label="@string/title_activity_example"
@@ -20,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -28,8 +31,8 @@
 
                 <data
                     android:scheme="https"
-                    android:host="tapadoo.com"
-                    android:pathPrefix="/alerter-example"/>
+                    android:host="apps.tapadoo.com"
+                    android:pathPrefix="/android/alerter-demo"/>
             </intent-filter>
 
         </activity>
