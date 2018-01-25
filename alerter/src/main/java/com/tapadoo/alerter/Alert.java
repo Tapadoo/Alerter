@@ -32,6 +32,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     //UI
     private FrameLayout flClickShield;
     private FrameLayout flBackground;
+    private ViewGroup llAlertTextContainer;
     private TextView tvTitle;
     private TextView tvText;
     private ImageView ivIcon;
@@ -127,13 +129,14 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE);
 
-        flBackground = (FrameLayout) findViewById(R.id.flAlertBackground);
-        flClickShield = (FrameLayout) findViewById(R.id.flClickShield);
-        ivIcon = (ImageView) findViewById(R.id.ivIcon);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvText = (TextView) findViewById(R.id.tvText);
-        rlContainer = (ViewGroup) findViewById(R.id.rlContainer);
-        pbProgress = (ProgressBar) findViewById(R.id.pbProgress);
+        flBackground = findViewById(R.id.flAlertBackground);
+        flClickShield = findViewById(R.id.flClickShield);
+        llAlertTextContainer = findViewById(R.id.llAlertTextContainer);
+        ivIcon = findViewById(R.id.ivIcon);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvText = findViewById(R.id.tvText);
+        rlContainer = findViewById(R.id.rlContainer);
+        pbProgress = findViewById(R.id.pbProgress);
 
         flBackground.setOnClickListener(this);
 
@@ -379,8 +382,15 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * @param contentGravity Gravity of the Alert
      */
     public void setContentGravity(final int contentGravity) {
-        ((LayoutParams) rlContainer.getLayoutParams()).gravity = contentGravity;
-        rlContainer.requestLayout();
+        LinearLayout.LayoutParams paramsTitle
+                = (LinearLayout.LayoutParams) tvTitle.getLayoutParams();
+        paramsTitle.gravity = contentGravity;
+        tvTitle.setLayoutParams(paramsTitle);
+
+        LinearLayout.LayoutParams paramsText
+                = (LinearLayout.LayoutParams) tvText.getLayoutParams();
+        paramsText.gravity = contentGravity;
+        tvText.setLayoutParams(paramsText);
     }
 
     /**
