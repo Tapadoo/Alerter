@@ -46,4 +46,4 @@ obj/
 libs/
 
 #Signing Keys
-/keystore
+keystore
