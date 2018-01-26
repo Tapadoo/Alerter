@@ -45,4 +45,4 @@ captures/
 obj/
 libs/
 
-keystore.properties
+keystore/

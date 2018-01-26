@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0.4 - 26/1/2018
+* Fixed content gravity issue
+
 ## 2.0.3 - 08/1/2018
 * Updated build tools & support libs
 * Added methods to set icon tint
