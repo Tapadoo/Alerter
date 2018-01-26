@@ -32,6 +32,11 @@ android {
     lintOptions {
         abortOnError true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 //BinTray configuration - credentials stored in user's gradle.properties
@@ -116,7 +121,6 @@ dependencies {
     androidTestImplementation rootProject.ext.libs.espresso
     androidTestImplementation rootProject.ext.libs.runner
     androidTestImplementation rootProject.ext.libs.uiautomator
-
     androidTestImplementation(rootProject.ext.libs.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
