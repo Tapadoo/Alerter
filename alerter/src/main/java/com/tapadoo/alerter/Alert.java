@@ -57,7 +57,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     //UI
     private FrameLayout flClickShield;
     private FrameLayout flBackground;
-    private ViewGroup llAlertTextContainer;
     private TextView tvTitle;
     private TextView tvText;
     private ImageView ivIcon;
@@ -131,7 +130,6 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
         flBackground = findViewById(R.id.flAlertBackground);
         flClickShield = findViewById(R.id.flClickShield);
-        llAlertTextContainer = findViewById(R.id.llAlertTextContainer);
         ivIcon = findViewById(R.id.ivIcon);
         tvTitle = findViewById(R.id.tvTitle);
         tvText = findViewById(R.id.tvText);
@@ -382,12 +380,12 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * @param contentGravity Gravity of the Alert
      */
     public void setContentGravity(final int contentGravity) {
-        LinearLayout.LayoutParams paramsTitle
+        final LinearLayout.LayoutParams paramsTitle
                 = (LinearLayout.LayoutParams) tvTitle.getLayoutParams();
         paramsTitle.gravity = contentGravity;
         tvTitle.setLayoutParams(paramsTitle);
 
-        LinearLayout.LayoutParams paramsText
+        final LinearLayout.LayoutParams paramsText
                 = (LinearLayout.LayoutParams) tvText.getLayoutParams();
         paramsText.gravity = contentGravity;
         tvText.setLayoutParams(paramsText);
