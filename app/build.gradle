@@ -5,33 +5,44 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.tapadoo.example"
+        applicationId "com.tapadoo.alerter_demo"
 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         versionCode 1
         versionName "1.0"
+        archivesBaseName = "alerter-demo-$versionName"
+    }
+
+    signingConfigs {
+        if (file(rootProject.ext.keystoreProperties).exists()) {
+            def props = new Properties()
+            file(rootProject.ext.keystoreProperties).withReader { reader ->
+                props.load(reader)
+            }
+
+            release {
+                storeFile file(props.STORE_FILE_RELEASE)
+                storePassword props.STORE_PASSWORD
+                keyAlias props.KEY_ALIAS
+                keyPassword props.KEY_PASSORD
+            }
+        }
     }
 
     buildTypes {
         release {
+            if (file(rootProject.ext.keystoreProperties).exists()) {
+                signingConfig signingConfigs.release
+            }
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    lintOptions {
-        abortOnError true
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile project(':alerter')
-
-    compile rootProject.ext.libs.support_v4
-    compile rootProject.ext.libs.appcompat_v7
-    compile rootProject.ext.libs.support_design
+    implementation project(':app-base')
 }
