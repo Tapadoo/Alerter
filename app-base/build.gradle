@@ -34,7 +34,4 @@ dependencies {
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
-
-    feature project(':app')
-    feature project(':app-instant')
 }
