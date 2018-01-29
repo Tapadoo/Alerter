@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.tapadoo.alerter_demo_base"
+<manifest package="com.tapadoo.alerter_demo"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -12,8 +12,9 @@
         <meta-data
             android:name="asset_statements"
             android:resource="@string/asset_statements"/>
+
         <activity
-            android:name=".DemoActivity"
+            android:name="com.tapadoo.alerter_demo.DemoActivity"
             android:label="@string/title_activity_example"
             android:theme="@style/AppTheme">
 
@@ -29,11 +30,16 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data
-                    android:host="apps.tapadoo.com"
-                    android:pathPrefix="/"
-                    android:scheme="https"/>
+                <data android:pathPrefix="/" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="apps.tapadoo.com" />
+
             </intent-filter>
+
+            <meta-data
+                android:name="default-url"
+                android:value="https://apps.tapadoo.com" />
 
         </activity>
 

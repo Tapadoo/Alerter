@@ -12,6 +12,9 @@ ext {
 
     keystoreProperties = '../keystore/release.properties'
 
+    app_version_code = 2
+    app_version_name = "1.0"
+
     libs = [
             android_gradle      : 'com.android.tools.build:gradle:2.2.3',
 

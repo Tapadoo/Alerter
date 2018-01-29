@@ -5,14 +5,13 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    baseFeature = true
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.app_version_code
+        versionName rootProject.ext.app_version_name
     }
 
     buildTypes {
@@ -25,14 +24,17 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    baseFeature true
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':alerter')
 
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
+
+    feature project(':app')
+    feature project(':app-instant')
 }
