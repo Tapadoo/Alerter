@@ -1,5 +1,5 @@
 apply plugin: 'com.android.instantapp'
 
 dependencies {
-    implementation project(':app-base')
+    api project(':app-base')
 }

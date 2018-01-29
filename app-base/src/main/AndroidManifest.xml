@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.tapadoo.alerter_demo"
+<manifest xmlns:tools="http://schemas.android.com/tools"
+          package="com.tapadoo.alerter_demo"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -18,6 +19,8 @@
             android:label="@string/title_activity_example"
             android:theme="@style/AppTheme">
 
+            <tools:validation testUrl="https://apps.tapadoo.com"/>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -30,16 +33,21 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:pathPrefix="/" />
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="apps.tapadoo.com" />
+                <data
+                    android:host="apps.tapadoo.com"
+                    android:pathPrefix="/"
+                    android:scheme="https"/>
+
+                <data
+                    android:host="apps.tapadoo.com"
+                    android:pathPrefix="/"
+                    android:scheme="http"/>
 
             </intent-filter>
 
             <meta-data
                 android:name="default-url"
-                android:value="https://apps.tapadoo.com" />
+                android:value="https://apps.tapadoo.com"/>
 
         </activity>
 
