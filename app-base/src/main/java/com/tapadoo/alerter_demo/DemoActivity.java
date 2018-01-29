@@ -35,6 +35,13 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        getWindow().setBackgroundDrawableResource(android.R.color.white);
+    }
+
+    @Override
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.btnAlertColoured) {
