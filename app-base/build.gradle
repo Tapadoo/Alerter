@@ -14,8 +14,28 @@ android {
         versionName rootProject.ext.app_version_name
     }
 
+    signingConfigs {
+        if (file(rootProject.ext.keystoreProperties).exists()) {
+            def props = new Properties()
+            file(rootProject.ext.keystoreProperties).withReader { reader ->
+                props.load(reader)
+            }
+
+            release {
+                storeFile file(props.STORE_FILE_RELEASE)
+                storePassword props.STORE_PASSWORD
+                keyAlias props.KEY_ALIAS
+                keyPassword props.KEY_PASSORD
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (file(rootProject.ext.keystoreProperties).exists()) {
+                signingConfig signingConfigs.release
+            }
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -37,12 +37,12 @@
 
                 <data
                     android:host="apps.tapadoo.com"
-                    android:pathPattern="/alerter-demo"
+                    android:pathPrefix="/alerter-demo"
                     android:scheme="https" />
 
                 <data
                     android:host="apps.tapadoo.com"
-                    android:pathPattern="/alerter-demo"
+                    android:pathPrefix="/alerter-demo"
                     android:scheme="http" />
             </intent-filter>
 
