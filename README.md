@@ -2,6 +2,8 @@
 
 ![Icon](./app-base/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
+[Play Store Demo](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
+
 ### General
 
 [ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
