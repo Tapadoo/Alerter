@@ -22,7 +22,7 @@ all content.
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:2.0.3'
+    implementation 'com.tapadoo.android:alerter:2.0.4'
 }
 ```
 
