@@ -1,4 +1,4 @@
-package com.tapadoo.alerter_demo;
+package com.tapadoo.alerter_demo.base;
 
 import android.graphics.Typeface;
 import android.os.Bundle;

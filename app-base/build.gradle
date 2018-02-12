@@ -1,6 +1,7 @@
 apply plugin: 'com.android.feature'
 
 android {
+    baseFeature true
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -44,8 +45,6 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    baseFeature true
 }
 
 dependencies {
@@ -54,4 +53,6 @@ dependencies {
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
+
+    application project(':app')
 }
