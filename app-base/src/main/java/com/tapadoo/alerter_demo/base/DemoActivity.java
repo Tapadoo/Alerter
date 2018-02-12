@@ -1,4 +1,4 @@
-package com.tapadoo.example;
+package com.tapadoo.alerter_demo.base;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
-public class ExampleActivity extends AppCompatActivity implements View.OnClickListener {
+public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,63 +35,49 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        getWindow().setBackgroundDrawableResource(android.R.color.white);
+    }
+
+    @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnAlertColoured: {
-                showAlertColoured();
-                break;
-            }
-            case R.id.btnAlertCustomIcon: {
-                showAlertWithIcon();
-                break;
-            }
-            case R.id.btnAlertTextOnly: {
-                showAlertTextOnly();
-                break;
-            }
-            case R.id.btnAlertOnClick: {
-                showAlertWithOnClick();
-                break;
-            }
-            case R.id.btnAlertVerbose: {
-                showAlertVerbose();
-                break;
-            }
-            case R.id.btnAlertCallback: {
-                showAlertCallbacks();
-                break;
-            }
-            case R.id.btnAlertInfiniteDuration: {
-                showAlertInfiniteDuration();
-                break;
-            }
-            case R.id.btnAlertWithProgress: {
-                showAlertWithProgress();
-                break;
-            }
-            case R.id.btnAlertWithCustomFont: {
-                showAlertWithCustomFont();
-                break;
-            }
-            case R.id.btnAlertSwipeToDismissEnabled: {
-                showAlertSwipeToDismissEnabled();
-                break;
-            }
-            default: {
-                showAlertDefault();
-            }
+        int i = view.getId();
+        if (i == R.id.btnAlertColoured) {
+            showAlertColoured();
+        } else if (i == R.id.btnAlertCustomIcon) {
+            showAlertWithIcon();
+        } else if (i == R.id.btnAlertTextOnly) {
+            showAlertTextOnly();
+        } else if (i == R.id.btnAlertOnClick) {
+            showAlertWithOnClick();
+        } else if (i == R.id.btnAlertVerbose) {
+            showAlertVerbose();
+        } else if (i == R.id.btnAlertCallback) {
+            showAlertCallbacks();
+        } else if (i == R.id.btnAlertInfiniteDuration) {
+            showAlertInfiniteDuration();
+        } else if (i == R.id.btnAlertWithProgress) {
+            showAlertWithProgress();
+        } else if (i == R.id.btnAlertWithCustomFont) {
+            showAlertWithCustomFont();
+        } else if (i == R.id.btnAlertSwipeToDismissEnabled) {
+            showAlertSwipeToDismissEnabled();
+        } else {
+            showAlertDefault();
         }
     }
 
     private void showAlertDefault() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertColoured() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
@@ -99,7 +85,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithIcon() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
@@ -107,27 +93,27 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertTextOnly() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertWithOnClick() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(ExampleActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertVerbose() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
                         "The alert scales to accommodate larger bodies of text. " +
@@ -136,27 +122,27 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertCallbacks(){
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnShowListener(new OnShowAlertListener() {
                     @Override
                     public void onShow() {
-                        Toast.makeText(ExampleActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setOnHideListener(new OnHideAlertListener() {
                     @Override
                     public void onHide() {
-                        Toast.makeText(ExampleActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertInfiniteDuration() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
@@ -164,7 +150,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithProgress() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
@@ -173,7 +159,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertWithCustomFont() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
@@ -184,7 +170,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAlertSwipeToDismissEnabled() {
-        Alerter.create(ExampleActivity.this)
+        Alerter.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()

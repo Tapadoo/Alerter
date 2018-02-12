@@ -1,19 +1,18 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.feature'
 
 android {
+    baseFeature true
+
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    defaultConfig {
-        applicationId "com.tapadoo.alerter_demo"
 
+    defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         versionCode rootProject.ext.app_version_code
         versionName rootProject.ext.app_version_name
-
-        archivesBaseName = "alerter-demo-$versionName"
     }
 
     signingConfigs {
@@ -42,8 +41,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    implementation project(':app-base')
+    implementation project(':alerter')
+
+    implementation rootProject.ext.libs.support_v4
+    implementation rootProject.ext.libs.appcompat_v7
+    implementation rootProject.ext.libs.support_design
+
+    application project(':app')
 }

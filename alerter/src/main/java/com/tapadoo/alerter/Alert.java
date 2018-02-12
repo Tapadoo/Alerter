@@ -36,8 +36,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.tapadoo.android.R;
-
 /**
  * Custom Alert View
  *
@@ -238,7 +236,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
             postDelayed(runningAnimation, duration);
         }
 
-        if (enableProgress && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+        if (enableProgress) {
             pbProgress.setVisibility(View.VISIBLE);
 
             final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);

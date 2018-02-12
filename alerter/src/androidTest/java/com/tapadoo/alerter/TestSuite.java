@@ -1,8 +1,5 @@
 package com.tapadoo.alerter;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
 /**
  * Test Suite
  *
@@ -11,6 +8,6 @@ import org.junit.runners.Suite;
  **/
 // Runs all unit tests.
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AlerterTest.class, AlertTest.class})
+@Suite.SuiteClasses({AlertTest.class, AlertTest.class})
 public class TestSuite {
 }

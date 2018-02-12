@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools"
+          package="com.tapadoo.alerter_demo.base"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements"/>
+
+        <activity
+            android:name=".DemoActivity"
+            android:label="@string/title_activity_example"
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="default-url"
+                android:value="https://apps.tapadoo.com/alerter-demo"/>
+
+            <intent-filter android:autoVerify="true" android:order="1">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="apps.tapadoo.com"
+                    android:pathPrefix="/alerter-demo"
+                    android:scheme="https" />
+
+                <data
+                    android:host="apps.tapadoo.com"
+                    android:pathPrefix="/alerter-demo"
+                    android:scheme="http" />
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>

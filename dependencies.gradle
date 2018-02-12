@@ -3,12 +3,17 @@ ext {
     minSdkVersion     = 14
     targetSdkVersion  = 27
 
-    buildToolsVersion = '27.0.3'
+    buildToolsVersion = '27.0.2'
 
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
     supportLibVersion = '27.0.2'
+
+    keystoreProperties = '../keystore/release.properties'
+
+    app_version_code = 8
+    app_version_name = "1.1"
 
     libs = [
             android_gradle      : 'com.android.tools.build:gradle:2.2.3',

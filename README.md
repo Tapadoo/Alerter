@@ -1,6 +1,8 @@
 # Alerter
 
-![Icon](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+![Icon](./app-base/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
+[Play Store Demo](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
 
 ### General
 

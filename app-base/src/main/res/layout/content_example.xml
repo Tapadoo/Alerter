@@ -18,7 +18,7 @@
         android:paddingRight="@dimen/alerter_activity_horizontal_margin"
         android:paddingTop="@dimen/alerter_activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.tapadoo.example.ExampleActivity"
+        tools:context=".DemoActivity"
         tools:showIn="@layout/activity_example">
 
         <android.support.v7.widget.AppCompatButton
