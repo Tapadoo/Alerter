@@ -2,6 +2,8 @@
 
 ![Icon](./app-base/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
+[Play Store Demo](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
+
 ### General
 
 [ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
@@ -20,7 +22,7 @@ all content.
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:2.0.3'
+    implementation 'com.tapadoo.android:alerter:2.0.4'
 }
 ```
 

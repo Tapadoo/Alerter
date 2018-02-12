@@ -10,8 +10,9 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.app_version_code
+        versionName rootProject.ext.app_version_name
+
         archivesBaseName = "alerter-demo-$versionName"
     }
 

@@ -1,22 +1,42 @@
 apply plugin: 'com.android.feature'
 
 android {
+    baseFeature true
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    baseFeature = true
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.app_version_code
+        versionName rootProject.ext.app_version_name
+    }
+
+    signingConfigs {
+        if (file(rootProject.ext.keystoreProperties).exists()) {
+            def props = new Properties()
+            file(rootProject.ext.keystoreProperties).withReader { reader ->
+                props.load(reader)
+            }
+
+            release {
+                storeFile file(props.STORE_FILE_RELEASE)
+                storePassword props.STORE_PASSWORD
+                keyAlias props.KEY_ALIAS
+                keyPassword props.KEY_PASSORD
+            }
+        }
     }
 
     buildTypes {
         release {
+            if (file(rootProject.ext.keystoreProperties).exists()) {
+                signingConfig signingConfigs.release
+            }
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -28,11 +48,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':alerter')
 
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
+
+    application project(':app')
 }

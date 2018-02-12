@@ -1,4 +1,4 @@
-package com.tapadoo.alerter_demo_base;
+package com.tapadoo.alerter_demo.base;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -32,6 +32,13 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnAlertWithProgress).setOnClickListener(this);
         findViewById(R.id.btnAlertWithCustomFont).setOnClickListener(this);
         findViewById(R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        getWindow().setBackgroundDrawableResource(android.R.color.white);
     }
 
     @Override
