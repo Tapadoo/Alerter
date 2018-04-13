@@ -71,7 +71,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showAlertDefault() {
         Alerter.create(DemoActivity.this)
-                .setTitle("Alert Title")
+                .setTitle(R.string.title_activity_example)
                 .setText("Alert text...")
                 .show();
     }
