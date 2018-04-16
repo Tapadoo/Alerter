@@ -11,7 +11,7 @@ apply plugin: "maven-publish"
 apply from: rootProject.file('quality.gradle')
 
 final String GROUP_ID = "com.tapadoo.android"
-final String VERSION      = "2.0.4"
+final String VERSION      = "2.0.5"
 final String DESCRIPTION  = "An Android Alerting Library"
 final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
@@ -37,6 +37,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 //BinTray configuration - credentials stored in user's gradle.properties

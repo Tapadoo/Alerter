@@ -623,7 +623,7 @@ public final class Alerter {
     }
 
     @Nullable
-    WeakReference<Activity> getActivityWeakReference() {
+    private WeakReference<Activity> getActivityWeakReference() {
         return activityWeakReference;
     }
 
