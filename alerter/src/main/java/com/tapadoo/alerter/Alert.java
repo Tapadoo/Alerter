@@ -233,6 +233,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                     hide();
                 }
             };
+
             postDelayed(runningAnimation, duration);
         }
 
@@ -293,6 +294,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * Removes Alert View from its Parent Layout
      */
     void removeFromParent() {
+        clearAnimation();
+        setVisibility(View.GONE);
+
         postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -554,7 +558,22 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
      * Set whether to enable swipe to dismiss or not
      */
     public void enableSwipeToDismiss() {
-        flBackground.setOnTouchListener(new SwipeDismissTouchListener(flBackground, null, this));
+        flBackground.setOnTouchListener(new SwipeDismissTouchListener(flBackground, null, new SwipeDismissTouchListener.DismissCallbacks() {
+            @Override
+            public boolean canDismiss(final Object token) {
+                return true;
+            }
+
+            @Override
+            public void onDismiss(final View view, final Object token) {
+                removeFromParent();
+            }
+
+            @Override
+            public void onTouch(final View view, final boolean touch) {
+                // Ignore
+            }
+        }));
     }
 
     /**

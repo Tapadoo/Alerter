@@ -174,6 +174,12 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
+                .setOnHideListener(new OnHideAlertListener() {
+                    @Override
+                    public void onHide() {
+                        Toast.makeText(DemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
+                    }
+                })
                 .show();
     }
 
