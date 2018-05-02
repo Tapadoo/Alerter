@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'maven'
 apply plugin: "maven-publish"
 
@@ -111,6 +112,7 @@ dependencies {
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_annotations
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Local Unit Tests - in src/test
     testImplementation rootProject.ext.libs.junit
@@ -160,6 +162,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+repositories {
+    mavenCentral()
 }
 
 def final getBinTrayUser() {

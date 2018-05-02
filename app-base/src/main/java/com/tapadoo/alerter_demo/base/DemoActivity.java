@@ -70,14 +70,14 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertDefault() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle(R.string.title_activity_example)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertColoured() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
@@ -85,7 +85,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithIcon() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
@@ -93,13 +93,13 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertTextOnly() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertWithOnClick() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
@@ -113,7 +113,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertVerbose() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
                         "The alert scales to accommodate larger bodies of text. " +
@@ -122,7 +122,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertCallbacks(){
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
@@ -142,7 +142,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertInfiniteDuration() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
@@ -150,7 +150,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithProgress() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
@@ -159,7 +159,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithCustomFont() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
@@ -170,7 +170,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertSwipeToDismissEnabled() {
-        Alerter.create(DemoActivity.this)
+        Alerter.Companion.create(DemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()

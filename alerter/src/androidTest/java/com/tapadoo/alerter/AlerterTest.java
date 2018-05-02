@@ -33,7 +33,7 @@ public class AlerterTest {
 
     @Test
     public void testConstruction() {
-        final Alerter alerter = Alerter.create(activityRule.getActivity());
+        final Alerter alerter = Alerter.Companion.create(activityRule.getActivity());
         Assert.assertNotNull(alerter);
     }
 
@@ -43,7 +43,7 @@ public class AlerterTest {
         final int childCount = ((ViewGroup) activityRule.getActivity().findViewById(android.R.id.content).getRootView()).getChildCount();
 
         //Instantiate Alerter
-        final Alerter alerter = Alerter.create(activityRule.getActivity());
+        final Alerter alerter = Alerter.Companion.create(activityRule.getActivity());
 
         //Show it to the User
         alerter.show();
@@ -65,7 +65,7 @@ public class AlerterTest {
 
     @Test
     public void testBuilderStrings() {
-        final Alert alert = Alerter.create(activityRule.getActivity())
+        final Alert alert = Alerter.Companion.create(activityRule.getActivity())
                 .setTitle("Hello")
                 .setText("Hi")
                 .show();
@@ -76,7 +76,7 @@ public class AlerterTest {
 
     @Test
     public void testBuilderStringsRes() {
-        final Alert alert = Alerter.create(activityRule.getActivity())
+        final Alert alert = Alerter.Companion.create(activityRule.getActivity())
                 .setTitle(R.string.lib_name)
                 .setText(R.string.msg_no_alert_showing)
                 .show();
@@ -87,7 +87,7 @@ public class AlerterTest {
 
     @Test
     public void testBuilderIcon() {
-        final Alert alert = Alerter.create(activityRule.getActivity())
+        final Alert alert = Alerter.Companion.create(activityRule.getActivity())
                 .setIcon(android.R.drawable.sym_def_app_icon)
                 .show();
 
@@ -97,7 +97,7 @@ public class AlerterTest {
 
     @Test
     public void testBuilderBackground() {
-        final Alert alert = Alerter.create(activityRule.getActivity())
+        final Alert alert = Alerter.Companion.create(activityRule.getActivity())
                 .setBackgroundColorRes(android.R.color.darker_gray)
                 .show();
 
@@ -114,17 +114,17 @@ public class AlerterTest {
         }
 
         //Test default hide listener
-        final Alert alert1 = Alerter.create(activityRule.getActivity()).show();
+        final Alert alert1 = Alerter.Companion.create(activityRule.getActivity()).show();
 
         Assert.assertTrue(alert1.getAlertBackground().hasOnClickListeners());
 
         //Test nullifying listener
-        final Alert alert2 = Alerter.create(activityRule.getActivity()).setOnClickListener(null).show();
+        final Alert alert2 = Alerter.Companion.create(activityRule.getActivity()).setOnClickListener(null).show();
 
         Assert.assertFalse(alert2.getAlertBackground().hasOnClickListeners());
 
         //Test setting listener
-        final Alert alert3 = Alerter.create(activityRule.getActivity()).setOnClickListener(new View.OnClickListener() {
+        final Alert alert3 = Alerter.Companion.create(activityRule.getActivity()).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
                         //Ignore
