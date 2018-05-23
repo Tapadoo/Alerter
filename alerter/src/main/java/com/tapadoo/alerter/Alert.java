@@ -60,6 +60,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private ImageView ivIcon;
     private ViewGroup rlContainer;
     private ProgressBar pbProgress;
+    private boolean dismissable;
 
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
@@ -176,6 +177,9 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     @Override
     public void onClick(final View v) {
+        if(!dismissable) {
+            return;
+        }
         hide();
     }
 
@@ -574,6 +578,23 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
                 // Ignore
             }
         }));
+    }
+
+    /**
+     * Set if the alerter is dismissable or not
+     *
+     * @param dismissable True if alert can be dismissed
+     */
+    public void setDismissable(final boolean dismissable) {
+        this.dismissable = dismissable;
+    }
+
+    /**
+     * Get if the alert is dismissable
+     * @return
+     */
+    public boolean isDismissable() {
+        return dismissable;
     }
 
     /**
