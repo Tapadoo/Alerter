@@ -60,7 +60,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
     private ImageView ivIcon;
     private ViewGroup rlContainer;
     private ProgressBar pbProgress;
-    private boolean dismissable;
+    private boolean dismissable = true;
 
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
