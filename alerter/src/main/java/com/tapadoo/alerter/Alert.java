@@ -177,7 +177,7 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     @Override
     public void onClick(final View v) {
-        if(!dismissable) {
+        if (!dismissable) {
             return;
         }
         hide();
@@ -591,7 +591,8 @@ public class Alert extends FrameLayout implements View.OnClickListener, Animatio
 
     /**
      * Get if the alert is dismissable
-     * @return
+     *
+     * @return True if the alert is dismissable, false otherwise
      */
     public boolean isDismissable() {
         return dismissable;

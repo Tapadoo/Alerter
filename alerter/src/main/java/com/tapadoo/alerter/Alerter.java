@@ -449,7 +449,7 @@ public final class Alerter {
      * Set if the Alert is dismissable or not
      *
      * @param dismissable true if it can be dismissed
-     * @return
+     * @return This Alerter
      */
     public Alerter setDismissable(final boolean dismissable) {
         if (getAlert() != null) {
