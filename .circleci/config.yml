@@ -78,8 +78,8 @@ workflows:
     jobs:
       - assemble
       - check
-        requires:
-          - assemble
+          requires:
+            - assemble
 
 
 
