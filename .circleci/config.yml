@@ -68,7 +68,7 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
-       - run:
+      - run:
           name: Run Check
           command: ./gradlew check
       - store_artifacts:
