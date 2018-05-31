@@ -77,7 +77,7 @@ workflows:
   assemble_and_test:
     jobs:
       - assemble
-      - check
+      - check:
           requires:
             - assemble
 
