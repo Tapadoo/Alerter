@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Assemble and Check
-          command: ./gradlew assemble check
+          command: ./gradlew build
 
       - run:
           name: Run Tests
@@ -49,10 +49,9 @@ jobs:
 
       - store_test_results:
           path: app/build/test-results
-
-
 workflows:
   version: 2
+
   build_and_test:
     jobs:
       - build
