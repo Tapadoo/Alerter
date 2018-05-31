@@ -63,10 +63,9 @@ jobs:
 workflows:
   version: 2
 
-  workflow:
-    assemble_and_test:
-      jobs:
-        - assemble
+  assemble_and_test:
+    jobs:
+      - assemble
 
 
 
