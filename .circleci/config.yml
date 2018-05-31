@@ -17,11 +17,11 @@ references:
     persist_to_workspace:
       root: *workspace
       paths:
-        - mobile/build/intermediates
-        - mobile/build/outputs/androidTest-results
-        - mobile/build/outputs/apk
-        - mobile/build/outputs/code-coverage
-        - mobile/build/test-results
+        - alerter/build/intermediates
+        - alerter/build/outputs/androidTest-results
+        - alerter/build/outputs/apk
+        - alerter/build/outputs/code-coverage
+        - alerter/build/test-results
 
   # Android
   android_config: &android_config
@@ -37,7 +37,7 @@ references:
 
   # Cache
   cache_key: &cache_key
-    key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "mobile/build.gradle" }}
+    key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "alerter/build.gradle" }}
 
   restore_cache: &restore_cache
     restore_cache:
