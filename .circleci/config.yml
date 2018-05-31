@@ -36,8 +36,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       - run:
-        name: Assemble and Check
-        command: ./gradlew assemble check
+          name: Assemble and Check
+          command: ./gradlew assemble check
 
       - run:
           name: Run Tests
