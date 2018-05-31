@@ -4,40 +4,47 @@
 #
 version: 2
 
-jobs:
-  build:
+references:
+  # Android
+  android_config: &android_config
+    working_directory: *workspace
     docker:
       - image: circleci/android:api-27-alpha
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
     environment:
-      JVM_OPTS: -Xmx3200m
       TERM: dumb
+      _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
 
+  # Cache
+  cache_key: &cache_key
+      key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "mobile/build.gradle" }}
+    restore_cache: &restore_cache
+      restore_cache:
+        <<: *cache_key
+    save_cache: &save_cache
+      save_cache:
+        <<: *cache_key
+        paths:
+          - ~/.gradle
+          - ~/.m2
+
+jobs:
+  assemble:
+    <<: *android_config
     steps:
       - checkout
 
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - *restore_cache
 
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
+        name: Download dependencies
+        command: ./gradlew androidDependencies
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - *save_cache
 
       - run:
-          name: Assemble and Check
-          command: ./gradlew build
+          name: Assemble
+          command: ./gradlew assemble
 
       - run:
           name: Run Tests
@@ -49,12 +56,16 @@ jobs:
 
       - store_test_results:
           path: app/build/test-results
+
+  test:
+
+
 workflows:
   version: 2
 
-  build_and_test:
+  assemble_and_test:
     jobs:
-      - build
+      - assemble
 
 
 
