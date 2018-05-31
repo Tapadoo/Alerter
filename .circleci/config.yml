@@ -3,6 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2
+
 jobs:
   build:
     docker:
@@ -16,32 +17,45 @@ jobs:
     working_directory: ~/repo
 
     environment:
-      # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
 
      steps:
           - checkout
+
           - restore_cache:
               key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
           - run:
               name: Download Dependencies
               command: ./gradlew androidDependencies
+
           - save_cache:
               paths:
                 - ~/.gradle
               key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
           - run:
             name: Assemble and Check
             command: ./gradlew assemble check
+
           - run:
               name: Run Tests
               command: ./gradlew lint test
+
           - store_artifacts:
               path: app/build/reports
               destination: reports
+
           - store_test_results:
               path: app/build/test-results
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
 
 
 
