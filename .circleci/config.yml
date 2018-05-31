@@ -5,6 +5,24 @@
 version: 2
 
 references:
+  # Workspace
+  workspace: &workspace
+    ~/workspace
+
+  attach_debug_workspace: &attach_debug_workspace
+    attach_workspace:
+      at: *workspace
+
+  persist_debug_workspace: &persist_debug_workspace
+    persist_to_workspace:
+      root: *workspace
+      paths:
+        - mobile/build/intermediates
+        - mobile/build/outputs/androidTest-results
+        - mobile/build/outputs/apk
+        - mobile/build/outputs/code-coverage
+        - mobile/build/test-results
+
   # Android
   android_config: &android_config
     working_directory: *workspace
@@ -32,24 +50,6 @@ references:
         - ~/.gradle
         - ~/.m2
 
-  # Workspace
-  workspace: &workspace
-    ~/workspace
-
-  attach_debug_workspace: &attach_debug_workspace
-    attach_workspace:
-      at: *workspace
-
-  persist_debug_workspace: &persist_debug_workspace
-    persist_to_workspace:
-      root: *workspace
-      paths:
-        - mobile/build/intermediates
-        - mobile/build/outputs/androidTest-results
-        - mobile/build/outputs/apk
-        - mobile/build/outputs/code-coverage
-        - mobile/build/test-results
-
 jobs:
 
   assemble:
@@ -64,7 +64,7 @@ jobs:
       - run:
           name: Assemble
           command: ./gradlew assemble
-      - *persist_release_workspace
+      - *persist_debug_workspace
       - run:
           name: Run Tests
           command: ./gradlew lint test
