@@ -446,6 +446,19 @@ public final class Alerter {
     }
 
     /**
+     * Set if the Alert is dismissable or not
+     *
+     * @param dismissable true if it can be dismissed
+     * @return This Alerter
+     */
+    public Alerter setDismissable(final boolean dismissable) {
+        if (getAlert() != null) {
+            getAlert().setDismissable(dismissable);
+        }
+        return this;
+    }
+
+    /**
      * Set the on screen duration of the alert
      *
      * @param milliseconds The duration in milliseconds
@@ -623,7 +636,7 @@ public final class Alerter {
     }
 
     @Nullable
-    WeakReference<Activity> getActivityWeakReference() {
+    private WeakReference<Activity> getActivityWeakReference() {
         return activityWeakReference;
     }
 
