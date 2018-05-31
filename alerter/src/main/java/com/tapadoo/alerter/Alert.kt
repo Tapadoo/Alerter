@@ -55,6 +55,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     private var runningAnimation: Runnable? = null
 
+    private var dismissable = true
+
     /**
      * Flag to ensure we only set the margins once
      */
@@ -138,7 +140,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onClick(v: View) {
-        hide()
+        if (dismissable) {
+            hide()
+        }
     }
 
     override fun setOnClickListener(listener: View.OnClickListener?) {
@@ -462,6 +466,23 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun showIcon(showIcon: Boolean) {
         icon!!.visibility = if (showIcon) View.VISIBLE else View.GONE
+    }
+
+    /**
+     * Set if the alerter is dismissable or not
+     *
+     * @param dismissible True if alert can be dismissed
+     */
+    fun setDismissable(dismissable: Boolean) {
+        this.dismissable = dismissable
+    }
+
+    /**
+     * Get if the alert is dismissable
+     * @return
+     */
+    fun isDismissable(): Boolean {
+        return dismissable
     }
 
     /**

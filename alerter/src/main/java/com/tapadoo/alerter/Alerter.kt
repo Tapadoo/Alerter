@@ -463,6 +463,17 @@ class Alerter private constructor() {
         return this
     }
 
+    /**
+     * Set if the Alert is dismissable or not
+     *
+     * @param dismissable true if it can be dismissed
+     * @return
+     */
+    fun setDismissable(dismissable: Boolean): Alerter {
+        alert?.setDismissable(dismissable)
+
+        return this
+    }
 
     /**
      * Creates a weak reference to the calling Activity

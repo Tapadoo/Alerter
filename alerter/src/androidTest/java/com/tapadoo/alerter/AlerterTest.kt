@@ -10,8 +10,6 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 
-import com.tapadoo.android.R
-
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +27,7 @@ class AlerterTest {
 
     //Rule which sets the Activity to be used
     @Rule
-    val activityRule = ActivityTestRule(MockActivity::class.java)
+    internal val activityRule = ActivityTestRule(MockActivity::class.java)
 
     @Test
     fun testConstruction() {
@@ -126,9 +124,8 @@ class AlerterTest {
         //Test setting listener
         val alert3 = Alerter.create(activityRule.activity).setOnClickListener(View.OnClickListener {
             //Ignore
-        })
-                .show()
+        }).show()
 
-        Assert.assertTrue(alert3!!.getAlertBackground().hasOnClickListeners())
+        Assert.assertTrue(alert3!!.alertBackground?.hasOnClickListeners() ?: false)
     }
 }
