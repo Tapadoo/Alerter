@@ -1,17 +1,15 @@
-# Alerter
+# Alerter - An Android Alerter Library, now in Kotlin!
+
+This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
+complexity of your layouts.
+
+[![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
 
 ![Icon](./documentation/header.png)
 
 [Play Store Demo](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
 
 ### General
-
-[ ![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
-
-This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
-complexity of your layouts.
 
 ![Default Alert](./documentation/alert_default.gif)
 
