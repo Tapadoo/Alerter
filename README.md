@@ -1,6 +1,6 @@
 # Alerter
 
-![Icon](./documentation/header.gif)
+![Icon](./documentation/header.png)
 
 [Play Store Demo](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
 
