@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0.6 - 26/1/2018
+* Added dismissible functionality
+
 ## 2.0.5 - 26/1/2018
 * Fixed issue with on hide listener not being called when alert is swiped to dismiss
 
