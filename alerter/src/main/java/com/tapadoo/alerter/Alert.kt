@@ -20,7 +20,9 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.alerter_alert_view.view.*
 
 /**
  * Custom Alert View
@@ -30,16 +32,6 @@ import android.widget.*
  */
 class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
     : FrameLayout(context, attrs, defStyle), View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
-
-    //UI
-    internal var flClickShield: FrameLayout? = null
-    internal var rlContainer: ViewGroup? = null
-    internal var progressBar: ProgressBar? = null
-    internal var alertBackground: FrameLayout? = null
-
-    internal var title: TextView? = null
-    internal var text: TextView? = null
-    internal var icon: ImageView? = null
 
     internal var onShowListener: OnShowAlertListener? = null
     internal var onHideListener: OnHideAlertListener? = null
@@ -75,13 +67,13 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     var contentGravity: Int
         get() = (rlContainer!!.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
-            val paramsTitle = title?.layoutParams as LinearLayout.LayoutParams
+            val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
             paramsTitle.gravity = contentGravity
-            title?.layoutParams = paramsTitle
+            tvTitle?.layoutParams = paramsTitle
 
-            val paramsText = text?.layoutParams as LinearLayout.LayoutParams
+            val paramsText = tvText?.layoutParams as LinearLayout.LayoutParams
             paramsText.gravity = contentGravity
-            text?.layoutParams = paramsText
+            tvText?.layoutParams = paramsText
         }
 
     init {
@@ -89,20 +81,12 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     private fun initView() {
-        View.inflate(context, R.layout.alerter_alert_view, this)
+        inflate(context, R.layout.alerter_alert_view, this)
         isHapticFeedbackEnabled = true
 
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE.toFloat())
 
-        alertBackground = findViewById(R.id.flAlertBackground)
-        flClickShield = findViewById(R.id.flClickShield)
-        icon = findViewById(R.id.ivIcon)
-        title = findViewById(R.id.tvTitle)
-        text = findViewById(R.id.tvText)
-        rlContainer = findViewById(R.id.rlContainer)
-        progressBar = findViewById(R.id.pbProgress)
-
-        alertBackground!!.setOnClickListener(this)
+        flAlertBackground.setOnClickListener(this)
 
         //Setup Enter & Exit Animations
         slideInAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
@@ -146,7 +130,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun setOnClickListener(listener: View.OnClickListener?) {
-        alertBackground!!.setOnClickListener(listener)
+        flAlertBackground!!.setOnClickListener(listener)
     }
 
     override fun setVisibility(visibility: Int) {
@@ -170,9 +154,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     override fun onAnimationEnd(animation: Animation) {
         //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse && icon!!.visibility == View.VISIBLE) {
+        if (enableIconPulse && ivIcon!!.visibility == View.VISIBLE) {
             try {
-                icon!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                ivIcon!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
             } catch (ex: Exception) {
                 Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
             }
@@ -196,12 +180,12 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         }
 
         if (enableProgress) {
-            progressBar!!.visibility = View.VISIBLE
+            pbProgress.visibility = View.VISIBLE
 
             val valueAnimator = ValueAnimator.ofInt(0, 100)
             valueAnimator.duration = duration
             valueAnimator.interpolator = LinearInterpolator()
-            valueAnimator.addUpdateListener { animation -> progressBar!!.progress = animation.animatedValue as Int }
+            valueAnimator.addUpdateListener { animation -> pbProgress.progress = animation.animatedValue as Int }
             valueAnimator.start()
         }
 
@@ -220,8 +204,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         try {
             slideOutAnimation!!.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
-                    alertBackground!!.setOnClickListener(null)
-                    alertBackground!!.isClickable = false
+                    flAlertBackground!!.setOnClickListener(null)
+                    flAlertBackground!!.isClickable = false
                 }
 
                 override fun onAnimationEnd(animation: Animation) {
@@ -280,7 +264,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The qualified colour integer
      */
     fun setAlertBackgroundColor(@ColorInt color: Int) {
-        alertBackground!!.setBackgroundColor(color)
+        flAlertBackground!!.setBackgroundColor(color)
     }
 
     /**
@@ -289,7 +273,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param resource The qualified drawable integer
      */
     fun setAlertBackgroundResource(@DrawableRes resource: Int) {
-        alertBackground!!.setBackgroundResource(resource)
+        flAlertBackground!!.setBackgroundResource(resource)
     }
 
     /**
@@ -299,9 +283,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setAlertBackgroundDrawable(drawable: Drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            alertBackground!!.background = drawable
+            flAlertBackground!!.background = drawable
         } else {
-            alertBackground!!.setBackgroundDrawable(drawable)
+            flAlertBackground!!.setBackgroundDrawable(drawable)
         }
     }
 
@@ -337,8 +321,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitle(title: String) {
         if (!TextUtils.isEmpty(title)) {
-            this.title!!.visibility = View.VISIBLE
-            this.title!!.text = title
+            tvTitle?.visibility = View.VISIBLE
+            tvTitle?.text = title
         }
     }
 
@@ -349,9 +333,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitleAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            title!!.setTextAppearance(textAppearance)
+            tvTitle?.setTextAppearance(textAppearance)
         } else {
-            title!!.setTextAppearance(title!!.context, textAppearance)
+            tvTitle?.setTextAppearance(tvText?.context, textAppearance)
         }
     }
 
@@ -361,7 +345,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTitleTypeface(typeface: Typeface) {
-        title!!.typeface = typeface
+        tvTitle?.typeface = typeface
     }
 
     /**
@@ -370,7 +354,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTextTypeface(typeface: Typeface) {
-        text!!.typeface = typeface
+        tvText?.typeface = typeface
     }
 
     /**
@@ -380,8 +364,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setText(text: String) {
         if (!TextUtils.isEmpty(text)) {
-            this.text!!.visibility = View.VISIBLE
-            this.text!!.text = text
+            tvText?.visibility = View.VISIBLE
+            tvText?.text = text
         }
     }
 
@@ -392,9 +376,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTextAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            text!!.setTextAppearance(textAppearance)
+            tvText?.setTextAppearance(textAppearance)
         } else {
-            text!!.setTextAppearance(text!!.context, textAppearance)
+            tvText?.setTextAppearance(tvText?.context, textAppearance)
         }
     }
 
@@ -404,7 +388,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param iconId Drawable resource id of the icon to use in the Alert
      */
     fun setIcon(@DrawableRes iconId: Int) {
-        icon!!.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
+        ivIcon?.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
     }
 
     /**
@@ -413,9 +397,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color Color int
      */
     fun setIconColorFilter(@ColorInt color: Int) {
-        if (icon != null) {
-            icon!!.setColorFilter(color)
-        }
+        ivIcon?.setColorFilter(color)
     }
 
     /**
@@ -424,9 +406,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param colorFilter ColorFilter
      */
     fun setIconColorFilter(colorFilter: ColorFilter) {
-        if (icon != null) {
-            icon!!.colorFilter = colorFilter
-        }
+        ivIcon?.colorFilter = colorFilter
     }
 
     /**
@@ -436,9 +416,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param mode  PorterDuff.Mode
      */
     fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode) {
-        if (icon != null) {
-            icon!!.setColorFilter(color, mode)
-        }
+        ivIcon?.setColorFilter(color, mode)
     }
 
     /**
@@ -447,7 +425,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param bitmap Bitmap image of the icon to use in the Alert.
      */
     fun setIcon(bitmap: Bitmap) {
-        icon!!.setImageBitmap(bitmap)
+        ivIcon?.setImageBitmap(bitmap)
     }
 
     /**
@@ -456,7 +434,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param drawable Drawable image of the icon to use in the Alert.
      */
     fun setIcon(drawable: Drawable) {
-        icon!!.setImageDrawable(drawable)
+        ivIcon?.setImageDrawable(drawable)
     }
 
     /**
@@ -465,7 +443,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param showIcon True to show the icon, false otherwise
      */
     fun showIcon(showIcon: Boolean) {
-        icon!!.visibility = if (showIcon) View.VISIBLE else View.GONE
+        ivIcon?.visibility = if (showIcon) View.VISIBLE else View.GONE
     }
 
     /**
@@ -489,7 +467,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Set whether to enable swipe to dismiss or not
      */
     fun enableSwipeToDismiss() {
-        alertBackground?.let {
+        flAlertBackground?.let {
             it.setOnTouchListener(SwipeDismissTouchListener(it, object : SwipeDismissTouchListener.DismissCallbacks {
                 override fun canDismiss(): Boolean {
                     return true
@@ -539,7 +517,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The color resource
      */
     fun setProgressColorRes(@ColorRes color: Int) {
-        progressBar!!.progressDrawable.colorFilter = LightingColorFilter(MUL, ContextCompat.getColor(context, color))
+        pbProgress?.progressDrawable?.colorFilter = LightingColorFilter(MUL, ContextCompat.getColor(context, color))
     }
 
     /**
@@ -548,7 +526,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The color resource
      */
     fun setProgressColorInt(@ColorInt color: Int) {
-        progressBar!!.progressDrawable.colorFilter = LightingColorFilter(MUL, color)
+        pbProgress?.progressDrawable?.colorFilter = LightingColorFilter(MUL, color)
     }
 
     /**
@@ -574,7 +552,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onDismiss(view: View) {
-        flClickShield!!.removeView(alertBackground)
+        flClickShield!!.removeView(flAlertBackground)
     }
 
     override fun onTouch(view: View, touch: Boolean) {

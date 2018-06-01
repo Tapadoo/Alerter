@@ -304,7 +304,7 @@ class Alerter private constructor() {
      * @return This Alerter
      */
     fun hideIcon(): Alerter {
-        alert?.icon?.visibility = View.GONE
+        alert?.showIcon(false)
 
         return this
     }
