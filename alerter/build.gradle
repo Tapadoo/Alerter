@@ -8,6 +8,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven'
 apply plugin: "maven-publish"
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka'
 
 //Quality Standards
 apply from: rootProject.file('quality.gradle')
@@ -135,7 +136,6 @@ dependencies {
     javadocDeps rootProject.ext.libs.appcompat_v7
 }
 
-bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
 
 task showBintrayProps {
     doLast {
@@ -148,22 +148,18 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc) {
-    failOnError true
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task javadocJar(type: Jar) {
     classifier = 'javadoc'
-    from javadoc.destinationDir
+    from "$buildDir/javadoc"
 }
 
-artifacts {
-    archives javadocJar
-    archives sourcesJar
+dokka {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
 }
+
+bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
+bintrayUpload.dependsOn 'dokka'
 
 def final getBinTrayUser() {
     final String BINTRAY_USER = "BINTRAY_USER"
@@ -174,3 +170,4 @@ def final getBinTrayKey() {
     final String BINTRAY_KEY  = "BINTRAY_KEY"
     return project.hasProperty(BINTRAY_KEY)? project.getProperty(BINTRAY_KEY) : null
 }
+
