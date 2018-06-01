@@ -51,13 +51,13 @@ To check if an alert is showing -
 
 
 ```kotlin
-Alerter.isShowing();
+Alerter.isShowing()
 ```
 
 To hide a currently showing Alert - 
 
 ```kotlin
-Alerter.hide();
+Alerter.hide()
 ```
 
 # Customisation
@@ -69,7 +69,7 @@ Alerter.create(this@DemoActivity)
        .setTitle("Alert Title")
        .setText("Alert text...")
        .setBackgroundColorRes(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
-       .show();
+       .show()
 ```
 
 ![Coloured Alert](./documentation/alert_coloured.gif)
@@ -81,7 +81,7 @@ Alerter.create(this@DemoActivity)
        .setText("Alert text...")
        .setIcon(R.drawable.alerter_ic_mail_outline)
        .setIconColorFilter(0) // Optional - Removes white tint
-       .show();
+       .show()
 ```
 
 ![Custom Icon Alert](./documentation/alert_icon.gif)
@@ -93,7 +93,7 @@ Alerter.create(this@DemoActivity)
        .setTitle("Alert Title")
        .setText("Alert text...")
        .setDuration(10000)
-       .show();
+       .show()
 ```
 
 ### Without title
@@ -101,7 +101,7 @@ Alerter.create(this@DemoActivity)
 ```kotlin
 Alerter.create(this@DemoActivity)
        .setText("Alert text...")
-       .show();
+       .show()
 ```
 
 ![Text Only Alert](./documentation/alert_text_only.gif)
@@ -119,7 +119,7 @@ Alerter.create(this@DemoActivity)
                 Toast.makeText(this@DemoActivity, "OnClick Called", Toast.LENGTH_LONG).show();
             }
         })
-        .show();
+        .show()
 ```
 
 ![On Click Alert](./documentation/alert_on_click.gif)
@@ -132,7 +132,7 @@ Alerter.create(this@DemoActivity)
         .setText("The alert scales to accommodate larger bodies of text. " +
                  "The alert scales to accommodate larger bodies of text. " +
                  "The alert scales to accommodate larger bodies of text.")
-        .show();
+        .show()
 ```
 
 ![Verbose Alert](./documentation/alert_verbose.gif)
@@ -154,7 +154,7 @@ Alerter.create(this@DemoActivity)
                 Toast.makeText(this@DemoActivity, "Alert Hidden", Toast.LENGTH_LONG).show();
             }
          })
-        .show();
+        .show()
 ```
 
 ### Custom Fonts and Text Appearance
@@ -167,7 +167,7 @@ Alerter.create(this@DemoActivity)
                 .setText("Alert text...")
                 .setTextAppearance(R.style.AlertTextAppearance_Text)
                 .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
-                .show();
+                .show()
 ```
 
 ![Verbose Alert](./documentation/alert_custom_font.gif)
@@ -179,7 +179,7 @@ Alerter.create(this@DemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
-                .show();
+                .show()
 ```
 ![Verbose Alert](./documentation/alert_swipe_to_dismiss.gif)
 
