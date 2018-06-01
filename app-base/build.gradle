@@ -59,6 +59,3 @@ dependencies {
 
     application project(':app')
 }
-repositories {
-    mavenCentral()
-}

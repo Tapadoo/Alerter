@@ -164,9 +164,6 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-repositories {
-    mavenCentral()
-}
 
 def final getBinTrayUser() {
     final String BINTRAY_USER = "BINTRAY_USER"
