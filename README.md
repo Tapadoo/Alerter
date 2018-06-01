@@ -33,32 +33,32 @@ into any app.
 
 From an Activity -
 
-```java
-Alerter.create(this)
+```kotlin
+Alerter.create(this@DemoActivity)
        .setTitle("Alert Title")
        .setText("Alert text...")
-       .show();
+       .show()
 ```
 
 Or from a Fragment -
 
-```java
-Alerter.create(getActivity())
+```kotlin
+Alerter.create(activity)
        .setTitle("Alert Title")
        .setText("Alert text...")
-       .show();
+       .show()
 ```
 
 To check if an alert is showing - 
 
 
-```java
+```kotlin
 Alerter.isShowing();
 ```
 
 To hide a currently showing Alert - 
 
-```java
+```kotlin
 Alerter.hide();
 ```
 
@@ -66,8 +66,8 @@ Alerter.hide();
 
 ### Background Colour
 
-```java
-Alerter.create(this)
+```kotlin
+Alerter.create(this@DemoActivity)
        .setTitle("Alert Title")
        .setText("Alert text...")
        .setBackgroundColorRes(R.color.colorAccent) // or setBackgroundColorInt(Color.CYAN)
@@ -78,8 +78,8 @@ Alerter.create(this)
 
 ### Icon
 
-```java
-Alerter.create(this)
+```kotlin
+Alerter.create(this@DemoActivity)
        .setText("Alert text...")
        .setIcon(R.drawable.alerter_ic_mail_outline)
        .setIconColorFilter(0) // Optional - Removes white tint
@@ -90,8 +90,8 @@ Alerter.create(this)
 
 ### On screen duration, in milliseconds
 
-```java
-Alerter.create(this)
+```kotlin
+Alerter.create(this@DemoActivity)
        .setTitle("Alert Title")
        .setText("Alert text...")
        .setDuration(10000)
@@ -100,8 +100,8 @@ Alerter.create(this)
 
 ### Without title
 
-```java
-Alerter.create(this)
+```kotlin
+Alerter.create(this@DemoActivity)
        .setText("Alert text...")
        .show();
 ```
@@ -110,15 +110,15 @@ Alerter.create(this)
 
 ### Adding an On Click Listener
 
-```java
- Alerter.create(ExampleActivity.this)
+```kotlin
+ Alerter.create(this@DemoActivity)
         .setTitle("Alert Title")
         .setText("Alert text...")
         .setDuration(10000)
         .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ExampleActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
+                Toast.makeText(this@DemoActivity, "OnClick Called", Toast.LENGTH_LONG).show();
             }
         })
         .show();
@@ -128,8 +128,8 @@ Alerter.create(this)
 
 ### Verbose text
 
-```java
- Alerter.create(ExampleActivity.this)
+```kotlin
+ Alerter.create(this@DemoActivity)
         .setTitle("Alert Title")
         .setText("The alert scales to accommodate larger bodies of text. " +
                  "The alert scales to accommodate larger bodies of text. " +
@@ -141,19 +141,19 @@ Alerter.create(this)
 
 ### Visibility Callbacks
 
-```java
- Alerter.create(ExampleActivity.this)
+```kotlin
+ Alerter.create(this@DemoActivity)
         .setTitle("Alert Title")
         .setOnShowListener(new OnShowAlertListener() {
             @Override
             public void onShow() {
-                Toast.makeText(ExampleActivity.this, "Alert Shown", Toast.LENGTH_LONG).show();
+                Toast.makeText(this@DemoActivity, "Alert Shown", Toast.LENGTH_LONG).show();
             }
         })
         .setOnHideListener(new OnHideAlertListener() {
             @Override
             public void onHide() {
-                Toast.makeText(ExampleActivity.this, "Alert Hidden", Toast.LENGTH_LONG).show();
+                Toast.makeText(this@DemoActivity, "Alert Hidden", Toast.LENGTH_LONG).show();
             }
          })
         .show();
@@ -161,8 +161,8 @@ Alerter.create(this)
 
 ### Custom Fonts and Text Appearance
 
-```java 
- Alerter.create(ExampleActivity.this)
+```kotlin 
+ Alerter.create(this@DemoActivity)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
@@ -176,8 +176,8 @@ Alerter.create(this)
 
 ### Swipe to Dismiss
 
-```java
- Alerter.create(ExampleActivity.this)
+```kotlin
+ Alerter.create(this@DemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
@@ -187,13 +187,13 @@ Alerter.create(this)
 
 ### Progress Bar
 
-```java
-Alerter.create(ExampleActivity.this)
+```kotlin
+Alerter.create(this@DemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
                 .setProgressColorRes(R.color.colorAccent)
-                .show();
+                .show()
 ```
 
 ![Verbose Alert](./documentation/alert_progress_bar.gif)
