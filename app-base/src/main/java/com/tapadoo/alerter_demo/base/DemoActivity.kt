@@ -10,8 +10,9 @@ import android.widget.Toast
 import com.tapadoo.alerter.Alerter
 import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
+import kotlinx.android.synthetic.main.content_example.*
 
-class DemoActivity : AppCompatActivity(), View.OnClickListener {
+class DemoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,50 +21,13 @@ class DemoActivity : AppCompatActivity(), View.OnClickListener {
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        findViewById<View>(R.id.btnAlertDefault).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertColoured).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertCustomIcon).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertTextOnly).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertOnClick).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertVerbose).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertCallback).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertInfiniteDuration).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertWithProgress).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertWithCustomFont).setOnClickListener(this)
-        findViewById<View>(R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this)
+        setupOnClickListeners()
     }
 
     override fun onStart() {
         super.onStart()
 
         window.setBackgroundDrawableResource(android.R.color.white)
-    }
-
-    override fun onClick(view: View) {
-        val i = view.id
-        if (i == R.id.btnAlertColoured) {
-            showAlertColoured()
-        } else if (i == R.id.btnAlertCustomIcon) {
-            showAlertWithIcon()
-        } else if (i == R.id.btnAlertTextOnly) {
-            showAlertTextOnly()
-        } else if (i == R.id.btnAlertOnClick) {
-            showAlertWithOnClick()
-        } else if (i == R.id.btnAlertVerbose) {
-            showAlertVerbose()
-        } else if (i == R.id.btnAlertCallback) {
-            showAlertCallbacks()
-        } else if (i == R.id.btnAlertInfiniteDuration) {
-            showAlertInfiniteDuration()
-        } else if (i == R.id.btnAlertWithProgress) {
-            showAlertWithProgress()
-        } else if (i == R.id.btnAlertWithCustomFont) {
-            showAlertWithCustomFont()
-        } else if (i == R.id.btnAlertSwipeToDismissEnabled) {
-            showAlertSwipeToDismissEnabled()
-        } else {
-            showAlertDefault()
-        }
     }
 
     private fun showAlertDefault() {
@@ -170,6 +134,52 @@ class DemoActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 })
                 .show()
+    }
+
+    private fun setupOnClickListeners() {
+        btnAlertDefault.setOnClickListener {
+            showAlertDefault()
+        }
+
+        btnAlertColoured.setOnClickListener {
+            showAlertColoured()
+        }
+
+        btnAlertCustomIcon.setOnClickListener {
+            showAlertWithIcon()
+        }
+
+        btnAlertTextOnly.setOnClickListener {
+            showAlertTextOnly()
+        }
+
+        btnAlertOnClick.setOnClickListener {
+            showAlertWithOnClick()
+        }
+
+        btnAlertVerbose.setOnClickListener {
+            showAlertVerbose()
+        }
+
+        btnAlertCallback.setOnClickListener {
+            showAlertCallbacks()
+        }
+
+        btnAlertInfiniteDuration.setOnClickListener {
+            showAlertInfiniteDuration()
+        }
+
+        btnAlertWithProgress.setOnClickListener {
+            showAlertWithProgress()
+        }
+
+        btnAlertWithCustomFont.setOnClickListener {
+            showAlertWithCustomFont()
+        }
+
+        btnAlertSwipeToDismissEnabled.setOnClickListener {
+            showAlertSwipeToDismissEnabled()
+        }
     }
 
 }
