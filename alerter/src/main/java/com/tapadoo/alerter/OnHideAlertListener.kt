@@ -1,4 +1,4 @@
-package com.tapadoo.alerter;
+package com.tapadoo.alerter
 
 /**
  * On Hide Alert Listener
@@ -6,10 +6,9 @@ package com.tapadoo.alerter;
  * @author edgeorge
  * @since 20/02/2017.
  */
-
-public interface OnHideAlertListener {
+interface OnHideAlertListener {
     /**
      * Called when the Alert is hidden
      */
-    void onHide();
+    fun onHide()
 }

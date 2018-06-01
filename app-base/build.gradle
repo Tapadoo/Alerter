@@ -1,4 +1,5 @@
 apply plugin: 'com.android.feature'
+apply plugin: 'kotlin-android'
 
 android {
     baseFeature true
@@ -53,5 +54,10 @@ dependencies {
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     application project(':app')
+}
+repositories {
+    mavenCentral()
 }

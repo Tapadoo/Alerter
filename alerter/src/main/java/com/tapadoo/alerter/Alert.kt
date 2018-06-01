@@ -55,7 +55,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     private var runningAnimation: Runnable? = null
 
-    private var dismissable = true
+    private var isDismissable = true
 
     /**
      * Flag to ensure we only set the margins once
@@ -140,7 +140,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onClick(v: View) {
-        if (dismissable) {
+        if (isDismissable) {
             hide()
         }
     }
@@ -469,39 +469,41 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     /**
-     * Set if the alerter is dismissable or not
+     * Set if the alerter is isDismissable or not
      *
      * @param dismissible True if alert can be dismissed
      */
     fun setDismissable(dismissable: Boolean) {
-        this.dismissable = dismissable
+        this.isDismissable = dismissable
     }
 
     /**
-     * Get if the alert is dismissable
+     * Get if the alert is isDismissable
      * @return
      */
     fun isDismissable(): Boolean {
-        return dismissable
+        return isDismissable
     }
 
     /**
      * Set whether to enable swipe to dismiss or not
      */
     fun enableSwipeToDismiss() {
-        alertBackground!!.setOnTouchListener(SwipeDismissTouchListener(alertBackground!!, null, object : SwipeDismissTouchListener.DismissCallbacks {
-            override fun canDismiss(token: Any): Boolean {
-                return true
-            }
+        alertBackground?.let {
+            it.setOnTouchListener(SwipeDismissTouchListener(it, object : SwipeDismissTouchListener.DismissCallbacks {
+                override fun canDismiss(): Boolean {
+                    return true
+                }
 
-            override fun onDismiss(view: View, token: Any) {
-                removeFromParent()
-            }
+                override fun onDismiss(view: View) {
+                    removeFromParent()
+                }
 
-            override fun onTouch(view: View, touch: Boolean) {
-                // Ignore
-            }
-        }))
+                override fun onTouch(view: View, touch: Boolean) {
+                    // Ignore
+                }
+            }))
+        }
     }
 
     /**
@@ -567,11 +569,11 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         this.vibrationEnabled = vibrationEnabled
     }
 
-    override fun canDismiss(token: Any): Boolean {
-        return true
+    override fun canDismiss(): Boolean {
+        return isDismissable
     }
 
-    override fun onDismiss(view: View, token: Any) {
+    override fun onDismiss(view: View) {
         flClickShield!!.removeView(alertBackground)
     }
 

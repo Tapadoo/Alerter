@@ -1,4 +1,4 @@
-package com.tapadoo.alerter;
+package com.tapadoo.alerter
 
 /**
  * On Show Alert Listener
@@ -6,9 +6,9 @@ package com.tapadoo.alerter;
  * @author edgeorge
  * @since 20/02/2017.
  */
-public interface OnShowAlertListener {
+interface OnShowAlertListener {
     /**
      * Called when the Alert is initially Shown
      */
-    void onShow();
+    fun onShow()
 }
