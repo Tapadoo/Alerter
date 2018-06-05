@@ -8,6 +8,9 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -26,6 +29,7 @@ class AlertTest {
 
     //Rule which sets the Activity to be used
     @Rule
+    @JvmField
     internal val activityRule = ActivityTestRule<MockActivity>(MockActivity::class.java)
 
     @Before // Called before each test
@@ -45,72 +49,86 @@ class AlertTest {
         val alert = Alert(activityRule.activity)
 
         //Ensure all elements are present
-        Assert.assertNotNull(alert.alertBackground)
-        Assert.assertNotNull(alert.title)
-        Assert.assertNotNull(alert.text)
-        Assert.assertNotNull(alert.icon)
+        Assert.assertNotNull(alert.findViewById(R.id.flAlertBackground))
+        Assert.assertNotNull(alert.findViewById(R.id.tvTitle))
+        Assert.assertNotNull(alert.findViewById(R.id.tvText))
+        Assert.assertNotNull(alert.findViewById(R.id.ivIcon))
     }
 
     @Test
     fun testTitleString() {
         //Strings
-        alert!!.setTitle(HELLO)
-        Assert.assertTrue(alert!!.title?.visibility === View.VISIBLE)
+        alert?.setTitle(HELLO)
 
-        Assert.assertNotNull(alert!!.title?.text)
-        Assert.assertEquals(HELLO, alert!!.title?.text)
-        Assert.assertNotSame(HI, alert!!.title?.text)
+        alert?.findViewById<TextView>(R.id.tvTitle)?.let {
+            Assert.assertTrue(it.visibility == View.VISIBLE)
+            Assert.assertNotNull(it.text)
+            Assert.assertEquals(it.text, HELLO)
+            Assert.assertNotSame(it.text, HI)
+        }
     }
 
     @Test
     fun testTitleStringRes() {
         //String Resources
-        alert!!.setTitle(R.string.lib_name)
-        Assert.assertTrue(alert!!.title?.visibility === View.VISIBLE)
+        alert?.setTitle(R.string.lib_name)
 
-        Assert.assertNotNull(alert!!.title?.text)
-        Assert.assertEquals(ALERTER, alert!!.title?.text)
-        Assert.assertNotSame(HI, alert!!.title?.text)
+        alert?.findViewById<TextView>(R.id.tvTitle)?.let {
+            Assert.assertTrue(it.visibility == View.VISIBLE)
+
+            Assert.assertNotNull(it.text)
+            Assert.assertEquals(it.text, ALERTER)
+            Assert.assertNotSame(it.text, HI)
+        }
+
     }
 
     @Test
     fun testTextString() {
         //Strings
-        alert!!.setText(HELLO)
-        Assert.assertTrue(alert!!.text?.visibility === View.VISIBLE)
+        alert?.setText(HELLO)
 
-        Assert.assertNotNull(alert!!.text?.text)
-        Assert.assertEquals(HELLO, alert!!.text?.text)
-        Assert.assertNotSame(HI, alert!!.text?.text)
+        alert?.findViewById<TextView>(R.id.tvText)?.let {
+            Assert.assertTrue(it.visibility == View.VISIBLE)
+
+            Assert.assertNotNull(it.text)
+            Assert.assertEquals(it.text, HELLO)
+            Assert.assertNotSame(it.text, HI)
+        }
     }
 
     @Test
     fun testTextStringRes() {
         //Strings Resources
-        alert!!.setText(R.string.lib_name)
-        Assert.assertTrue(alert!!.text?.visibility === View.VISIBLE)
+        alert?.setText(R.string.lib_name)
 
-        Assert.assertNotNull(alert!!.text?.text)
-        Assert.assertEquals(ALERTER, alert!!.text?.text)
-        Assert.assertNotSame(HI, alert!!.text?.text)
+        alert?.findViewById<TextView>(R.id.tvText)?.let {
+            Assert.assertTrue(it.visibility == View.VISIBLE)
+
+            Assert.assertNotNull(it.text)
+            Assert.assertEquals(it.text, ALERTER)
+            Assert.assertNotSame(it.text, HI)
+        }
     }
 
     @Test
     fun testBackgroundColour() {
-        alert!!.setAlertBackgroundColor(ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
+        alert?.setAlertBackgroundColor(ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
 
-        Assert.assertNotNull(alert!!.alertBackground?.background)
+        alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.let{
+            Assert.assertNotNull(it.background)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            Assert.assertEquals((alert!!.alertBackground?.background as ColorDrawable).color, ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                Assert.assertEquals((it.background as ColorDrawable).color, ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
+            }
         }
     }
 
     @Test
     fun testIcon() {
         //Compare same Drawables
-        alert!!.setIcon(android.R.drawable.sym_def_app_icon)
-        Assert.assertNotNull(alert!!.icon?.drawable)
+        alert?.setIcon(android.R.drawable.sym_def_app_icon)
+        Assert.assertNotNull(alert?.findViewById<ImageView>(R.id.ivIcon)?.drawable)
     }
 
     @Test
@@ -119,12 +137,14 @@ class AlertTest {
             return
         }
 
-        //Check default onClickListener
-        Assert.assertTrue(alert!!.alertBackground?.hasOnClickListeners() ?: false)
+        alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
+            //Check default onClickListener
+            Assert.assertTrue(it.hasOnClickListeners())
 
-        //Check nullifying
-        alert!!.setOnClickListener(null)
-        Assert.assertFalse(alert!!.alertBackground?.hasOnClickListeners() ?: false)
+            //Check nullifying
+            alert?.setOnClickListener(null)
+            Assert.assertFalse(it.hasOnClickListeners())
+        }
     }
 
     companion object {

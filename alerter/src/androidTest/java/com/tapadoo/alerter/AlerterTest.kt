@@ -9,6 +9,8 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 
 import org.junit.Assert
 import org.junit.Rule
@@ -27,6 +29,7 @@ class AlerterTest {
 
     //Rule which sets the Activity to be used
     @Rule
+    @JvmField
     internal val activityRule = ActivityTestRule(MockActivity::class.java)
 
     @Test
@@ -68,8 +71,8 @@ class AlerterTest {
                 .setText("Hi")
                 .show()
 
-        Assert.assertSame(alert?.title?.text, "Hello")
-        Assert.assertSame(alert?.text?.text, "Hi")
+        Assert.assertSame(alert?.findViewById<TextView>(R.id.tvTitle)?.text, "Hello")
+        Assert.assertSame(alert?.findViewById<TextView>(R.id.tvText)?.text, "Hi")
     }
 
     @Test
@@ -79,8 +82,8 @@ class AlerterTest {
                 .setText(R.string.msg_no_alert_showing)
                 .show()
 
-        Assert.assertSame(alert?.title?.text, activityRule.activity.getString(R.string.lib_name))
-        Assert.assertSame(alert?.text?.text, activityRule.activity.getString(R.string.msg_no_alert_showing))
+        Assert.assertSame(alert?.findViewById<TextView>(R.id.tvTitle)?.text, activityRule.activity.getString(R.string.lib_name))
+        Assert.assertSame(alert?.findViewById<TextView>(R.id.tvTitle)?.text, activityRule.activity.getString(R.string.msg_no_alert_showing))
     }
 
     @Test
@@ -89,8 +92,8 @@ class AlerterTest {
                 .setIcon(android.R.drawable.sym_def_app_icon)
                 .show()
 
-        Assert.assertNotNull(alert?.icon?.drawable)
-        Assert.assertNotSame(alert?.icon?.drawable?.constantState, ContextCompat.getDrawable(activityRule.activity, android.R.drawable.sym_action_call)!!.constantState)
+        Assert.assertNotNull(alert?.findViewById<ImageView>(R.id.ivIcon)?.drawable)
+        Assert.assertNotSame(alert?.findViewById<ImageView>(R.id.ivIcon)?.drawable?.constantState, ContextCompat.getDrawable(activityRule.activity, android.R.drawable.sym_action_call)!!.constantState)
     }
 
     @Test
@@ -99,9 +102,9 @@ class AlerterTest {
                 .setBackgroundColorRes(android.R.color.darker_gray)
                 .show()
 
-        Assert.assertNotNull(alert?.alertBackground?.getBackground())
+        Assert.assertNotNull(alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.background)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            Assert.assertEquals((alert?.alertBackground?.getBackground() as ColorDrawable).color.toLong(), ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray).toLong())
+            Assert.assertEquals((alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.background as ColorDrawable).color.toLong(), ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray).toLong())
         }
     }
 
@@ -114,18 +117,13 @@ class AlerterTest {
         //Test default hide listener
         val alert1 = Alerter.create(activityRule.activity).show()
 
-        Assert.assertTrue(alert1?.alertBackground?.hasOnClickListeners() ?: false)
-
-        //Test nullifying listener
-        val alert2 = Alerter.create(activityRule.activity).setOnClickListener(null!!).show()
-
-        Assert.assertFalse(alert2?.alertBackground?.hasOnClickListeners() ?: false)
+        Assert.assertTrue(alert1?.findViewById<ViewGroup>(R.id.flAlertBackground)?.hasOnClickListeners() ?: false)
 
         //Test setting listener
         val alert3 = Alerter.create(activityRule.activity).setOnClickListener(View.OnClickListener {
             //Ignore
         }).show()
 
-        Assert.assertTrue(alert3!!.alertBackground?.hasOnClickListeners() ?: false)
+        Assert.assertTrue(alert3?.findViewById<ViewGroup>(R.id.flAlertBackground)?.hasOnClickListeners() ?: false)
     }
 }

@@ -36,8 +36,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     internal var onShowListener: OnShowAlertListener? = null
     internal var onHideListener: OnHideAlertListener? = null
 
-    internal var slideInAnimation: Animation? = null
-    internal var slideOutAnimation: Animation? = null
+    internal var slideInAnimation: Animation
+    internal var slideOutAnimation: Animation
 
     internal var duration = DISPLAY_TIME_IN_SECONDS
 
@@ -77,10 +77,6 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         }
 
     init {
-        initView()
-    }
-
-    private fun initView() {
         inflate(context, R.layout.alerter_alert_view, this)
         isHapticFeedbackEnabled = true
 
@@ -91,7 +87,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         //Setup Enter & Exit Animations
         slideInAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
         slideOutAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_top)
-        slideInAnimation!!.setAnimationListener(this)
+        slideInAnimation.setAnimationListener(this)
 
         //Set Animation to be Run when View is added to Window
         animation = slideInAnimation
@@ -113,7 +109,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     // Release resources once view is detached.
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        slideInAnimation!!.setAnimationListener(null)
+
+        slideInAnimation?.setAnimationListener(null)
     }
 
     /* Override Methods */
@@ -130,7 +127,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun setOnClickListener(listener: View.OnClickListener?) {
-        flAlertBackground!!.setOnClickListener(listener)
+        flAlertBackground?.setOnClickListener(listener)
     }
 
     override fun setVisibility(visibility: Int) {
@@ -154,18 +151,16 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     override fun onAnimationEnd(animation: Animation) {
         //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse && ivIcon!!.visibility == View.VISIBLE) {
+        if (enableIconPulse && ivIcon?.visibility == View.VISIBLE) {
             try {
-                ivIcon!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                ivIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
             } catch (ex: Exception) {
                 Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
             }
 
         }
 
-        if (onShowListener != null) {
-            onShowListener!!.onShow()
-        }
+        onShowListener?.onShow()
 
         startHideAnimation()
     }
@@ -202,10 +197,10 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun hide() {
         try {
-            slideOutAnimation!!.setAnimationListener(object : Animation.AnimationListener {
+            slideOutAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
-                    flAlertBackground!!.setOnClickListener(null)
-                    flAlertBackground!!.isClickable = false
+                    flAlertBackground?.setOnClickListener(null)
+                    flAlertBackground?.isClickable = false
                 }
 
                 override fun onAnimationEnd(animation: Animation) {
@@ -240,9 +235,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                         try {
                             (parent as ViewGroup).removeView(this@Alert)
 
-                            if (onHideListener != null) {
-                                onHideListener!!.onHide()
-                            }
+                            onHideListener?.onHide()
                         } catch (ex: Exception) {
                             Log.e(javaClass.simpleName, "Cannot remove from parent layout")
                         }
@@ -264,7 +257,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The qualified colour integer
      */
     fun setAlertBackgroundColor(@ColorInt color: Int) {
-        flAlertBackground!!.setBackgroundColor(color)
+        flAlertBackground?.setBackgroundColor(color)
     }
 
     /**
@@ -273,7 +266,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param resource The qualified drawable integer
      */
     fun setAlertBackgroundResource(@DrawableRes resource: Int) {
-        flAlertBackground!!.setBackgroundResource(resource)
+        flAlertBackground?.setBackgroundResource(resource)
     }
 
     /**
@@ -283,9 +276,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setAlertBackgroundDrawable(drawable: Drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            flAlertBackground!!.background = drawable
+            flAlertBackground?.background = drawable
         } else {
-            flAlertBackground!!.setBackgroundDrawable(drawable)
+            flAlertBackground?.setBackgroundDrawable(drawable)
         }
     }
 
@@ -311,7 +304,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Disable touches while the Alert is showing
      */
     fun disableOutsideTouch() {
-        flClickShield!!.isClickable = true
+        flClickShield?.isClickable = true
     }
 
     /**
@@ -467,7 +460,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Set whether to enable swipe to dismiss or not
      */
     fun enableSwipeToDismiss() {
-        flAlertBackground?.let {
+        flAlertBackground.let {
             it.setOnTouchListener(SwipeDismissTouchListener(it, object : SwipeDismissTouchListener.DismissCallbacks {
                 override fun canDismiss(): Boolean {
                     return true
@@ -552,7 +545,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onDismiss(view: View) {
-        flClickShield!!.removeView(flAlertBackground)
+        flClickShield?.removeView(flAlertBackground)
     }
 
     override fun onTouch(view: View, touch: Boolean) {
