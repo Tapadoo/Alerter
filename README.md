@@ -135,19 +135,17 @@ Alerter.create(this@DemoActivity)
 ### Visibility Callbacks
 
 ```kotlin
- Alerter.create(this@DemoActivity)
-        .setTitle("Alert Title")
-        .setOnShowListener(object : OnShowAlertListener {
-            override fun onShow() {
-                Toast.makeText(this@DemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
-            }
-        })
-        .setOnHideListener(object : OnHideAlertListener {
-            override fun onHide() {
-                Toast.makeText(this@DemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
-            }
-        })
-        .show()
+ Alerter.create(this@KotlinDemoActivity)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .setDuration(10000)
+                .setOnShowListener(OnShowAlertListener {
+                    Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
+                })
+                .setOnHideListener(OnHideAlertListener {
+                    Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
+                })
+                .show()
 ```
 
 ### Custom Fonts and Text Appearance

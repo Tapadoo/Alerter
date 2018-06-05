@@ -82,15 +82,11 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
-                .setOnShowListener(object : OnShowAlertListener {
-                    override fun onShow() {
-                        Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
-                    }
+                .setOnShowListener(OnShowAlertListener {
+                    Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
                 })
-                .setOnHideListener(object : OnHideAlertListener {
-                    override fun onHide() {
-                        Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
-                    }
+                .setOnHideListener(OnHideAlertListener {
+                    Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
                 })
                 .show()
     }
@@ -128,10 +124,8 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
-                .setOnHideListener(object : OnHideAlertListener {
-                    override fun onHide() {
-                        Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
-                    }
+                .setOnHideListener(OnHideAlertListener {
+                    Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
                 })
                 .show()
     }
