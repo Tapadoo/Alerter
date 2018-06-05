@@ -110,7 +110,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        slideInAnimation?.setAnimationListener(null)
+        slideInAnimation.setAnimationListener(null)
     }
 
     /* Override Methods */
@@ -127,7 +127,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun setOnClickListener(listener: View.OnClickListener?) {
-        flAlertBackground?.setOnClickListener(listener)
+        flAlertBackground.setOnClickListener(listener)
     }
 
     override fun setVisibility(visibility: Int) {
@@ -151,7 +151,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     override fun onAnimationEnd(animation: Animation) {
         //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse && ivIcon?.visibility == View.VISIBLE) {
+        if (enableIconPulse && ivIcon.visibility == View.VISIBLE) {
             try {
                 ivIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
             } catch (ex: Exception) {
@@ -257,7 +257,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The qualified colour integer
      */
     fun setAlertBackgroundColor(@ColorInt color: Int) {
-        flAlertBackground?.setBackgroundColor(color)
+        flAlertBackground.setBackgroundColor(color)
     }
 
     /**
@@ -266,7 +266,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param resource The qualified drawable integer
      */
     fun setAlertBackgroundResource(@DrawableRes resource: Int) {
-        flAlertBackground?.setBackgroundResource(resource)
+        flAlertBackground.setBackgroundResource(resource)
     }
 
     /**
@@ -276,9 +276,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setAlertBackgroundDrawable(drawable: Drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            flAlertBackground?.background = drawable
+            flAlertBackground.background = drawable
         } else {
-            flAlertBackground?.setBackgroundDrawable(drawable)
+            flAlertBackground.setBackgroundDrawable(drawable)
         }
     }
 
@@ -304,7 +304,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Disable touches while the Alert is showing
      */
     fun disableOutsideTouch() {
-        flClickShield?.isClickable = true
+        flClickShield.isClickable = true
     }
 
     /**
@@ -314,8 +314,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitle(title: String) {
         if (!TextUtils.isEmpty(title)) {
-            tvTitle?.visibility = View.VISIBLE
-            tvTitle?.text = title
+            tvTitle.visibility = View.VISIBLE
+            tvTitle.text = title
         }
     }
 
@@ -326,9 +326,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitleAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            tvTitle?.setTextAppearance(textAppearance)
+            tvTitle.setTextAppearance(textAppearance)
         } else {
-            tvTitle?.setTextAppearance(tvText?.context, textAppearance)
+            tvTitle.setTextAppearance(tvText.context, textAppearance)
         }
     }
 
@@ -338,7 +338,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTitleTypeface(typeface: Typeface) {
-        tvTitle?.typeface = typeface
+        tvTitle.typeface = typeface
     }
 
     /**
@@ -347,7 +347,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTextTypeface(typeface: Typeface) {
-        tvText?.typeface = typeface
+        tvText.typeface = typeface
     }
 
     /**
@@ -357,8 +357,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setText(text: String) {
         if (!TextUtils.isEmpty(text)) {
-            tvText?.visibility = View.VISIBLE
-            tvText?.text = text
+            tvText.visibility = View.VISIBLE
+            tvText.text = text
         }
     }
 
@@ -369,9 +369,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTextAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            tvText?.setTextAppearance(textAppearance)
+            tvText.setTextAppearance(textAppearance)
         } else {
-            tvText?.setTextAppearance(tvText?.context, textAppearance)
+            tvText.setTextAppearance(tvText.context, textAppearance)
         }
     }
 
@@ -381,7 +381,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param iconId Drawable resource id of the icon to use in the Alert
      */
     fun setIcon(@DrawableRes iconId: Int) {
-        ivIcon?.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
+        ivIcon.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
     }
 
     /**
@@ -390,7 +390,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color Color int
      */
     fun setIconColorFilter(@ColorInt color: Int) {
-        ivIcon?.setColorFilter(color)
+        ivIcon.setColorFilter(color)
     }
 
     /**
@@ -399,7 +399,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param colorFilter ColorFilter
      */
     fun setIconColorFilter(colorFilter: ColorFilter) {
-        ivIcon?.colorFilter = colorFilter
+        ivIcon.colorFilter = colorFilter
     }
 
     /**
@@ -409,7 +409,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param mode  PorterDuff.Mode
      */
     fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode) {
-        ivIcon?.setColorFilter(color, mode)
+        ivIcon.setColorFilter(color, mode)
     }
 
     /**
@@ -418,7 +418,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param bitmap Bitmap image of the icon to use in the Alert.
      */
     fun setIcon(bitmap: Bitmap) {
-        ivIcon?.setImageBitmap(bitmap)
+        ivIcon.setImageBitmap(bitmap)
     }
 
     /**
@@ -427,7 +427,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param drawable Drawable image of the icon to use in the Alert.
      */
     fun setIcon(drawable: Drawable) {
-        ivIcon?.setImageDrawable(drawable)
+        ivIcon.setImageDrawable(drawable)
     }
 
     /**
@@ -436,7 +436,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param showIcon True to show the icon, false otherwise
      */
     fun showIcon(showIcon: Boolean) {
-        ivIcon?.visibility = if (showIcon) View.VISIBLE else View.GONE
+        ivIcon.visibility = if (showIcon) View.VISIBLE else View.GONE
     }
 
     /**

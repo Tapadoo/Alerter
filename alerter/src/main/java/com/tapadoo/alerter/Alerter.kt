@@ -1,4 +1,3 @@
-@file:JvmName("Alerter")
 package com.tapadoo.alerter
 
 import android.app.Activity
