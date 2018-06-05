@@ -136,29 +136,29 @@ Alerter.create(this@DemoActivity)
 
 ```kotlin
  Alerter.create(this@KotlinDemoActivity)
-                .setTitle("Alert Title")
-                .setText("Alert text...")
-                .setDuration(10000)
-                .setOnShowListener(OnShowAlertListener {
-                    Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
-                })
-                .setOnHideListener(OnHideAlertListener {
-                    Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
-                })
-                .show()
+        .setTitle("Alert Title")
+        .setText("Alert text...")
+        .setDuration(10000)
+        .setOnShowListener(OnShowAlertListener {
+            Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
+        })
+        .setOnHideListener(OnHideAlertListener {
+            Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
+        })
+        .show()
 ```
 
 ### Custom Fonts and Text Appearance
 
 ```kotlin 
  Alerter.create(this@DemoActivity)
-                .setTitle("Alert Title")
-                .setTitleAppearance(R.style.AlertTextAppearance_Title)
-                .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
-                .setText("Alert text...")
-                .setTextAppearance(R.style.AlertTextAppearance_Text)
-                .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
-                .show()
+        .setTitle("Alert Title")
+        .setTitleAppearance(R.style.AlertTextAppearance_Title)
+        .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
+        .setText("Alert text...")
+        .setTextAppearance(R.style.AlertTextAppearance_Text)
+        .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
+        .show()
 ```
 
 ![Verbose Alert](./documentation/alert_custom_font.gif)
@@ -167,22 +167,22 @@ Alerter.create(this@DemoActivity)
 
 ```kotlin
  Alerter.create(this@DemoActivity)
-                .setTitle("Alert Title")
-                .setText("Alert text...")
-                .enableSwipeToDismiss()
-                .show()
+        .setTitle("Alert Title")
+        .setText("Alert text...")
+        .enableSwipeToDismiss()
+        .show()
 ```
 ![Verbose Alert](./documentation/alert_swipe_to_dismiss.gif)
 
 ### Progress Bar
 
 ```kotlin
-Alerter.create(this@DemoActivity)
-                .setTitle("Alert Title")
-                .setText("Alert text...")
-                .enableProgress(true)
-                .setProgressColorRes(R.color.colorAccent)
-                .show()
+ Alerter.create(this@DemoActivity)
+        .setTitle("Alert Title")
+        .setText("Alert text...")
+        .enableProgress(true)
+        .setProgressColorRes(R.color.colorAccent)
+        .show()
 ```
 
 ![Verbose Alert](./documentation/alert_progress_bar.gif)
