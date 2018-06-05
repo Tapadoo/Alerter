@@ -1,6 +1,5 @@
 package com.tapadoo.alerter
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.test.filters.LargeTest
@@ -32,6 +31,8 @@ class AlertTest {
     @JvmField
     internal val activityRule = ActivityTestRule<MockActivity>(MockActivity::class.java)
 
+    private lateinit var alert: Alert
+
     @Before // Called before each test
     @Throws(Exception::class)
     fun setUp() {
@@ -58,9 +59,9 @@ class AlertTest {
     @Test
     fun testTitleString() {
         //Strings
-        alert?.setTitle(HELLO)
+        alert.setTitle(HELLO)
 
-        alert?.findViewById<TextView>(R.id.tvTitle)?.let {
+        alert.findViewById<TextView>(R.id.tvTitle)?.let {
             Assert.assertTrue(it.visibility == View.VISIBLE)
             Assert.assertNotNull(it.text)
             Assert.assertEquals(it.text, HELLO)
@@ -71,9 +72,9 @@ class AlertTest {
     @Test
     fun testTitleStringRes() {
         //String Resources
-        alert?.setTitle(R.string.lib_name)
+        alert.setTitle(R.string.lib_name)
 
-        alert?.findViewById<TextView>(R.id.tvTitle)?.let {
+        alert.findViewById<TextView>(R.id.tvTitle)?.let {
             Assert.assertTrue(it.visibility == View.VISIBLE)
 
             Assert.assertNotNull(it.text)
@@ -86,9 +87,9 @@ class AlertTest {
     @Test
     fun testTextString() {
         //Strings
-        alert?.setText(HELLO)
+        alert.setText(HELLO)
 
-        alert?.findViewById<TextView>(R.id.tvText)?.let {
+        alert.findViewById<TextView>(R.id.tvText)?.let {
             Assert.assertTrue(it.visibility == View.VISIBLE)
 
             Assert.assertNotNull(it.text)
@@ -100,9 +101,9 @@ class AlertTest {
     @Test
     fun testTextStringRes() {
         //Strings Resources
-        alert?.setText(R.string.lib_name)
+        alert.setText(R.string.lib_name)
 
-        alert?.findViewById<TextView>(R.id.tvText)?.let {
+        alert.findViewById<TextView>(R.id.tvText)?.let {
             Assert.assertTrue(it.visibility == View.VISIBLE)
 
             Assert.assertNotNull(it.text)
@@ -113,9 +114,9 @@ class AlertTest {
 
     @Test
     fun testBackgroundColour() {
-        alert?.setAlertBackgroundColor(ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
+        alert.setAlertBackgroundColor(ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
 
-        alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.let{
+        alert.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
             Assert.assertNotNull(it.background)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
@@ -127,8 +128,8 @@ class AlertTest {
     @Test
     fun testIcon() {
         //Compare same Drawables
-        alert?.setIcon(android.R.drawable.sym_def_app_icon)
-        Assert.assertNotNull(alert?.findViewById<ImageView>(R.id.ivIcon)?.drawable)
+        alert.setIcon(android.R.drawable.sym_def_app_icon)
+        Assert.assertNotNull(alert.findViewById<ImageView>(R.id.ivIcon)?.drawable)
     }
 
     @Test
@@ -137,27 +138,23 @@ class AlertTest {
             return
         }
 
-        alert?.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
+        alert.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
             //Check default onClickListener
             Assert.assertTrue(it.hasOnClickListeners())
 
             //Check nullifying
-            alert?.setOnClickListener(null)
+            alert.setOnClickListener(null)
             Assert.assertFalse(it.hasOnClickListeners())
         }
     }
 
     companion object {
-
         /**
          * Test Strings
          */
         private val HELLO = "Hello"
         private val HI = "Hi"
         private val ALERTER = "Alerter"
-
-        @SuppressLint("StaticFieldLeak")
-        private var alert: Alert? = null
     }
 
 }
