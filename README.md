@@ -7,12 +7,10 @@ complexity of your layouts.
 
 [![Header](./documentation/header.png)](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
 
-### General
+## General
 
-![Default Alert](./documentation/alert_default.gif)
-
-A customisable Alert view is dynamically added to the Decor View of the Window, overlaying
-all content.
+With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
+A customisable Alert view is dynamically added to the Decor View of the Window, overlaying all content. 
 
 ## Gradle
 
@@ -24,8 +22,7 @@ dependencies {
 
 # Usage
 
-With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration
-into any app.
+![Default Alert](./documentation/alert_default.gif)
 
 From an Activity -
 
