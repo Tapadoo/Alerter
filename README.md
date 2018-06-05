@@ -3,7 +3,7 @@
 This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
 complexity of your layouts.
 
-[![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)
+[![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg) ](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302)[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23308-blue.svg)](http://androidweekly.net/issues/issue-245)
 
 [![Header](./documentation/header.png)](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
 
@@ -111,11 +111,8 @@ Alerter.create(this@DemoActivity)
         .setTitle("Alert Title")
         .setText("Alert text...")
         .setDuration(10000)
-        .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(this@DemoActivity, "OnClick Called", Toast.LENGTH_LONG).show();
-            }
+        .setOnClickListener(View.OnClickListener {
+            Toast.makeText(this@DemoActivity, "OnClick Called", Toast.LENGTH_LONG).show();
         })
         .show()
 ```
@@ -140,18 +137,16 @@ Alerter.create(this@DemoActivity)
 ```kotlin
  Alerter.create(this@DemoActivity)
         .setTitle("Alert Title")
-        .setOnShowListener(new OnShowAlertListener() {
-            @Override
-            public void onShow() {
-                Toast.makeText(this@DemoActivity, "Alert Shown", Toast.LENGTH_LONG).show();
+        .setOnShowListener(object : OnShowAlertListener {
+            override fun onShow() {
+                Toast.makeText(this@DemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
             }
         })
-        .setOnHideListener(new OnHideAlertListener() {
-            @Override
-            public void onHide() {
-                Toast.makeText(this@DemoActivity, "Alert Hidden", Toast.LENGTH_LONG).show();
+        .setOnHideListener(object : OnHideAlertListener {
+            override fun onHide() {
+                Toast.makeText(this@DemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
             }
-         })
+        })
         .show()
 ```
 
