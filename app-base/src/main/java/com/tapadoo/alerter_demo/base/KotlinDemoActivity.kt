@@ -12,11 +12,11 @@ import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
 import kotlinx.android.synthetic.main.content_example.*
 
-class DemoActivity : AppCompatActivity() {
+class KotlinDemoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_example)
+        setContentView(R.layout.activity_demo)
 
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -31,14 +31,14 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertDefault() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle(R.string.title_activity_example)
                 .setText("Alert text...")
                 .show()
     }
 
     private fun showAlertColoured() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
@@ -46,7 +46,7 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithIcon() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
@@ -54,22 +54,22 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertTextOnly() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setText("Alert text...")
                 .show()
     }
 
     private fun showAlertWithOnClick() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
-                .setOnClickListener(View.OnClickListener { Toast.makeText(this@DemoActivity, "OnClick Called", Toast.LENGTH_LONG).show() })
+                .setOnClickListener(View.OnClickListener { Toast.makeText(this@KotlinDemoActivity, "OnClick Called", Toast.LENGTH_LONG).show() })
                 .show()
     }
 
     private fun showAlertVerbose() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
                         "The alert scales to accommodate larger bodies of text. " +
@@ -78,25 +78,25 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertCallbacks() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnShowListener(object : OnShowAlertListener {
                     override fun onShow() {
-                        Toast.makeText(this@DemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@KotlinDemoActivity, "Show Alert", Toast.LENGTH_LONG).show()
                     }
                 })
                 .setOnHideListener(object : OnHideAlertListener {
                     override fun onHide() {
-                        Toast.makeText(this@DemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
                     }
                 })
                 .show()
     }
 
     private fun showAlertInfiniteDuration() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
@@ -104,7 +104,7 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithProgress() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
@@ -113,7 +113,7 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithCustomFont() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(assets, "Pacifico-Regular.ttf"))
@@ -124,13 +124,13 @@ class DemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertSwipeToDismissEnabled() {
-        Alerter.create(this@DemoActivity)
+        Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
                 .setOnHideListener(object : OnHideAlertListener {
                     override fun onHide() {
-                        Toast.makeText(this@DemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@KotlinDemoActivity, "Hide Alert", Toast.LENGTH_LONG).show()
                     }
                 })
                 .show()

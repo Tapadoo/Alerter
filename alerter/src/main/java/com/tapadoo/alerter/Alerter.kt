@@ -1,3 +1,4 @@
+@file:JvmName("Alerter")
 package com.tapadoo.alerter
 
 import android.app.Activity
@@ -22,11 +23,6 @@ import java.lang.ref.WeakReference
  */
 class Alerter private constructor() {
 
-    /**
-     * Gets the Alert associated with the Alerter
-     *
-     * @return The current Alert
-     */
     /**
      * Sets the Alert
      *
@@ -494,6 +490,7 @@ class Alerter private constructor() {
          * @param activity The calling Activity
          * @return This Alerter
          */
+        @JvmStatic
         fun create(activity: Activity?): Alerter {
             if (activity == null) {
                 throw IllegalArgumentException("Activity cannot be null!")
@@ -515,6 +512,7 @@ class Alerter private constructor() {
          *
          * @param activity The current Activity
          */
+        @JvmStatic
         fun clearCurrent(activity: Activity?) {
             (activity?.window?.decorView as? ViewGroup)?.let {
                 //Find all Alert Views in Parent layout
@@ -530,17 +528,10 @@ class Alerter private constructor() {
         /**
          * Hides the currently showing alert view, if one is present
          */
+        @JvmStatic
         fun hide() {
             activityWeakReference?.get()?.let {
                 clearCurrent(it)
-            }
-        }
-
-        private fun getRemoveViewRunnable(childView: Alert?): Runnable {
-            return Runnable {
-                childView?.let {
-                    (childView.parent as? ViewGroup)?.removeView(childView)
-                }
             }
         }
 
@@ -549,6 +540,7 @@ class Alerter private constructor() {
          *
          * @return True if an Alert is showing, false otherwise
          */
+        @JvmStatic
         val isShowing: Boolean
             get() {
                 var isShowing = false
@@ -559,5 +551,13 @@ class Alerter private constructor() {
 
                 return isShowing
             }
+
+        private fun getRemoveViewRunnable(childView: Alert?): Runnable {
+            return Runnable {
+                childView?.let {
+                    (childView.parent as? ViewGroup)?.removeView(childView)
+                }
+            }
+        }
     }
 }

@@ -49,6 +49,7 @@ android {
 }
 
 dependencies {
+    api 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation project(':alerter')
 
     implementation rootProject.ext.libs.support_v4
