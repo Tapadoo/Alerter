@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - 06/6/2018
+* Converted library to Kotlin
+
 ## 2.0.6 - 30/5/2018
 * Added dismissible functionality
 
