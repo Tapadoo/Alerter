@@ -8,7 +8,7 @@ ext {
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
-    supportLibVersion = '27.0.2'
+    supportLibVersion = '27.1.1'
 
     keystoreProperties = '../keystore/release.properties'
 

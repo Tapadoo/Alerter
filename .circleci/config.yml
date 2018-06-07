@@ -1,0 +1,92 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+
+references:
+  # Workspace
+  workspace: &workspace
+    ~/workspace
+
+  attach_debug_workspace: &attach_debug_workspace
+    attach_workspace:
+      at: *workspace
+
+  persist_debug_workspace: &persist_debug_workspace
+    persist_to_workspace:
+      root: *workspace
+      paths:
+        - alerter/build/intermediates
+        - alerter/build/outputs/androidTest-results
+        - alerter/build/outputs/apk
+        - alerter/build/outputs/code-coverage
+        - alerter/build/test-results
+
+  # Android
+  android_config: &android_config
+    working_directory: *workspace
+
+    docker:
+      - image: circleci/android:api-27-alpha
+
+    environment:
+      TERM: dumb
+      _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
+
+  # Cache
+  cache_key: &cache_key
+    key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "alerter/build.gradle" }}
+
+  restore_cache: &restore_cache
+    restore_cache:
+      <<: *cache_key
+
+  save_cache: &save_cache
+    save_cache:
+      <<: *cache_key
+      paths:
+        - ~/.gradle
+        - ~/.m2
+
+jobs:
+
+  assemble_and_check:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_cache
+      - run:
+          name: Approve license for build tools
+          command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+      - run:
+          name: Download dependencies
+          command: ./gradlew androidDependencies
+      - *save_cache
+      - run:
+          name: Assemble
+          command: ./gradlew assemble
+      - *persist_debug_workspace
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+      - run:
+          name: Run Check
+          command: ./gradlew check
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+
+workflows:
+  version: 2
+
+  assemble_and_test:
+    jobs:
+      - assemble_and_check
+
+
+
+

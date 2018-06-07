@@ -11,14 +11,21 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
-public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
+
+/**
+ * Java Demo Activity to ensure backwards compatibility
+ *
+ * @author Kevin Murphy
+ * @since 5/06/2018
+ */
+public class JavaDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
+        setContentView(R.layout.activity_demo);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         findViewById(R.id.btnAlertDefault).setOnClickListener(this);
@@ -70,14 +77,14 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertDefault() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle(R.string.title_activity_example)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertColoured() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
@@ -85,7 +92,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithIcon() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
@@ -93,56 +100,56 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertTextOnly() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setText("Alert text...")
                 .show();
     }
 
     private void showAlertWithOnClick() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(DemoActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
+                        Toast.makeText(JavaDemoActivity.this, "OnClick Called", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertVerbose() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
-                        "The alert scales to accommodate larger bodies of text. " +
-                        "The alert scales to accommodate larger bodies of text.")
+                         "The alert scales to accommodate larger bodies of text. " +
+                         "The alert scales to accommodate larger bodies of text.")
                 .show();
     }
 
     private void showAlertCallbacks(){
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setDuration(10000)
                 .setOnShowListener(new OnShowAlertListener() {
                     @Override
                     public void onShow() {
-                        Toast.makeText(DemoActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(JavaDemoActivity.this, "Show Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setOnHideListener(new OnHideAlertListener() {
                     @Override
                     public void onHide() {
-                        Toast.makeText(DemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(JavaDemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();
     }
 
     private void showAlertInfiniteDuration() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableInfiniteDuration(true)
@@ -150,7 +157,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithProgress() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
@@ -159,7 +166,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertWithCustomFont() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setTitleAppearance(R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
@@ -170,14 +177,14 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showAlertSwipeToDismissEnabled() {
-        Alerter.create(DemoActivity.this)
+        Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableSwipeToDismiss()
                 .setOnHideListener(new OnHideAlertListener() {
                     @Override
                     public void onHide() {
-                        Toast.makeText(DemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
+                        Toast.makeText(JavaDemoActivity.this, "Hide Alert", Toast.LENGTH_LONG).show();
                     }
                 })
                 .show();

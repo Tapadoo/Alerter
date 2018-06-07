@@ -1,7 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.0.5 - 26/1/2018
+## 3.0.0 - 06/6/2018
+* Converted library to Kotlin
+
+## 2.0.6 - 30/5/2018
+* Added dismissible functionality
+
+## 2.0.5 - 26/4/2018
 * Fixed issue with on hide listener not being called when alert is swiped to dismiss
 
 ## 2.0.4 - 26/1/2018
