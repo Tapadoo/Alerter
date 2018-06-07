@@ -1,4 +1,6 @@
 apply plugin: 'com.android.feature'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     baseFeature true
@@ -47,11 +49,14 @@ android {
 }
 
 dependencies {
+    api 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation project(':alerter')
 
     implementation rootProject.ext.libs.support_v4
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_design
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     application project(':app')
 }

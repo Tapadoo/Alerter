@@ -58,6 +58,9 @@ jobs:
       - checkout
       - *restore_cache
       - run:
+          name: Approve license for build tools
+          command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+      - run:
           name: Download dependencies
           command: ./gradlew androidDependencies
       - *save_cache

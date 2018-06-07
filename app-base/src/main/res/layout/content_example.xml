@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/activity_example"
+    tools:showIn="@layout/activity_demo"
     android:layout_width="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:layout_height="match_parent">
@@ -18,8 +18,8 @@
         android:paddingRight="@dimen/alerter_activity_horizontal_margin"
         android:paddingTop="@dimen/alerter_activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".DemoActivity"
-        tools:showIn="@layout/activity_example">
+        tools:context=".KotlinDemoActivity"
+        tools:showIn="@layout/activity_demo">
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnAlertDefault"
