@@ -16,7 +16,7 @@ A customisable Alert view is dynamically added to the Decor View of the Window, 
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:3.0.0'
+    implementation 'com.tapadoo.android:alerter:2.0.6'
 }
 ```
 
