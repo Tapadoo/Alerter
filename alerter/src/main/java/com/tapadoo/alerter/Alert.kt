@@ -36,8 +36,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     internal var onShowListener: OnShowAlertListener? = null
     internal var onHideListener: OnHideAlertListener? = null
 
-    internal var slideInAnimation: Animation
-    internal var slideOutAnimation: Animation
+    internal var enterAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
+    internal var exitAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_top)
 
     internal var duration = DISPLAY_TIME_IN_SECONDS
 
@@ -83,14 +83,15 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE.toFloat())
 
         flAlertBackground.setOnClickListener(this)
+    }
 
-        //Setup Enter & Exit Animations
-        slideInAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
-        slideOutAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_top)
-        slideInAnimation.setAnimationListener(this)
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+
+        enterAnimation.setAnimationListener(this)
 
         //Set Animation to be Run when View is added to Window
-        animation = slideInAnimation
+        animation = enterAnimation
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -110,7 +111,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        slideInAnimation.setAnimationListener(null)
+        enterAnimation.setAnimationListener(null)
     }
 
     /* Override Methods */
@@ -197,7 +198,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun hide() {
         try {
-            slideOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+            exitAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
                     flAlertBackground?.setOnClickListener(null)
                     flAlertBackground?.isClickable = false
@@ -212,7 +213,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                 }
             })
 
-            startAnimation(slideOutAnimation)
+            startAnimation(exitAnimation)
         } catch (ex: Exception) {
             Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
         }

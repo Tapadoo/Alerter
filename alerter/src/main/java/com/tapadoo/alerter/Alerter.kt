@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import java.lang.ref.WeakReference
 
 /**
@@ -53,10 +54,10 @@ class Alerter private constructor() {
     fun show(): Alert? {
         //This will get the Activity Window's DecorView
         activityWeakReference?.get()?.let {
-            it.runOnUiThread({
+            it.runOnUiThread {
                 //Add the new Alert to the View Hierarchy
                 activityDecorView?.addView(alert)
-            })
+            }
         }
 
         return alert
@@ -462,10 +463,34 @@ class Alerter private constructor() {
      * Set if the Alert is dismissable or not
      *
      * @param dismissable true if it can be dismissed
-     * @return
+     * @return This Alerter
      */
     fun setDismissable(dismissable: Boolean): Alerter {
         alert?.setDismissable(dismissable)
+
+        return this
+    }
+
+    /**
+     * Set a Custom Enter Animation
+     *
+     * @param animation The enter animation to play
+     * @return This Alerter
+     */
+    fun setEnterAnimation(@AnimRes animation: Int): Alerter {
+        alert?.enterAnimation = AnimationUtils.loadAnimation(alert?.context, animation)
+
+        return this
+    }
+
+    /**
+     * Set a Custom Exit Animation
+     *
+     * @param animation The exit animation to play
+     * @return This Alerter
+     */
+    fun setExitAnimation(@AnimRes animation: Int): Alerter {
+        alert?.exitAnimation = AnimationUtils.loadAnimation(alert?.context, animation)
 
         return this
     }

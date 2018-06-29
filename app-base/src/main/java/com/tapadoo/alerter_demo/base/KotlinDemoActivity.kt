@@ -130,6 +130,15 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertWithCustomAnimations() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .setEnterAnimation(R.anim.alerter_slide_in_from_left)
+                .setExitAnimation(R.anim.alerter_slide_out_to_right)
+                .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -173,6 +182,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertSwipeToDismissEnabled.setOnClickListener {
             showAlertSwipeToDismissEnabled()
+        }
+
+        btnAlertCustomAnimations.setOnClickListener {
+            showAlertWithCustomAnimations()
         }
     }
 

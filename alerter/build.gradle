@@ -1,11 +1,10 @@
 //Plugins
 plugins {
-    id "com.jfrog.bintray" version "1.7.3"
+    id "com.jfrog.bintray" version "1.8.0"
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
 apply plugin: "maven-publish"
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jetbrains.dokka'
