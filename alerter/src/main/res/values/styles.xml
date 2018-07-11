@@ -9,8 +9,6 @@
     <style name="AlertStyle" parent="@android:style/Widget">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">@dimen/alerter_alert_min_height</item>
-        <item name="android:maxHeight">@dimen/alerter_alert_max_height</item>
         <item name="android:clickable">true</item>
         <item name="android:gravity">top</item>
         <item name="android:paddingTop">@dimen/alerter_alert_padding</item>

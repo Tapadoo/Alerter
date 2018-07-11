@@ -65,7 +65,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param contentGravity Gravity of the Alert
      */
     var contentGravity: Int
-        get() = (rlContainer!!.layoutParams as FrameLayout.LayoutParams).gravity
+        get() = (flAlertBackground!!.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
             val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
             paramsTitle.gravity = contentGravity
