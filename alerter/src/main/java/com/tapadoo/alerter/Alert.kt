@@ -1,6 +1,5 @@
 package com.tapadoo.alerter
 
-import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.*
@@ -19,7 +18,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
@@ -147,20 +145,18 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
+
+            if (enableProgress) {
+                ivIcon?.visibility = View.INVISIBLE
+                pbProgress?.visibility = View.VISIBLE
+            } else if (enableIconPulse) {
+                ivIcon?.visibility = View.VISIBLE
+                ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+            }
         }
     }
 
     override fun onAnimationEnd(animation: Animation) {
-        //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse && ivIcon.visibility == View.VISIBLE) {
-            try {
-                ivIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
-            } catch (ex: Exception) {
-                Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
-            }
-
-        }
-
         onShowListener?.onShow()
 
         startHideAnimation()
@@ -174,17 +170,6 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
             postDelayed(runningAnimation, duration)
         }
-
-        if (enableProgress) {
-            pbProgress.visibility = View.VISIBLE
-
-            val valueAnimator = ValueAnimator.ofInt(0, 100)
-            valueAnimator.duration = duration
-            valueAnimator.interpolator = LinearInterpolator()
-            valueAnimator.addUpdateListener { animation -> pbProgress.progress = animation.animatedValue as Int }
-            valueAnimator.start()
-        }
-
     }
 
     override fun onAnimationRepeat(animation: Animation) {
@@ -217,7 +202,6 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         } catch (ex: Exception) {
             Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
         }
-
     }
 
     /**

@@ -71,7 +71,7 @@ class KotlinDemoActivity : AppCompatActivity() {
     private fun showAlertVerbose() {
         Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
-                .setText("The alert scales to accommodate larger bodies of text. " +
+                .setText("The alert scales to accommodate larger bodies of text." +
                         "The alert scales to accommodate larger bodies of text. " +
                         "The alert scales to accommodate larger bodies of text.")
                 .show()
@@ -104,7 +104,7 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
-                .setProgressColorRes(R.color.colorPrimary)
+                .enableInfiniteDuration(true)
                 .show()
     }
 
