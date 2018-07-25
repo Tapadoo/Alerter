@@ -182,6 +182,21 @@ Alerter.create(this@DemoActivity)
         .show()
 ```
 
+### With Buttons
+
+```kotlin
+ Alerter.create(this@KotlinDemoActivity)
+        .setTitle(R.string.title_activity_example)
+        .setText("Alert text...")
+        .addButton("Okay", R.style.AlertButton, View.OnClickListener {
+            Toast.makeText(this@KotlinDemoActivity, "Okay Clicked", Toast.LENGTH_LONG).show()
+        })
+        .addButton("No", R.style.AlertButton, View.OnClickListener {
+            Toast.makeText(this@KotlinDemoActivity, "No Clicked", Toast.LENGTH_LONG).show()
+        })
+        .show()
+```
+
 ![Verbose Alert](./documentation/alert_progress_bar.gif)
 
 ## Sample
