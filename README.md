@@ -203,7 +203,7 @@ Alerter.create(this@DemoActivity)
 
 ## Sample
 
-Clone this repo and check out the `app` module.
+Clone this repo and check out the `app-base` module.
 
 ## Licence
 
