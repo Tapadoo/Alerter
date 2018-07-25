@@ -114,6 +114,7 @@ dependencies {
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_annotations
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     // Local Unit Tests - in src/test
     testImplementation rootProject.ext.libs.junit
