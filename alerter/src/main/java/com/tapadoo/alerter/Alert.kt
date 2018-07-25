@@ -537,15 +537,17 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param text The text to display on the button
      * @param onClick The on click listener
      */
-    fun addButton(text: String, @StyleRes style: Int, onClick: () -> Unit) {
+    fun addButton(text: String, @StyleRes style: Int, onClick: View.OnClickListener) {
         Button(ContextThemeWrapper(context, style), null, style).apply {
             this.text = text
-
-            setOnClickListener {
-                onClick()
-            }
+            this.setOnClickListener(onClick)
 
             buttons.add(this)
+        }
+
+        // Alter padding
+        flAlertBackground?.apply {
+            this.setPadding(this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom / 2)
         }
     }
 

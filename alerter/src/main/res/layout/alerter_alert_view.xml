@@ -19,7 +19,7 @@
         android:paddingStart="@dimen/alerter_padding_default"
         android:paddingTop="@dimen/alerter_alert_view_padding_top"
         android:paddingEnd="@dimen/alerter_padding_default"
-        android:paddingBottom="@dimen/alerter_padding_half"
+        android:paddingBottom="@dimen/alerter_padding_default"
         tools:visibility="visible">
 
         <android.support.v7.widget.AppCompatImageView

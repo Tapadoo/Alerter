@@ -199,4 +199,17 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .show();
     }
 
+    private void showAlertWithButtons() {
+        Alerter.create(JavaDemoActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .addButton("Okay", R.style.AlertButton, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(JavaDemoActivity.this, "Okay Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+    }
+
 }
