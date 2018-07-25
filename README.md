@@ -182,6 +182,8 @@ Alerter.create(this@DemoActivity)
         .show()
 ```
 
+![Verbose Alert](./documentation/alert_progress_bar.gif)
+
 ### With Buttons
 
 ```kotlin
@@ -196,8 +198,6 @@ Alerter.create(this@DemoActivity)
         })
         .show()
 ```
-
-![Verbose Alert](./documentation/alert_progress_bar.gif)
 
 ## Sample
 
