@@ -199,6 +199,8 @@ Alerter.create(this@DemoActivity)
         .show()
 ```
 
+![Verbose Alert](./documentation/alert_with_buttons.gif)
+
 ## Sample
 
 Clone this repo and check out the `app` module.
