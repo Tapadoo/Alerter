@@ -496,6 +496,18 @@ class Alerter private constructor() {
     }
 
     /**
+     * Show a button with the given text, and on click listener
+     *
+     * @param text The text to display on the button
+     * @param onClick The on click listener
+     */
+    fun addButton(text: String, @StyleRes style: Int = R.style.AlertButton, onClick: () -> Unit): Alerter {
+        alert?.addButton(text, style, onClick)
+
+        return this
+    }
+
+    /**
      * Creates a weak reference to the calling Activity
      *
      * @param activity The calling Activity

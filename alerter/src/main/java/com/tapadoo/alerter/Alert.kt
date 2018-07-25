@@ -9,15 +9,14 @@ import android.support.annotation.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.content.res.AppCompatResources
+import android.support.v7.view.ContextThemeWrapper
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
-import android.view.HapticFeedbackConstants
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
@@ -46,6 +45,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     private var runningAnimation: Runnable? = null
 
     private var isDismissable = true
+
+    private var buttons = ArrayList<Button>()
 
     /**
      * Flag to ensure we only set the margins once
@@ -88,8 +89,13 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
         enterAnimation.setAnimationListener(this)
 
-        //Set Animation to be Run when View is added to Window
+        // Set Animation to be Run when View is added to Window
         animation = enterAnimation
+
+        // Add all buttons
+        buttons.forEach {
+            llButtonContainer.addView(it)
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -523,6 +529,24 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setVibrationEnabled(vibrationEnabled: Boolean) {
         this.vibrationEnabled = vibrationEnabled
+    }
+
+    /**
+     * Show a button with the given text, and on click listener
+     *
+     * @param text The text to display on the button
+     * @param onClick The on click listener
+     */
+    fun addButton(text: String, @StyleRes style: Int, onClick: () -> Unit) {
+        Button(ContextThemeWrapper(context, style), null, style).apply {
+            this.text = text
+
+            setOnClickListener {
+                onClick()
+            }
+
+            buttons.add(this)
+        }
     }
 
     override fun canDismiss(): Boolean {

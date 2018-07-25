@@ -27,4 +27,8 @@
         <item name="android:textSize">@dimen/alerter_text_small</item>
     </style>
 
+    <style name="AlertButton" parent="@style/Widget.AppCompat.Button.Colored">
+
+    </style>
+
 </resources>
