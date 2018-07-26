@@ -99,6 +99,20 @@
             android:layout_height="wrap_content"
             android:text="@string/swipe_to_dismiss"/>
 
+        <android.support.v7.widget.AppCompatButton
+            style="@style/ExampleButton"
+            android:id="@+id/btnAlertCustomAnimations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_enter_exit_animations"/>
+
+        <android.support.v7.widget.AppCompatButton
+            style="@style/ExampleButton"
+            android:id="@+id/btnAlertWithButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/with_buttons"/>
+
     </LinearLayout>
 
 </ScrollView>

@@ -93,6 +93,4 @@ task pmd(type: Pmd) {
     }
 }
 
-preBuild.dependsOn('checkstyle')
-
-check.dependsOn 'findbugs', 'pmd', 'lint'
+check.dependsOn 'lint'

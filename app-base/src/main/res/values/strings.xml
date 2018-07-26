@@ -12,5 +12,7 @@
     <string name="progress_alert">Progress Alert</string>
     <string name="custom_font">Custom Font</string>
     <string name="swipe_to_dismiss">Swipe To Dismiss Alert</string>
+    <string name="custom_enter_exit_animations">Custom Enter/Exit Animations</string>
+    <string name="with_buttons">With Buttons</string>
     <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://apps.tapadoo.com\",\n  }\n}]</string>
 </resources>
