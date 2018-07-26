@@ -1,6 +1,5 @@
 package com.tapadoo.alerter
 
-import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.*
@@ -10,16 +9,14 @@ import android.support.annotation.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.content.res.AppCompatResources
+import android.support.v7.view.ContextThemeWrapper
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
-import android.view.HapticFeedbackConstants
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.LinearInterpolator
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
@@ -36,8 +33,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     internal var onShowListener: OnShowAlertListener? = null
     internal var onHideListener: OnHideAlertListener? = null
 
-    internal var slideInAnimation: Animation
-    internal var slideOutAnimation: Animation
+    internal var enterAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
+    internal var exitAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_top)
 
     internal var duration = DISPLAY_TIME_IN_SECONDS
 
@@ -48,6 +45,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     private var runningAnimation: Runnable? = null
 
     private var isDismissable = true
+
+    private var buttons = ArrayList<Button>()
 
     /**
      * Flag to ensure we only set the margins once
@@ -65,7 +64,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param contentGravity Gravity of the Alert
      */
     var contentGravity: Int
-        get() = (rlContainer!!.layoutParams as FrameLayout.LayoutParams).gravity
+        get() = (flAlertBackground!!.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
             val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
             paramsTitle.gravity = contentGravity
@@ -83,14 +82,20 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE.toFloat())
 
         flAlertBackground.setOnClickListener(this)
+    }
 
-        //Setup Enter & Exit Animations
-        slideInAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
-        slideOutAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_top)
-        slideInAnimation.setAnimationListener(this)
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
 
-        //Set Animation to be Run when View is added to Window
-        animation = slideInAnimation
+        enterAnimation.setAnimationListener(this)
+
+        // Set Animation to be Run when View is added to Window
+        animation = enterAnimation
+
+        // Add all buttons
+        buttons.forEach {
+            llButtonContainer.addView(it)
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -110,7 +115,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        slideInAnimation.setAnimationListener(null)
+        enterAnimation.setAnimationListener(null)
     }
 
     /* Override Methods */
@@ -146,20 +151,18 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
+
+            if (enableProgress) {
+                ivIcon?.visibility = View.INVISIBLE
+                pbProgress?.visibility = View.VISIBLE
+            } else if (enableIconPulse) {
+                ivIcon?.visibility = View.VISIBLE
+                ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+            }
         }
     }
 
     override fun onAnimationEnd(animation: Animation) {
-        //Start the Icon Animation once the Alert is settled
-        if (enableIconPulse && ivIcon.visibility == View.VISIBLE) {
-            try {
-                ivIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
-            } catch (ex: Exception) {
-                Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
-            }
-
-        }
-
         onShowListener?.onShow()
 
         startHideAnimation()
@@ -173,17 +176,6 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
             postDelayed(runningAnimation, duration)
         }
-
-        if (enableProgress) {
-            pbProgress.visibility = View.VISIBLE
-
-            val valueAnimator = ValueAnimator.ofInt(0, 100)
-            valueAnimator.duration = duration
-            valueAnimator.interpolator = LinearInterpolator()
-            valueAnimator.addUpdateListener { animation -> pbProgress.progress = animation.animatedValue as Int }
-            valueAnimator.start()
-        }
-
     }
 
     override fun onAnimationRepeat(animation: Animation) {
@@ -197,7 +189,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun hide() {
         try {
-            slideOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+            exitAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
                     flAlertBackground?.setOnClickListener(null)
                     flAlertBackground?.isClickable = false
@@ -212,11 +204,10 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                 }
             })
 
-            startAnimation(slideOutAnimation)
+            startAnimation(exitAnimation)
         } catch (ex: Exception) {
             Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
         }
-
     }
 
     /**
@@ -538,6 +529,26 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setVibrationEnabled(vibrationEnabled: Boolean) {
         this.vibrationEnabled = vibrationEnabled
+    }
+
+    /**
+     * Show a button with the given text, and on click listener
+     *
+     * @param text The text to display on the button
+     * @param onClick The on click listener
+     */
+    fun addButton(text: String, @StyleRes style: Int, onClick: View.OnClickListener) {
+        Button(ContextThemeWrapper(context, style), null, style).apply {
+            this.text = text
+            this.setOnClickListener(onClick)
+
+            buttons.add(this)
+        }
+
+        // Alter padding
+        flAlertBackground?.apply {
+            this.setPadding(this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom / 2)
+        }
     }
 
     override fun canDismiss(): Boolean {

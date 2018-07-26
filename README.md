@@ -129,6 +129,17 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_verbose.gif)
 
+### Custom Enter/Exit Animations
+
+```kotlin
+  Alerter.create(this@KotlinDemoActivity)
+         .setTitle("Alert Title")
+         .setText("Alert text...")
+         .setEnterAnimation(R.anim.alerter_slide_in_from_left)
+         .setExitAnimation(R.anim.alerter_slide_out_to_right)
+         .show()
+```
+
 ### Visibility Callbacks
 
 ```kotlin
@@ -184,9 +195,26 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_progress_bar.gif)
 
+### With Buttons
+
+```kotlin
+ Alerter.create(this@KotlinDemoActivity)
+        .setTitle(R.string.title_activity_example)
+        .setText("Alert text...")
+        .addButton("Okay", R.style.AlertButton, View.OnClickListener {
+            Toast.makeText(this@KotlinDemoActivity, "Okay Clicked", Toast.LENGTH_LONG).show()
+        })
+        .addButton("No", R.style.AlertButton, View.OnClickListener {
+            Toast.makeText(this@KotlinDemoActivity, "No Clicked", Toast.LENGTH_LONG).show()
+        })
+        .show()
+```
+
+![Verbose Alert](./documentation/alert_with_buttons.gif)
+
 ## Sample
 
-Clone this repo and check out the `app` module.
+Clone this repo and check out the `app-base` module.
 
 ## Licence
 

@@ -1,11 +1,10 @@
 //Plugins
 plugins {
-    id "com.jfrog.bintray" version "1.7.3"
+    id "com.jfrog.bintray" version "1.8.4"
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
 apply plugin: "maven-publish"
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jetbrains.dokka'
@@ -115,6 +114,7 @@ dependencies {
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_annotations
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     // Local Unit Tests - in src/test
     testImplementation rootProject.ext.libs.junit
@@ -135,7 +135,6 @@ dependencies {
     javadocDeps rootProject.ext.libs.support_v4
     javadocDeps rootProject.ext.libs.appcompat_v7
 }
-
 
 task showBintrayProps {
     doLast {
