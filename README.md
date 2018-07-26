@@ -129,6 +129,17 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_verbose.gif)
 
+### Custom Enter/Exit Animations
+
+```kotlin
+  Alerter.create(this@KotlinDemoActivity)
+         .setTitle("Alert Title")
+         .setText("Alert text...")
+         .setEnterAnimation(R.anim.alerter_slide_in_from_left)
+         .setExitAnimation(R.anim.alerter_slide_out_to_right)
+         .show()
+```
+
 ### Visibility Callbacks
 
 ```kotlin

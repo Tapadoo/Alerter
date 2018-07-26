@@ -136,7 +136,6 @@ dependencies {
     javadocDeps rootProject.ext.libs.appcompat_v7
 }
 
-
 task showBintrayProps {
     doLast {
         println "Bintray user/password: ${getBinTrayUser()}/${getBinTrayKey()}"
