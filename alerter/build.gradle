@@ -19,7 +19,7 @@ final String GITHUB_URL   = "https://github.com/Tapadoo/Alerter"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion    rootProject.ext.minSdkVersion
@@ -114,7 +114,7 @@ dependencies {
     implementation rootProject.ext.libs.appcompat_v7
     implementation rootProject.ext.libs.support_annotations
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     // Local Unit Tests - in src/test
     testImplementation rootProject.ext.libs.junit

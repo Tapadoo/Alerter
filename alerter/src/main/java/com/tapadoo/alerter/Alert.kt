@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.alerter_alert_view.view.*
 class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
     : FrameLayout(context, attrs, defStyle), View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
 
-    internal var onShowListener: OnShowAlertListener? = null
+    private var onShowListener: OnShowAlertListener? = null
     internal var onHideListener: OnHideAlertListener? = null
 
     internal var enterAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_top)
@@ -187,7 +187,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     /**
      * Cleans up the currently showing alert view.
      */
-    fun hide() {
+    private fun hide() {
         try {
             exitAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
@@ -569,12 +569,12 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     companion object {
 
-        private val CLEAN_UP_DELAY_MILLIS = 100
+        private const val CLEAN_UP_DELAY_MILLIS = 100
 
         /**
          * The amount of time the alert will be visible on screen in seconds
          */
         private val DISPLAY_TIME_IN_SECONDS: Long = 3000
-        private val MUL = -0x1000000
+        private const val MUL = -0x1000000
     }
 }
