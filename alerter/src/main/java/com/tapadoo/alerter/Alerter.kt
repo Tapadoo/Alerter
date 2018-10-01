@@ -582,7 +582,7 @@ class Alerter private constructor() {
                 var isShowing = false
 
                 activityWeakReference?.get()?.let {
-                    isShowing = it.findViewById<View>(R.id.flAlertBackground) != null
+                    isShowing = it.findViewById<View>(R.id.llAlertBackground) != null
                 }
 
                 return isShowing
