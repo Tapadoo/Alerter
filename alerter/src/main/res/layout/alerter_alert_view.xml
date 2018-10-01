@@ -15,7 +15,7 @@
         android:clickable="true"
         android:clipToPadding="false"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
+        android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical"
         android:paddingStart="@dimen/alerter_padding_default"
         android:paddingTop="@dimen/alerter_alert_view_padding_top"
