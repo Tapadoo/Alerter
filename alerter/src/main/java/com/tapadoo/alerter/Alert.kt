@@ -153,10 +153,6 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
 
-            if (showIcon) {
-
-            }
-
             if (enableProgress) {
                 ivIcon?.visibility = View.INVISIBLE
                 pbProgress?.visibility = View.VISIBLE
