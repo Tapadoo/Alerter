@@ -14,9 +14,6 @@ buildscript {
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
     }
 }
-plugins {
-    id "org.sonarqube" version "2.6"
-}
 allprojects {
     repositories {
         google()
