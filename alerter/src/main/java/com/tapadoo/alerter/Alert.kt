@@ -121,7 +121,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     /* Override Methods */
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        performClick()
+        super.performClick()
         return super.onTouchEvent(event)
     }
 
@@ -435,8 +435,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      *
      * @param dismissible True if alert can be dismissed
      */
-    fun setDismissable(dismissable: Boolean) {
-        this.isDismissable = dismissable
+    fun setDismissible(dismissible: Boolean) {
+        this.isDismissable = dismissible
     }
 
     /**

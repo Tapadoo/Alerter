@@ -466,7 +466,7 @@ class Alerter private constructor() {
      * @return This Alerter
      */
     fun setDismissable(dismissable: Boolean): Alerter {
-        alert?.setDismissable(dismissable)
+        alert?.setDismissible(dismissable)
 
         return this
     }
