@@ -50,7 +50,7 @@ class AlertTest {
         val alert = Alert(activityRule.activity)
 
         //Ensure all elements are present
-        Assert.assertNotNull(alert.findViewById(R.id.flAlertBackground))
+        Assert.assertNotNull(alert.findViewById(R.id.llAlertBackground))
         Assert.assertNotNull(alert.findViewById(R.id.tvTitle))
         Assert.assertNotNull(alert.findViewById(R.id.tvText))
         Assert.assertNotNull(alert.findViewById(R.id.ivIcon))
@@ -116,7 +116,7 @@ class AlertTest {
     fun testBackgroundColour() {
         alert.setAlertBackgroundColor(ContextCompat.getColor(activityRule.activity, android.R.color.darker_gray))
 
-        alert.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
+        alert.findViewById<ViewGroup>(R.id.llAlertBackground)?.let {
             Assert.assertNotNull(it.background)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
@@ -138,7 +138,7 @@ class AlertTest {
             return
         }
 
-        alert.findViewById<ViewGroup>(R.id.flAlertBackground)?.let {
+        alert.findViewById<ViewGroup>(R.id.llAlertBackground)?.let {
             //Check default onClickListener
             Assert.assertTrue(it.hasOnClickListeners())
 

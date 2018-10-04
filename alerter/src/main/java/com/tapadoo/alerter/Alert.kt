@@ -38,6 +38,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
     internal var duration = DISPLAY_TIME_IN_SECONDS
 
+    private var showIcon: Boolean = true
     private var enableIconPulse = true
     private var enableInfiniteDuration: Boolean = false
     private var enableProgress: Boolean = false
@@ -64,7 +65,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param contentGravity Gravity of the Alert
      */
     var contentGravity: Int
-        get() = (flAlertBackground!!.layoutParams as FrameLayout.LayoutParams).gravity
+        get() = (llAlertBackground!!.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
             val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
             paramsTitle.gravity = contentGravity
@@ -81,7 +82,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE.toFloat())
 
-        flAlertBackground.setOnClickListener(this)
+        llAlertBackground.setOnClickListener(this)
     }
 
     override fun onAttachedToWindow() {
@@ -132,7 +133,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun setOnClickListener(listener: View.OnClickListener?) {
-        flAlertBackground.setOnClickListener(listener)
+        llAlertBackground.setOnClickListener(listener)
     }
 
     override fun setVisibility(visibility: Int) {
@@ -155,9 +156,14 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             if (enableProgress) {
                 ivIcon?.visibility = View.INVISIBLE
                 pbProgress?.visibility = View.VISIBLE
-            } else if (enableIconPulse) {
+            } else if (showIcon) {
                 ivIcon?.visibility = View.VISIBLE
-                ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                // Only pulse if we're not showing the progress
+                if (enableIconPulse) {
+                    ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                }
+            } else {
+                flIconContainer.visibility = View.GONE
             }
         }
     }
@@ -191,8 +197,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         try {
             exitAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
-                    flAlertBackground?.setOnClickListener(null)
-                    flAlertBackground?.isClickable = false
+                    llAlertBackground?.setOnClickListener(null)
+                    llAlertBackground?.isClickable = false
                 }
 
                 override fun onAnimationEnd(animation: Animation) {
@@ -248,7 +254,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color The qualified colour integer
      */
     fun setAlertBackgroundColor(@ColorInt color: Int) {
-        flAlertBackground.setBackgroundColor(color)
+        llAlertBackground.setBackgroundColor(color)
     }
 
     /**
@@ -257,7 +263,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param resource The qualified drawable integer
      */
     fun setAlertBackgroundResource(@DrawableRes resource: Int) {
-        flAlertBackground.setBackgroundResource(resource)
+        llAlertBackground.setBackgroundResource(resource)
     }
 
     /**
@@ -267,9 +273,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setAlertBackgroundDrawable(drawable: Drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            flAlertBackground.background = drawable
+            llAlertBackground.background = drawable
         } else {
-            flAlertBackground.setBackgroundDrawable(drawable)
+            llAlertBackground.setBackgroundDrawable(drawable)
         }
     }
 
@@ -427,7 +433,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param showIcon True to show the icon, false otherwise
      */
     fun showIcon(showIcon: Boolean) {
-        ivIcon.visibility = if (showIcon) View.VISIBLE else View.GONE
+        this.showIcon = showIcon
     }
 
     /**
@@ -451,7 +457,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Set whether to enable swipe to dismiss or not
      */
     fun enableSwipeToDismiss() {
-        flAlertBackground.let {
+        llAlertBackground.let {
             it.setOnTouchListener(SwipeDismissTouchListener(it, object : SwipeDismissTouchListener.DismissCallbacks {
                 override fun canDismiss(): Boolean {
                     return true
@@ -546,7 +552,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         }
 
         // Alter padding
-        flAlertBackground?.apply {
+        llAlertBackground?.apply {
             this.setPadding(this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom / 2)
         }
     }
@@ -556,7 +562,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onDismiss(view: View) {
-        flClickShield?.removeView(flAlertBackground)
+        flClickShield?.removeView(llAlertBackground)
     }
 
     override fun onTouch(view: View, touch: Boolean) {
