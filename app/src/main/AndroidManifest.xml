@@ -2,7 +2,7 @@
 <manifest package="com.tapadoo.alerter_demo"
           xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <application>
+    <application android:fullBackupContent="@xml/backup_descriptor">
         <meta-data
             android:name="asset_statements"
             android:resource="@string/asset_statements"/>

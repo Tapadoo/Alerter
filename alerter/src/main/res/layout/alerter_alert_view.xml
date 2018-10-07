@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical">
 
+
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/ivIcon"
                     android:layout_width="@dimen/alerter_alert_icn_size"
@@ -92,6 +93,7 @@
             </LinearLayout>
 
         </android.support.v7.widget.LinearLayoutCompat>
+
 
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/llButtonContainer"
