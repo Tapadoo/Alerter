@@ -466,7 +466,7 @@ class Alerter private constructor() {
      * @return This Alerter
      */
     fun setDismissable(dismissable: Boolean): Alerter {
-        alert?.setDismissable(dismissable)
+        alert?.setDismissible(dismissable)
 
         return this
     }
@@ -582,7 +582,7 @@ class Alerter private constructor() {
                 var isShowing = false
 
                 activityWeakReference?.get()?.let {
-                    isShowing = it.findViewById<View>(R.id.flAlertBackground) != null
+                    isShowing = it.findViewById<View>(R.id.llAlertBackground) != null
                 }
 
                 return isShowing
