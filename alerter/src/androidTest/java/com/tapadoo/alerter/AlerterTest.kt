@@ -2,10 +2,10 @@ package com.tapadoo.alerter
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.v4.content.ContextCompat
+import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
+import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup

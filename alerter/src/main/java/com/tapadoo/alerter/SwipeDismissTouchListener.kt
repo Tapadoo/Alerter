@@ -22,7 +22,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.os.Build
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
