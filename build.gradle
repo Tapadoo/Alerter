@@ -11,16 +11,11 @@ buildscript {
         sourceCompatibilityVersion = JavaVersion.VERSION_1_8
         targetCompatibilityVersion = JavaVersion.VERSION_1_8
 
-        supportLibVersion = '1.0.0-alpha1'
-
         keystoreProperties = '../keystore/release.properties'
 
         app_version_code = 8
         app_version_name = "1.1"
-
     }
-
-    apply from: 'dependencies.gradle'
 
     repositories {
         google()
