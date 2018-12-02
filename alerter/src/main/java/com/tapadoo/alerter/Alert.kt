@@ -69,7 +69,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param contentGravity Gravity of the Alert
      */
     var contentGravity: Int
-        get() = (llAlertBackground!!.layoutParams as FrameLayout.LayoutParams).gravity
+        get() = (llAlertBackground?.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
             val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
             paramsTitle.gravity = contentGravity
@@ -104,16 +104,25 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
         if (!marginSet) {
             marginSet = true
 
             // Add a negative top margin to compensate for overshoot enter animation
             val params = layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = context.resources.getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top)
-            requestLayout()
+
+            // Check for Cutout
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                val displayCutout = (context as? Activity)?.window?.decorView?.rootWindowInsets?.displayCutout
+
+                val notchHeight = displayCutout?.safeInsetTop ?: 0
+                llAlertBackground.apply {
+                    setPadding(paddingLeft, paddingTop + (notchHeight / 2), paddingRight, paddingBottom)
+                }
+            }
         }
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
     // Release resources once view is detached.
