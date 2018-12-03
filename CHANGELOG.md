@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.0.3 - 2/12/218
+## 4.0.0 - 2/12/218
 * Migrate to AndroidX
 * Added support for Cutout/Notch
 

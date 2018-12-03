@@ -24,6 +24,16 @@ dependencies {
 
 Version 3.0.0 and above requires Kotlin
 
+## AndroidX
+
+Version 4.0.0 includes support for AndroidX dependencies. If you experience issues with this update, 
+please ensure you have enabled AndroidX & Jetifier in your `gradle.properties` file
+
+```properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
 # Usage
 
 ![Default Alert](./documentation/alert_default.gif)
