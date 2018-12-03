@@ -1,7 +1,7 @@
 package com.tapadoo.alerter;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Mock Activity for Testing

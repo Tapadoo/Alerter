@@ -21,7 +21,7 @@
         tools:context=".KotlinDemoActivity"
         tools:showIn="@layout/activity_demo">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertDefault"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
@@ -29,84 +29,84 @@
             android:text="@string/default_alert"
             android:textColor="@android:color/white"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertColoured"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/coloured_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertCustomIcon"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/custom_icon_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertTextOnly"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_only_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertOnClick"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/on_click_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertVerbose"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/verbose_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertCallback"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/callback_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertInfiniteDuration"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/infinite_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertWithProgress"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/progress_alert"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertWithCustomFont"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/custom_font"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             style="@style/ExampleButton"
             android:id="@+id/btnAlertSwipeToDismissEnabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/swipe_to_dismiss"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             style="@style/ExampleButton"
             android:id="@+id/btnAlertCustomAnimations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/custom_enter_exit_animations"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             style="@style/ExampleButton"
             android:id="@+id/btnAlertWithButtons"
             android:layout_width="match_parent"

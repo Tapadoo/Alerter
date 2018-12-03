@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.0.0 - 2/12/218
+* Migrate to AndroidX
+* Added support for Cutout/Notch
+
+## 3.0.2 - 15/11/2018
+* Bug Fixes
+
+## 3.0.1 - 01/11/2018
+* Bug Fixes
+
 ## 3.0.0 - 06/6/2018
 * Converted library to Kotlin
 

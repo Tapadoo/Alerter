@@ -6,9 +6,9 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.annotation.*
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
