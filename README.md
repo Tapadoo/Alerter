@@ -16,7 +16,7 @@ A customisable Alert view is dynamically added to the Decor View of the Window, 
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:3.0.3'
+    implementation 'com.tapadoo.android:alerter:4.0.0'
 }
 ```
 
@@ -27,7 +27,7 @@ Version 3.0.0 and above requires Kotlin
 ## AndroidX
 
 Version 4.0.0 includes support for AndroidX dependencies. If you experience issues with this update, 
-please ensure you have enabled AndroidX & Jetifier in your `gradle.properties` file
+please ensure you have enabled AndroidX & Jetifier in your `gradle.properties` file:
 
 ```properties
 android.useAndroidX=true
