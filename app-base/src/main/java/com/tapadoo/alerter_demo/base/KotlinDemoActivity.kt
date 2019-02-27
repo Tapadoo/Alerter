@@ -36,6 +36,7 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+
     private fun showAlertColoured() {
         Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
@@ -204,5 +205,4 @@ class KotlinDemoActivity : AppCompatActivity() {
             showAlertWithButtons()
         }
     }
-
 }

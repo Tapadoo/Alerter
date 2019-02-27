@@ -239,9 +239,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         postDelayed(object : Runnable {
             override fun run() {
                 try {
-                    if (parent == null) {
-                        Log.e(javaClass.simpleName, "getParent() returning Null")
-                    } else {
+                    if (parent != null) {
                         try {
                             (parent as ViewGroup).removeView(this@Alert)
 
@@ -249,12 +247,10 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                         } catch (ex: Exception) {
                             Log.e(javaClass.simpleName, "Cannot remove from parent layout")
                         }
-
                     }
                 } catch (ex: Exception) {
                     Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
                 }
-
             }
         }, CLEAN_UP_DELAY_MILLIS.toLong())
     }
