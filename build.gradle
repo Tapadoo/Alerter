@@ -13,8 +13,8 @@ buildscript {
 
         keystoreProperties = '../keystore/release.properties'
 
-        app_version_code = 8
-        app_version_name = "1.1"
+        app_version_code = 9
+        app_version_name = "1.2"
     }
 
     repositories {
