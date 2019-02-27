@@ -21,9 +21,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
-import android.view.DisplayCutout
-import androidx.core.view.DisplayCutoutCompat
-
 
 /**
  * Custom Alert View

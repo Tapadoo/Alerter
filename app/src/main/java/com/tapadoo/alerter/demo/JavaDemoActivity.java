@@ -1,4 +1,4 @@
-package com.tapadoo.alerter_demo.base;
+package com.tapadoo.alerter.demo;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
-
 /**
  * Java Demo Activity to ensure backwards compatibility
  *
@@ -23,22 +22,22 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setContentView(com.tapadoo.alerter.demo.R.layout.activity_demo);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(com.tapadoo.alerter.demo.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.btnAlertDefault).setOnClickListener(this);
-        findViewById(R.id.btnAlertColoured).setOnClickListener(this);
-        findViewById(R.id.btnAlertCustomIcon).setOnClickListener(this);
-        findViewById(R.id.btnAlertTextOnly).setOnClickListener(this);
-        findViewById(R.id.btnAlertOnClick).setOnClickListener(this);
-        findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
-        findViewById(R.id.btnAlertCallback).setOnClickListener(this);
-        findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
-        findViewById(R.id.btnAlertWithProgress).setOnClickListener(this);
-        findViewById(R.id.btnAlertWithCustomFont).setOnClickListener(this);
-        findViewById(R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertDefault).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertColoured).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertCustomIcon).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertTextOnly).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertOnClick).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertVerbose).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertCallback).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertInfiniteDuration).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertWithProgress).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertWithCustomFont).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
     }
 
     @Override
@@ -51,25 +50,25 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.btnAlertColoured) {
+        if (i == com.tapadoo.alerter.demo.R.id.btnAlertColoured) {
             showAlertColoured();
-        } else if (i == R.id.btnAlertCustomIcon) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertCustomIcon) {
             showAlertWithIcon();
-        } else if (i == R.id.btnAlertTextOnly) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertTextOnly) {
             showAlertTextOnly();
-        } else if (i == R.id.btnAlertOnClick) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertOnClick) {
             showAlertWithOnClick();
-        } else if (i == R.id.btnAlertVerbose) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertVerbose) {
             showAlertVerbose();
-        } else if (i == R.id.btnAlertCallback) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertCallback) {
             showAlertCallbacks();
-        } else if (i == R.id.btnAlertInfiniteDuration) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertInfiniteDuration) {
             showAlertInfiniteDuration();
-        } else if (i == R.id.btnAlertWithProgress) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertWithProgress) {
             showAlertWithProgress();
-        } else if (i == R.id.btnAlertWithCustomFont) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertWithCustomFont) {
             showAlertWithCustomFont();
-        } else if (i == R.id.btnAlertSwipeToDismissEnabled) {
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled) {
             showAlertSwipeToDismissEnabled();
         } else {
             showAlertDefault();
@@ -78,7 +77,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
 
     private void showAlertDefault() {
         Alerter.create(JavaDemoActivity.this)
-                .setTitle(R.string.title_activity_example)
+                .setTitle(com.tapadoo.alerter.demo.R.string.title_activity_example)
                 .setText("Alert text...")
                 .show();
     }
@@ -87,14 +86,14 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .setBackgroundColorRes(R.color.colorAccent)
+                .setBackgroundColorRes(com.tapadoo.alerter.demo.R.color.colorAccent)
                 .show();
     }
 
     private void showAlertWithIcon() {
         Alerter.create(JavaDemoActivity.this)
                 .setText("Alert text...")
-                .setIcon(R.drawable.alerter_ic_mail_outline)
+                .setIcon(com.tapadoo.alerter.demo.R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
                 .show();
     }
@@ -161,17 +160,17 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .enableProgress(true)
-                .setProgressColorRes(R.color.colorPrimary)
+                .setProgressColorRes(com.tapadoo.alerter.demo.R.color.colorPrimary)
                 .show();
     }
 
     private void showAlertWithCustomFont() {
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
-                .setTitleAppearance(R.style.AlertTextAppearance_Title)
+                .setTitleAppearance(com.tapadoo.alerter.demo.R.style.AlertTextAppearance_Title)
                 .setTitleTypeface(Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf"))
                 .setText("Alert text...")
-                .setTextAppearance(R.style.AlertTextAppearance_Text)
+                .setTextAppearance(com.tapadoo.alerter.demo.R.style.AlertTextAppearance_Text)
                 .setTextTypeface(Typeface.createFromAsset(getAssets(), "ScopeOne-Regular.ttf"))
                 .show();
     }
@@ -194,8 +193,8 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .setEnterAnimation(R.anim.alerter_slide_in_from_left)
-                .setExitAnimation(R.anim.alerter_slide_out_to_right)
+                .setEnterAnimation(com.tapadoo.alerter.demo.R.anim.alerter_slide_in_from_left)
+                .setExitAnimation(com.tapadoo.alerter.demo.R.anim.alerter_slide_out_to_right)
                 .show();
     }
 
@@ -203,7 +202,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-                .addButton("Okay", R.style.AlertButton, new View.OnClickListener() {
+                .addButton("Okay", com.tapadoo.alerter.demo.R.style.AlertButton, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(JavaDemoActivity.this, "Okay Clicked", Toast.LENGTH_SHORT).show();

@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.tapadoo.alerter_demo"
-          xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tapadoo.alerter.demo">
 
-    <application android:fullBackupContent="@xml/backup_descriptor">
-        <meta-data
-            android:name="asset_statements"
-            android:resource="@string/asset_statements"/>
+    <dist:module
+        dist:instant="true"
+        dist:onDemand="false"
+        dist:title="Instant App">
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".KotlinDemoActivity"
+            android:label="@string/title_activity_example"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>

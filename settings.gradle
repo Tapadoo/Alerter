@@ -1,2 +1,2 @@
-include ':alerter', ':app-base', ':app', ':app-instant'
+include ':alerter', ':app'
 
