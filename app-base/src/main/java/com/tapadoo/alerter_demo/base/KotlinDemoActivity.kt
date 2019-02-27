@@ -2,6 +2,7 @@ package com.tapadoo.alerter_demo.base
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
