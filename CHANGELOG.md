@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.0.0 - 2/12/218
+## 4.0.1 - 27/2/2019
+* Bug Fixes - Removed Unneeded LinearLayoutCompat
+
+## 4.0.0 - 2/12/2018
 * Migrate to AndroidX
 * Added support for Cutout/Notch
 

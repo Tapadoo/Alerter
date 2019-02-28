@@ -21,9 +21,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
-import android.view.DisplayCutout
-import androidx.core.view.DisplayCutoutCompat
-
 
 /**
  * Custom Alert View
@@ -71,12 +68,12 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     var contentGravity: Int
         get() = (llAlertBackground?.layoutParams as FrameLayout.LayoutParams).gravity
         set(contentGravity) {
-            val paramsTitle = tvTitle?.layoutParams as LinearLayout.LayoutParams
-            paramsTitle.gravity = contentGravity
+            val paramsTitle = tvTitle?.layoutParams as? LinearLayout.LayoutParams
+            paramsTitle?.gravity = contentGravity
             tvTitle?.layoutParams = paramsTitle
 
-            val paramsText = tvText?.layoutParams as LinearLayout.LayoutParams
-            paramsText.gravity = contentGravity
+            val paramsText = tvText?.layoutParams as? LinearLayout.LayoutParams
+            paramsText?.gravity = contentGravity
             tvText?.layoutParams = paramsText
         }
 
@@ -239,9 +236,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         postDelayed(object : Runnable {
             override fun run() {
                 try {
-                    if (parent == null) {
-                        Log.e(javaClass.simpleName, "getParent() returning Null")
-                    } else {
+                    if (parent != null) {
                         try {
                             (parent as ViewGroup).removeView(this@Alert)
 
@@ -249,12 +244,10 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                         } catch (ex: Exception) {
                             Log.e(javaClass.simpleName, "Cannot remove from parent layout")
                         }
-
                     }
                 } catch (ex: Exception) {
                     Log.e(javaClass.simpleName, Log.getStackTraceString(ex))
                 }
-
             }
         }, CLEAN_UP_DELAY_MILLIS.toLong())
     }

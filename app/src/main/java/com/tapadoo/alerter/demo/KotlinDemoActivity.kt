@@ -1,4 +1,4 @@
-package com.tapadoo.alerter_demo.base
+package com.tapadoo.alerter.demo
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.tapadoo.alerter.Alerter
 import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
+import com.tapadoo.alerter.demo.R
 import kotlinx.android.synthetic.main.content_example.*
 
 class KotlinDemoActivity : AppCompatActivity() {
@@ -204,5 +205,4 @@ class KotlinDemoActivity : AppCompatActivity() {
             showAlertWithButtons()
         }
     }
-
 }

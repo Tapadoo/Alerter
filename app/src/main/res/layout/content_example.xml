@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/activity_demo"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    android:layout_height="match_parent">
+    tools:showIn="@layout/activity_demo">
 
     <LinearLayout
         android:id="@+id/content_example"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/alerter_activity_vertical_margin"
         android:paddingLeft="@dimen/alerter_activity_horizontal_margin"
-        android:paddingRight="@dimen/alerter_activity_horizontal_margin"
         android:paddingTop="@dimen/alerter_activity_vertical_margin"
+        android:paddingRight="@dimen/alerter_activity_horizontal_margin"
+        android:paddingBottom="@dimen/alerter_activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".KotlinDemoActivity"
         tools:showIn="@layout/activity_demo">
@@ -27,91 +26,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/default_alert"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertColoured"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/coloured_alert"/>
+            android:text="@string/coloured_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertCustomIcon"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_icon_alert"/>
+            android:text="@string/custom_icon_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertTextOnly"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_only_alert"/>
+            android:text="@string/text_only_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertOnClick"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/on_click_alert"/>
+            android:text="@string/on_click_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertVerbose"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/verbose_alert"/>
+            android:text="@string/verbose_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertCallback"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/callback_alert"/>
+            android:text="@string/callback_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertInfiniteDuration"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/infinite_alert"/>
+            android:text="@string/infinite_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertWithProgress"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/progress_alert"/>
+            android:text="@string/progress_alert" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertWithCustomFont"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_font"/>
+            android:text="@string/custom_font" />
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/ExampleButton"
             android:id="@+id/btnAlertSwipeToDismissEnabled"
+            style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/swipe_to_dismiss"/>
+            android:text="@string/swipe_to_dismiss" />
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/ExampleButton"
             android:id="@+id/btnAlertCustomAnimations"
+            style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_enter_exit_animations"/>
+            android:text="@string/custom_enter_exit_animations" />
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/ExampleButton"
             android:id="@+id/btnAlertWithButtons"
+            style="@style/ExampleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/with_buttons"/>
+            android:text="@string/with_buttons" />
 
     </LinearLayout>
 
