@@ -313,9 +313,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     /**
      * Sets the Title of the Alert
      *
-     * @param title String object to be used as the Alert title
+     * @param title CharSequence object to be used as the Alert title
      */
-    fun setTitle(title: String) {
+    fun setTitle(title: CharSequence) {
         if (!TextUtils.isEmpty(title)) {
             tvTitle.visibility = View.VISIBLE
             tvTitle.text = title
@@ -356,9 +356,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     /**
      * Sets the Text of the Alert
      *
-     * @param text String resource id of the Alert text
+     * @param text CharSequence object to be used as the Alert text
      */
-    fun setText(text: String) {
+    fun setText(text: CharSequence) {
         if (!TextUtils.isEmpty(text)) {
             tvText.visibility = View.VISIBLE
             tvText.text = text
@@ -549,7 +549,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param text The text to display on the button
      * @param onClick The on click listener
      */
-    fun addButton(text: String, @StyleRes style: Int, onClick: View.OnClickListener) {
+    fun addButton(text: CharSequence, @StyleRes style: Int, onClick: View.OnClickListener) {
         Button(ContextThemeWrapper(context, style), null, style).apply {
             this.text = text
             this.setOnClickListener(onClick)

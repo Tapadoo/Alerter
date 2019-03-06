@@ -78,10 +78,10 @@ class Alerter private constructor() {
     /**
      * Set Title of the Alert
      *
-     * @param title Title as a String
+     * @param title Title as a CharSequence
      * @return This Alerter
      */
-    fun setTitle(title: String): Alerter {
+    fun setTitle(title: CharSequence): Alerter {
         alert?.setTitle(title)
 
         return this
@@ -138,10 +138,10 @@ class Alerter private constructor() {
     /**
      * Sets the Alert Text
      *
-     * @param text String of Alert Text
+     * @param text CharSequence of Alert Text
      * @return This Alerter
      */
-    fun setText(text: String): Alerter {
+    fun setText(text: CharSequence): Alerter {
         alert?.setText(text)
 
         return this
@@ -501,7 +501,10 @@ class Alerter private constructor() {
      * @param text The text to display on the button
      * @param onClick The on click listener
      */
-    fun addButton(text: String, @StyleRes style: Int = R.style.AlertButton, onClick: View.OnClickListener): Alerter {
+    fun addButton(
+        text: CharSequence, @StyleRes style: Int = R.style.AlertButton,
+        onClick: View.OnClickListener
+    ): Alerter {
         alert?.addButton(text, style, onClick)
 
         return this
