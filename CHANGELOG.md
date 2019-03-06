@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.0.2 - 6/3/2019
+* Bug Fixes - Accept CharSequence as parameters instead of String on setTitle, setText, and addButton functions
+
 ## 4.0.1 - 27/2/2019
 * Bug Fixes - Removed Unneeded LinearLayoutCompat
 
