@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Alerter</string>
+    <string name="title_activity_example">Uyarıcı Gösteri</string>
+    <string name="default_alert">Varsayılan Alert</string>
+    <string name="coloured_alert">Renkli Alert</string>
+    <string name="text_only_alert">Sadece Metin Uyarısı</string>
+    <string name="on_click_alert">Tıklama Uyarısı</string>
+    <string name="verbose_alert">Ayrıntılı Uyarı</string>
+    <string name="custom_icon_alert">Özel Simge Uyarısı</string>
+    <string name="callback_alert">Uyarı geri aramaları</string>
+    <string name="infinite_alert">Sonsuzluk Süresi Uyarısı</string>
+    <string name="progress_alert">İlerleme Uyarısı</string>
+    <string name="custom_font">Özel Yazı Tipi</string>
+    <string name="swipe_to_dismiss">Uyarıyı Kapatmak İçin Kaydırın</string>
+    <string name="custom_enter_exit_animations">Özel Giriş/Çık Animasyonlar</string>
+    <string name="with_buttons">Butonlarla</string>
+    <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://apps.tapadoo.com\",\n  }\n}]</string>
+</resources>
