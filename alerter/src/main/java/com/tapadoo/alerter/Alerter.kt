@@ -511,6 +511,18 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set the Button's Typeface
+     *
+     * @param typeface Typeface to use
+     * @return This Alerter
+     */
+    fun setButtonTypeface(typeface: Typeface): Alerter {
+        alert?.buttonTypeFace = typeface
+
+        return this
+    }
+
+    /**
      * Creates a weak reference to the calling Activity
      *
      * @param activity The calling Activity

@@ -49,6 +49,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     private var isDismissable = true
 
     private var buttons = ArrayList<Button>()
+    var buttonTypeFace: Typeface? = null
 
     /**
      * Flag to ensure we only set the margins once
@@ -95,8 +96,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         animation = enterAnimation
 
         // Add all buttons
-        buttons.forEach {
-            llButtonContainer.addView(it)
+        buttons.forEach { button ->
+            buttonTypeFace?.let { button.typeface = it }
+            llButtonContainer.addView(button)
         }
     }
 
