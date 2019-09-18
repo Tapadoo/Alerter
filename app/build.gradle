@@ -48,8 +48,6 @@ android {
 
 dependencies {
     implementation project(':alerter')
-
     implementation "com.google.android.material:material:1.0.0"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
