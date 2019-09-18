@@ -40,9 +40,9 @@
                     android:layout_height="@dimen/alerter_alert_icn_size"
                     android:maxWidth="@dimen/alerter_alert_icn_size"
                     android:maxHeight="@dimen/alerter_alert_icn_size"
-                    android:src="@drawable/alerter_ic_notifications"
-                    android:tint="@color/alert_default_icon_color"
                     android:visibility="invisible"
+                    app:srcCompat="@drawable/alerter_ic_notifications"
+                    app:tint="@color/alert_default_icon_color"
                     tools:visibility="visible" />
 
                 <ProgressBar
