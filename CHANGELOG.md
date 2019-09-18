@@ -1,9 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
 ## 4.1.0 - 18/09/2019
 * Updated Build Tools & Dependencies
 * Enabled Vector Compat Support
+
+## 4.0.3 - 1/5/2019
+* Added support for setting custom typefaces for buttons
+
+## 4.0.2 - 6/3/2019
+* Bug Fixes - Accept CharSequence as parameters instead of String on setTitle, setText, and addButton functions
+
 
 ## 4.0.1 - 27/2/2019
 * Bug Fixes - Removed Unneeded LinearLayoutCompat
