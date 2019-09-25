@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 
+## 4.1.1 - 25/09/2019
+* Enabled Sound for the Alert
+
 ## 4.1.0 - 18/09/2019
 * Updated Build Tools & Dependencies
 * Enabled Vector Compat Support
