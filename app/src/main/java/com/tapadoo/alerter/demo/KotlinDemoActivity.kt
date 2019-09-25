@@ -152,6 +152,15 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertSound() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .setBackgroundColorRes(R.color.colorAccent)
+                .enableSound(true)
+                .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -203,6 +212,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertWithButtons.setOnClickListener {
             showAlertWithButtons()
+        }
+
+        btnAlertSound.setOnClickListener {
+            showAlertSound()
         }
     }
 }

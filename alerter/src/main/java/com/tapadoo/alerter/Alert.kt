@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.media.RingtoneManager
 import android.os.Build
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
@@ -60,6 +61,11 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * Flag to enable / disable haptic feedback
      */
     private var vibrationEnabled = true
+
+    /**
+     * Flag to enable / disable sound
+     */
+    private var soundEnabled = false
 
     /**
      * Sets the Gravity of the Alert
@@ -163,6 +169,16 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+
+            if (soundEnabled) {
+                try {
+                    val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                    val r = RingtoneManager.getRingtone(context, notification)
+                    r.play()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
 
             if (enableProgress) {
@@ -543,6 +559,15 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setVibrationEnabled(vibrationEnabled: Boolean) {
         this.vibrationEnabled = vibrationEnabled
+    }
+
+    /**
+     * Enable or Disable sound
+     *
+     * @param soundEnabled True to enable, false to disable
+     */
+    fun setSoundEnabled(soundEnabled: Boolean) {
+        this.soundEnabled = soundEnabled
     }
 
     /**
