@@ -95,6 +95,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .setText("Alert text...")
                 .setIcon(com.tapadoo.alerter.demo.R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
+                .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
                 .show();
     }
 

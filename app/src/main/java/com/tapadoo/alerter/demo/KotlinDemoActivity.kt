@@ -50,6 +50,7 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
+                .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
                 .show()
     }
 
