@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:clipToPadding="false"
+	tools:background="@android:color/darker_gray"
+	tools:foreground="?android:attr/selectableItemBackground"
+	tools:style="@style/AlertStyle">
+
+	<FrameLayout
+		android:id="@+id/flIconContainer"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/ivIcon"
+			android:layout_width="@dimen/alerter_alert_icn_size"
+			android:layout_height="@dimen/alerter_alert_icn_size"
+			android:maxWidth="@dimen/alerter_alert_icn_size"
+			android:maxHeight="@dimen/alerter_alert_icn_size"
+			android:visibility="invisible"
+			app:srcCompat="@drawable/alerter_ic_notifications"
+			app:tint="@color/alert_default_icon_color"
+			tools:visibility="visible" />
+
+		<ProgressBar
+			android:id="@+id/pbProgress"
+			android:layout_width="@dimen/alerter_alert_progress_size"
+			android:layout_height="@dimen/alerter_alert_progress_size"
+			android:indeterminateTint="@android:color/white"
+			android:progressTint="@android:color/white"
+			android:visibility="invisible"
+			tools:visibility="visible" />
+
+	</FrameLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:orientation="vertical">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/tvTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/alerter_padding_half"
+			android:layout_marginEnd="@dimen/alerter_padding_half"
+			android:paddingStart="@dimen/alerter_padding_small"
+			android:paddingLeft="@dimen/alerter_padding_small"
+			android:paddingEnd="@dimen/alerter_padding_small"
+			android:textAppearance="@style/AlertTextAppearance.Title"
+			android:visibility="gone"
+			tools:text="Title"
+			tools:visibility="visible" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/tvText"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/alerter_padding_half"
+			android:layout_marginEnd="@dimen/alerter_padding_half"
+			android:paddingStart="@dimen/alerter_padding_small"
+			android:paddingLeft="@dimen/alerter_padding_small"
+			android:paddingTop="@dimen/alerter_padding_small"
+			android:paddingEnd="@dimen/alerter_padding_small"
+			android:paddingBottom="@dimen/alerter_padding_small"
+			android:textAppearance="@style/AlertTextAppearance.Text"
+			android:visibility="gone"
+			tools:text="Text"
+			tools:visibility="visible" />
+
+	</LinearLayout>
+</LinearLayout>

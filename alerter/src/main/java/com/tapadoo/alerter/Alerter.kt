@@ -522,6 +522,10 @@ class Alerter private constructor() {
         return this
     }
 
+    fun getLayoutContainer(): View? {
+        return alert?.layoutContainer
+    }
+
     /**
      * Creates a weak reference to the calling Activity
      *
@@ -554,6 +558,30 @@ class Alerter private constructor() {
 
             alerter.setActivity(activity)
             alerter.alert = Alert(activity)
+
+            return alerter
+        }
+
+        /**
+         * Creates the Alert with custom view, and maintains a reference to the calling Activity
+         *
+         * @param activity The calling Activity
+         * @param customLayoutId Custom view layout res id
+         * @return This Alerter
+         */
+        @JvmStatic
+        fun create(activity: Activity?, @LayoutRes customLayoutId: Int): Alerter {
+            if (activity == null) {
+                throw IllegalArgumentException("Activity cannot be null!")
+            }
+
+            val alerter = Alerter()
+
+            //Hide current Alert, if one is active
+            Alerter.clearCurrent(activity)
+
+            alerter.setActivity(activity)
+            alerter.alert = Alert(activity, customLayoutId)
 
             return alerter
         }
