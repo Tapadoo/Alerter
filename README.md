@@ -227,7 +227,6 @@ Alerter.create(this@DemoActivity)
 ![Verbose Alert](./documentation/alert_with_buttons.gif)
 
 ### With Custom Layout
-
 ```kotlin
  Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
         .setBackgroundColorRes(R.color.colorAccent)
@@ -238,7 +237,7 @@ Alerter.create(this@DemoActivity)
         .show()
 ```
 
-![Verbose Alert](./documentation/alert_with_custom_layout.png)
+![Verbose Alert](./documentation/alert_with_custom_layout.gif)
 
 ## Sample
 
