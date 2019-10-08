@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 
+## 4.1.1 - 07/10/2019
+* Added set icon size.
+
 ## 4.1.0 - 18/09/2019
 * Updated Build Tools & Dependencies
 * Enabled Vector Compat Support

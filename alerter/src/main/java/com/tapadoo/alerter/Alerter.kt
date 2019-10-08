@@ -258,6 +258,30 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set the Alert's Icon size
+     *
+     * @param size Dimension int.
+     * @return This Alerter
+     */
+    fun setIconSize(@DimenRes size: Int): Alerter {
+        alert?.setIconSize(size)
+
+        return this
+    }
+
+    /**
+     * Set the Alert's Icon size
+     *
+     * @param size Icon size in pixel.
+     * @return This Alerter
+     */
+    fun setIconPixelSize(@Px size: Int): Alerter {
+        alert?.setIconPixelSize(size)
+
+        return this
+    }
+
+    /**
      * Set the icon color for the Alert
      *
      * @param color Color int
