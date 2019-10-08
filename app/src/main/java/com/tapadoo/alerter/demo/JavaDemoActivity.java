@@ -38,6 +38,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertWithProgress).setOnClickListener(this);
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertWithCustomFont).setOnClickListener(this);
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnAlertSound).setOnClickListener(this);
     }
 
     @Override
@@ -70,6 +71,8 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
             showAlertWithCustomFont();
         } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled) {
             showAlertSwipeToDismissEnabled();
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound){
+            showAlertSound();
         } else {
             showAlertDefault();
         }
@@ -209,6 +212,15 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(JavaDemoActivity.this, "Okay Clicked", Toast.LENGTH_SHORT).show();
                     }
                 })
+                .show();
+    }
+
+    private void showAlertSound() {
+        Alerter.create(JavaDemoActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .setBackgroundColorRes(R.color.colorAccent)
+                .enableSound(true)
                 .show();
     }
 

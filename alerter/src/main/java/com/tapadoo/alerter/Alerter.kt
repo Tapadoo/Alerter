@@ -437,6 +437,18 @@ class Alerter private constructor() {
     }
 
     /**
+     * Enable or Disable Sound
+     *
+     * @param enable True to enable, False to disable
+     * @return This Alerter
+     */
+    fun enableSound(enable: Boolean): Alerter {
+        alert?.setSoundEnabled(enable)
+
+        return this
+    }
+
+    /**
      * Disable touch events outside of the Alert
      *
      * @return This Alerter
