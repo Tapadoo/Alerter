@@ -547,19 +547,7 @@ class Alerter private constructor() {
          */
         @JvmStatic
         fun create(activity: Activity?): Alerter {
-            if (activity == null) {
-                throw IllegalArgumentException("Activity cannot be null!")
-            }
-
-            val alerter = Alerter()
-
-            //Hide current Alert, if one is active
-            Alerter.clearCurrent(activity)
-
-            alerter.setActivity(activity)
-            alerter.alert = Alert(activity)
-
-            return alerter
+            return create(activity, R.layout.alerter_alert_default_layout)
         }
 
         /**
@@ -570,7 +558,7 @@ class Alerter private constructor() {
          * @return This Alerter
          */
         @JvmStatic
-        fun create(activity: Activity?, @LayoutRes customLayoutId: Int): Alerter {
+        fun create(activity: Activity?, @LayoutRes layoutId: Int): Alerter {
             if (activity == null) {
                 throw IllegalArgumentException("Activity cannot be null!")
             }
@@ -581,7 +569,7 @@ class Alerter private constructor() {
             Alerter.clearCurrent(activity)
 
             alerter.setActivity(activity)
-            alerter.alert = Alert(activity, customLayoutId)
+            alerter.alert = Alert(activity, layoutId)
 
             return alerter
         }

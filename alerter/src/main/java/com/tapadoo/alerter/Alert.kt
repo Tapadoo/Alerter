@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.alerter_alert_view.view.*
  * @since 26/01/2016
  */
 class Alert @JvmOverloads constructor(context: Context,
-                                      @LayoutRes customLayoutId: Int = R.layout.alerter_alert_default_layout,
+                                      @LayoutRes layoutId: Int,
                                       attrs: AttributeSet? = null,
                                       defStyle: Int = 0)
     : FrameLayout(context, attrs, defStyle), View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
@@ -90,7 +90,7 @@ class Alert @JvmOverloads constructor(context: Context,
     init {
         inflate(context, R.layout.alerter_alert_view, this)
 
-        vAlertContentContainer.layoutResource = customLayoutId
+        vAlertContentContainer.layoutResource = layoutId
         vAlertContentContainer.inflate()
 
         isHapticFeedbackEnabled = true
