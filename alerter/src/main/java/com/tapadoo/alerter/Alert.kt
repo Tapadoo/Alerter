@@ -449,6 +449,30 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
+     * Set the inline icon size for the Alert
+     *
+     * @param size Dimension int.
+     */
+    fun setIconSize(@DimenRes size: Int) {
+        val pixelSize = context.resources.getDimensionPixelSize(size)
+        setIconPixelSize(pixelSize)
+    }
+
+    /**
+     * Set the inline icon size for the Alert
+     *
+     * @param size Icon size in pixel.
+     */
+    fun setIconPixelSize(@Px size: Int) {
+        ivIcon.layoutParams = ivIcon.layoutParams.apply {
+            width = size
+            height = size
+            minimumWidth = size
+            minimumHeight = size
+        }
+    }
+
+    /**
      * Set whether to show the icon in the alert or not
      *
      * @param showIcon True to show the icon, false otherwise
