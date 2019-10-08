@@ -227,6 +227,19 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_with_buttons.gif)
 
+### With Custom Layout
+```kotlin
+ Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
+        .setBackgroundColorRes(R.color.colorAccent)
+        .also { alerter ->
+            val tvCustomView = alerter.getLayoutContainer()?.tvCustomLayout
+            tvCustomView?.setText(R.string.with_custom_layout)
+        }
+        .show()
+```
+
+![Verbose Alert](./documentation/alert_with_custom_layout.gif)
+
 ## Sample
 
 Clone this repo and check out the `app-base` module.

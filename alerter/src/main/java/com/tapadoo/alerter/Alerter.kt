@@ -546,6 +546,10 @@ class Alerter private constructor() {
         return this
     }
 
+    fun getLayoutContainer(): View? {
+        return alert?.layoutContainer
+    }
+
     /**
      * Creates a weak reference to the calling Activity
      *
@@ -567,6 +571,18 @@ class Alerter private constructor() {
          */
         @JvmStatic
         fun create(activity: Activity?): Alerter {
+            return create(activity, R.layout.alerter_alert_default_layout)
+        }
+
+        /**
+         * Creates the Alert with custom view, and maintains a reference to the calling Activity
+         *
+         * @param activity The calling Activity
+         * @param customLayoutId Custom view layout res id
+         * @return This Alerter
+         */
+        @JvmStatic
+        fun create(activity: Activity?, @LayoutRes layoutId: Int): Alerter {
             if (activity == null) {
                 throw IllegalArgumentException("Activity cannot be null!")
             }
@@ -577,7 +593,7 @@ class Alerter private constructor() {
             Alerter.clearCurrent(activity)
 
             alerter.setActivity(activity)
-            alerter.alert = Alert(activity)
+            alerter.alert = Alert(activity, layoutId)
 
             return alerter
         }
