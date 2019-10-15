@@ -11,6 +11,7 @@ import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
 import com.tapadoo.alerter.demo.R
 import kotlinx.android.synthetic.main.content_example.*
+import kotlinx.android.synthetic.main.custom_layout.view.*
 
 class KotlinDemoActivity : AppCompatActivity() {
 
@@ -50,6 +51,7 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setText("Alert text...")
                 .setIcon(R.drawable.alerter_ic_mail_outline)
                 .setIconColorFilter(0) // Optional - Removes white tint
+                .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
                 .show()
     }
 
@@ -161,6 +163,16 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertWithCustomLayout() {
+       Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
+                .setBackgroundColorRes(R.color.colorAccent)
+                .also { alerter ->
+                    val tvCustomView = alerter.getLayoutContainer()?.tvCustomLayout
+                    tvCustomView?.setText(R.string.with_custom_layout)
+                }
+                .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -216,6 +228,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertSound.setOnClickListener {
             showAlertSound()
+        }
+
+        btnAlertWithCustomLayout.setOnClickListener {
+            showAlertWithCustomLayout()
         }
     }
 }

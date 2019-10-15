@@ -90,6 +90,7 @@ Alerter.create(this@DemoActivity)
        .setText("Alert text...")
        .setIcon(R.drawable.alerter_ic_mail_outline)
        .setIconColorFilter(0) // Optional - Removes white tint
+       .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
        .show()
 ```
 
@@ -225,6 +226,19 @@ Alerter.create(this@DemoActivity)
 ```
 
 ![Verbose Alert](./documentation/alert_with_buttons.gif)
+
+### With Custom Layout
+```kotlin
+ Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
+        .setBackgroundColorRes(R.color.colorAccent)
+        .also { alerter ->
+            val tvCustomView = alerter.getLayoutContainer()?.tvCustomLayout
+            tvCustomView?.setText(R.string.with_custom_layout)
+        }
+        .show()
+```
+
+![Verbose Alert](./documentation/alert_with_custom_layout.gif)
 
 ## Sample
 

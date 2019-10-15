@@ -7,20 +7,24 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 import android.os.Build
-import androidx.annotation.*
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.view.ContextThemeWrapper
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
-import android.view.*
+import android.view.HapticFeedbackConstants
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.annotation.*
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import kotlinx.android.synthetic.main.alerter_alert_default_layout.view.*
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
 
 /**
@@ -29,7 +33,10 @@ import kotlinx.android.synthetic.main.alerter_alert_view.view.*
  * @author Kevin Murphy, Tapadoo, Dublin, Ireland, Europe, Earth.
  * @since 26/01/2016
  */
-class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
+class Alert @JvmOverloads constructor(context: Context,
+                                      @LayoutRes layoutId: Int,
+                                      attrs: AttributeSet? = null,
+                                      defStyle: Int = 0)
     : FrameLayout(context, attrs, defStyle), View.OnClickListener, Animation.AnimationListener, SwipeDismissTouchListener.DismissCallbacks {
 
     private var onShowListener: OnShowAlertListener? = null
@@ -84,8 +91,14 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             tvText?.layoutParams = paramsText
         }
 
+    val layoutContainer: View? by lazy { findViewById<View>(R.id.vAlertContentContainer) }
+
     init {
         inflate(context, R.layout.alerter_alert_view, this)
+
+        vAlertContentContainer.layoutResource = layoutId
+        vAlertContentContainer.inflate()
+
         isHapticFeedbackEnabled = true
 
         ViewCompat.setTranslationZ(this, Integer.MAX_VALUE.toFloat())
@@ -191,7 +204,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                     ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
                 }
             } else {
-                flIconContainer.visibility = View.GONE
+                flIconContainer?.visibility = View.GONE
             }
         }
     }
@@ -335,8 +348,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitle(title: CharSequence) {
         if (!TextUtils.isEmpty(title)) {
-            tvTitle.visibility = View.VISIBLE
-            tvTitle.text = title
+            tvTitle?.visibility = View.VISIBLE
+            tvTitle?.text = title
         }
     }
 
@@ -347,9 +360,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTitleAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            tvTitle.setTextAppearance(textAppearance)
+            tvTitle?.setTextAppearance(textAppearance)
         } else {
-            tvTitle.setTextAppearance(tvText.context, textAppearance)
+            tvTitle?.setTextAppearance(tvText?.context, textAppearance)
         }
     }
 
@@ -359,7 +372,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTitleTypeface(typeface: Typeface) {
-        tvTitle.typeface = typeface
+        tvTitle?.typeface = typeface
     }
 
     /**
@@ -368,7 +381,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param typeface The typeface to use
      */
     fun setTextTypeface(typeface: Typeface) {
-        tvText.typeface = typeface
+        tvText?.typeface = typeface
     }
 
     /**
@@ -378,8 +391,8 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setText(text: CharSequence) {
         if (!TextUtils.isEmpty(text)) {
-            tvText.visibility = View.VISIBLE
-            tvText.text = text
+            tvText?.visibility = View.VISIBLE
+            tvText?.text = text
         }
     }
 
@@ -390,9 +403,9 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      */
     fun setTextAppearance(@StyleRes textAppearance: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            tvText.setTextAppearance(textAppearance)
+            tvText?.setTextAppearance(textAppearance)
         } else {
-            tvText.setTextAppearance(tvText.context, textAppearance)
+            tvText?.setTextAppearance(tvText?.context, textAppearance)
         }
     }
 
@@ -402,7 +415,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param iconId Drawable resource id of the icon to use in the Alert
      */
     fun setIcon(@DrawableRes iconId: Int) {
-        ivIcon.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
+        ivIcon?.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
     }
 
     /**
@@ -411,7 +424,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param color Color int
      */
     fun setIconColorFilter(@ColorInt color: Int) {
-        ivIcon.setColorFilter(color)
+        ivIcon?.setColorFilter(color)
     }
 
     /**
@@ -420,7 +433,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param colorFilter ColorFilter
      */
     fun setIconColorFilter(colorFilter: ColorFilter) {
-        ivIcon.colorFilter = colorFilter
+        ivIcon?.colorFilter = colorFilter
     }
 
     /**
@@ -430,7 +443,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param mode  PorterDuff.Mode
      */
     fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode) {
-        ivIcon.setColorFilter(color, mode)
+        ivIcon?.setColorFilter(color, mode)
     }
 
     /**
@@ -439,7 +452,7 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param bitmap Bitmap image of the icon to use in the Alert.
      */
     fun setIcon(bitmap: Bitmap) {
-        ivIcon.setImageBitmap(bitmap)
+        ivIcon?.setImageBitmap(bitmap)
     }
 
     /**
@@ -448,7 +461,31 @@ class Alert @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      * @param drawable Drawable image of the icon to use in the Alert.
      */
     fun setIcon(drawable: Drawable) {
-        ivIcon.setImageDrawable(drawable)
+        ivIcon?.setImageDrawable(drawable)
+    }
+
+    /**
+     * Set the inline icon size for the Alert
+     *
+     * @param size Dimension int.
+     */
+    fun setIconSize(@DimenRes size: Int) {
+        val pixelSize = context.resources.getDimensionPixelSize(size)
+        setIconPixelSize(pixelSize)
+    }
+
+    /**
+     * Set the inline icon size for the Alert
+     *
+     * @param size Icon size in pixel.
+     */
+    fun setIconPixelSize(@Px size: Int) {
+        ivIcon.layoutParams = ivIcon.layoutParams.apply {
+            width = size
+            height = size
+            minimumWidth = size
+            minimumHeight = size
+        }
     }
 
     /**
