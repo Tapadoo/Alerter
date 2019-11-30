@@ -52,6 +52,9 @@ class Alert @JvmOverloads constructor(context: Context,
     private var enableInfiniteDuration: Boolean = false
     private var enableProgress: Boolean = false
 
+    private var showRightIcon: Boolean = false
+    private var enableRightIconPurse = true
+
     private var runningAnimation: Runnable? = null
 
     private var isDismissable = true
@@ -196,15 +199,27 @@ class Alert @JvmOverloads constructor(context: Context,
 
             if (enableProgress) {
                 ivIcon?.visibility = View.INVISIBLE
+                ivRightIcon.visibility = View.INVISIBLE
                 pbProgress?.visibility = View.VISIBLE
-            } else if (showIcon) {
-                ivIcon?.visibility = View.VISIBLE
-                // Only pulse if we're not showing the progress
-                if (enableIconPulse) {
-                    ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
-                }
             } else {
-                flIconContainer?.visibility = View.GONE
+                if (showIcon) {
+                    ivIcon?.visibility = View.VISIBLE
+                    // Only pulse if we're not showing the progress
+                    if (enableIconPulse) {
+                        ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                    }
+                } else {
+                    flIconContainer?.visibility = View.GONE
+                }
+                if (showRightIcon) {
+                    ivRightIcon.visibility = View.VISIBLE
+
+                    if (enableRightIconPurse) {
+                        ivRightIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                    }
+                } else {
+                    flRightIconContainer.visibility = View.GONE
+                }
             }
         }
     }
@@ -498,6 +513,94 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
+     * Set the inline right icon for the Alert
+     *
+     * @param iconId Drawable resource id of the right icon to use in the Alert
+     */
+    fun setRightIcon(@DrawableRes iconId: Int) {
+        ivRightIcon?.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int) {
+        ivRightIcon?.setColorFilter(color)
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param colorFilter ColorFilter
+     */
+    fun setRightIconColorFilter(colorFilter: ColorFilter) {
+        ivRightIcon?.colorFilter = colorFilter
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     * @param mode  PorterDuff.Mode
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode) {
+        ivRightIcon?.setColorFilter(color, mode)
+    }
+
+    /**
+     * Set the inline right icon for the Alert
+     *
+     * @param bitmap Bitmap image of the right icon to use in the Alert.
+     */
+    fun setRightIcon(bitmap: Bitmap) {
+        ivRightIcon?.setImageBitmap(bitmap)
+    }
+
+    /**
+     * Set the inline right icon for the Alert
+     *
+     * @param drawable Drawable image of the right icon to use in the Alert.
+     */
+    fun setRightIcon(drawable: Drawable) {
+        ivRightIcon?.setImageDrawable(drawable)
+    }
+
+    /**
+     * Set the inline right icon size for the Alert
+     *
+     * @param size Dimension int.
+     */
+    fun setRightIconSize(@DimenRes size: Int) {
+        val pixelSize = context.resources.getDimensionPixelSize(size)
+        setRightIconPixelSize(pixelSize)
+    }
+
+    /**
+     * Set the inline right icon size for the Alert
+     *
+     * @param size Icon size in pixel.
+     */
+    fun setRightIconPixelSize(@Px size: Int) {
+        ivRightIcon.layoutParams = ivRightIcon.layoutParams.apply {
+            width = size
+            height = size
+            minimumWidth = size
+            minimumHeight = size
+        }
+    }
+
+    /**
+     * Set whether to show the right icon in the alert or not
+     *
+     * @param showRightIcon True to show the right icon, false otherwise
+     */
+    fun showRightIcon(showRightIcon: Boolean) {
+        this.showRightIcon = showRightIcon
+    }
+
+    /**
      * Set if the alerter is isDismissable or not
      *
      * @param dismissible True if alert can be dismissed
@@ -542,6 +645,15 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun pulseIcon(shouldPulse: Boolean) {
         this.enableIconPulse = shouldPulse
+    }
+
+    /**
+     * Set if the Right Icon should pulse or not
+     *
+     * @param shouldPulse True if the right icon should be animated
+     */
+    fun pulseRightIcon(shouldPulse: Boolean) {
+        this.enableRightIconPurse = shouldPulse
     }
 
     /**
