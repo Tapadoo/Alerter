@@ -2,6 +2,7 @@ package com.tapadoo.alerter.demo
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
@@ -194,6 +195,18 @@ class KotlinDemoActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun showAlertRightIconOnTop() {
+        Alerter.create(this)
+            .setText("The alert scales to accommodate larger bodies of text." +
+                "The alert scales to accommodate larger bodies of text. " +
+                "The alert scales to accommodate larger bodies of text.")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .setRightIconPosition(Gravity.TOP) // Optional - default is center
+            .showRightIcon(true)
+            .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -261,6 +274,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnShowAlertWithOnlyRightIcon.setOnClickListener {
             showAlertWithOnlyRightIcon()
+        }
+
+        btnRightIconOnTop.setOnClickListener {
+            showAlertRightIconOnTop()
         }
     }
 }
