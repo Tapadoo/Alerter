@@ -3,13 +3,18 @@ package com.tapadoo.alerter
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.ColorFilter
+import android.graphics.LightingColorFilter
+import android.graphics.PorterDuff
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
+import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
@@ -19,7 +24,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.Px
+import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
@@ -598,6 +610,23 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun showRightIcon(showRightIcon: Boolean) {
         this.showRightIcon = showRightIcon
+    }
+
+    /**
+     * Set right icon position
+     *
+     * @param position gravity of an right icon's parent. Can be: Gravity.TOP,
+     * Gravity.CENTER, Gravity.CENTER_VERTICAL or Gravity.BOTTOM
+     */
+    fun setRightIconPosition(position: Int) {
+        if (position == Gravity.TOP
+            || position == Gravity.CENTER
+            || position == Gravity.CENTER_VERTICAL
+            || position == Gravity.BOTTOM) {
+            flRightIconContainer.layoutParams = (flRightIconContainer.layoutParams as LinearLayout.LayoutParams).apply {
+                gravity = position
+            }
+        }
     }
 
     /**
