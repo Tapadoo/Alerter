@@ -181,7 +181,16 @@ class KotlinDemoActivity : AppCompatActivity() {
             .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
             .setRightIcon(R.drawable.alerter_ic_face)
             .showRightIcon(true)
-            .setRightIconSize(R.dimen.custom_icon_size)
+            .setRightIconSize(R.dimen.custom_icon_size)  // Optional - default is 38dp
+            .show()
+    }
+
+    private fun showAlertWithOnlyRightIcon() {
+        Alerter.create(this)
+            .setText("Alert text...")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
             .show()
     }
 
@@ -248,6 +257,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnShowAlertWithRightIcon.setOnClickListener {
             showAlertWithRightIcon()
+        }
+
+        btnShowAlertWithOnlyRightIcon.setOnClickListener {
+            showAlertWithOnlyRightIcon()
         }
     }
 }
