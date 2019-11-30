@@ -126,6 +126,12 @@
             android:layout_height="wrap_content"
             android:text="@string/with_custom_layout" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShowAlertWithRightIcon"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/with_right_icon" />
     </LinearLayout>
 
 </ScrollView>

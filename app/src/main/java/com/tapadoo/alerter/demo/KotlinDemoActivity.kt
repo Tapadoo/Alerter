@@ -173,6 +173,18 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertWithRightIcon() {
+        Alerter.create(this)
+            .setText("Alert text...")
+            .setIcon(R.drawable.alerter_ic_mail_outline)
+            .setIconColorFilter(0) // Optional - Removes white tint
+            .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
+            .setRightIconSize(R.dimen.custom_icon_size)
+            .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -232,6 +244,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertWithCustomLayout.setOnClickListener {
             showAlertWithCustomLayout()
+        }
+
+        btnShowAlertWithRightIcon.setOnClickListener {
+            showAlertWithRightIcon()
         }
     }
 }
