@@ -17,4 +17,6 @@
     <string name="sound_alert">Alert Sound</string>
     <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://apps.tapadoo.com\",\n  }\n}]</string>
     <string name="with_custom_layout">With Custom Layout</string>
+    <string name="default_bottom_alert">Default Bottom Alert</string>
+    <string name="default_center_alert">Default Center Alert</string>
 </resources>
