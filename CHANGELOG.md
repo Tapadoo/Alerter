@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 5.1.1 - 28/01/2020
+* Minor refactoring
+
 ## 5.1.0 - 28/01/2020
 * Added support for center or bottom gravity
 
