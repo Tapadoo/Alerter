@@ -4,6 +4,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -73,6 +75,10 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
             showAlertSwipeToDismissEnabled();
         } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound){
             showAlertSound();
+        }else if (i == com.tapadoo.alerter.demo.R.id.btnCenterAlert){
+            showAlertFromCenter();
+        }else if (i == com.tapadoo.alerter.demo.R.id.btnBottomAlert){
+            showAlertFromBottom();
         } else {
             showAlertDefault();
         }
@@ -224,4 +230,19 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .show();
     }
 
+    private void showAlertFromCenter() {
+        Alerter.create(JavaDemoActivity.this)
+                .setTitle(com.tapadoo.alerter.demo.R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.CENTER)
+                .show();
+    }
+
+    private void showAlertFromBottom() {
+        Alerter.create(JavaDemoActivity.this)
+                .setTitle(com.tapadoo.alerter.demo.R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.BOTTOM)
+                .show();
+    }
 }

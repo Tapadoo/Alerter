@@ -112,6 +112,18 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set Layout Gravity of the Alert
+     *
+     * @param layoutGravity of Alert
+     * @return This Alerter
+     */
+    fun setLayoutGravity(layoutGravity: Int): Alerter {
+        alert?.layoutGravity = layoutGravity
+
+        return this
+    }
+
+    /**
      * Set Gravity of the Alert
      *
      * @param gravity Gravity of Alert

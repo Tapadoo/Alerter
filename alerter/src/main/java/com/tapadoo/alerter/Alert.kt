@@ -10,10 +10,7 @@ import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
-import android.view.HapticFeedbackConstants
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -75,6 +72,22 @@ class Alert @JvmOverloads constructor(context: Context,
     private var soundEnabled = false
 
     /**
+     * Sets the Layout Gravity of the Alert
+     *
+     * @param layoutGravity Layout Gravity of the Alert
+     */
+    var layoutGravity = Gravity.TOP
+        set(value) {
+
+            if (value != Gravity.TOP) {
+                enterAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_in_from_bottom)
+                exitAnimation = AnimationUtils.loadAnimation(context, R.anim.alerter_slide_out_to_bottom)
+            }
+
+            field = value
+        }
+
+    /**
      * Sets the Gravity of the Alert
      *
      * @param contentGravity Gravity of the Alert
@@ -109,6 +122,24 @@ class Alert @JvmOverloads constructor(context: Context,
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
+        llAlertBackground.apply {
+
+            (layoutParams as LayoutParams).gravity = layoutGravity
+
+            if (layoutGravity != Gravity.TOP) {
+                setPadding(
+                        0, resources.getDimensionPixelSize(R.dimen.alerter_padding_default),
+                        0, resources.getDimensionPixelSize(R.dimen.alerter_alert_padding)
+                )
+            }
+        }
+
+        (layoutParams as MarginLayoutParams).apply {
+            if (layoutGravity != Gravity.TOP) {
+                bottomMargin = resources.getDimensionPixelSize(R.dimen.navigation_bar_height)
+            }
+        }
+
         enterAnimation.setAnimationListener(this)
 
         // Set Animation to be Run when View is added to Window
@@ -124,10 +155,6 @@ class Alert @JvmOverloads constructor(context: Context,
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         if (!marginSet) {
             marginSet = true
-
-            // Add a negative top margin to compensate for overshoot enter animation
-            val params = layoutParams as ViewGroup.MarginLayoutParams
-            params.topMargin = context.resources.getDimensionPixelSize(R.dimen.alerter_alert_negative_margin_top)
 
             // Check for Cutout
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
