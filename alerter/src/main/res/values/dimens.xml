@@ -23,4 +23,7 @@
     <dimen name="alerter_text_medium">18sp</dimen>
     <dimen name="alerter_alert_view_padding_top">70dp</dimen>
 
+    <!--Display sizes-->
+    <dimen name="navigation_bar_height">48dp</dimen>
+
 </resources>
