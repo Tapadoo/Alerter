@@ -6,12 +6,12 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import androidx.annotation.*
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import java.lang.ref.WeakReference
 
 /**
@@ -508,13 +508,13 @@ class Alerter private constructor() {
     }
 
     /**
-     * Set if the Alert is dismissable or not
+     * Set if the Alert is dismissible or not
      *
-     * @param dismissable true if it can be dismissed
+     * @param dismissible true if it can be dismissed
      * @return This Alerter
      */
-    fun setDismissable(dismissable: Boolean): Alerter {
-        alert?.setDismissible(dismissable)
+    fun setDismissable(dismissible: Boolean): Alerter {
+        alert?.setDismissible(dismissible)
 
         return this
     }
@@ -550,8 +550,8 @@ class Alerter private constructor() {
      * @param onClick The on click listener
      */
     fun addButton(
-        text: CharSequence, @StyleRes style: Int = R.style.AlertButton,
-        onClick: View.OnClickListener
+            text: CharSequence, @StyleRes style: Int = R.style.AlertButton,
+            onClick: View.OnClickListener
     ): Alerter {
         alert?.addButton(text, style, onClick)
 
@@ -602,19 +602,17 @@ class Alerter private constructor() {
          * Creates the Alert with custom view, and maintains a reference to the calling Activity
          *
          * @param activity The calling Activity
-         * @param customLayoutId Custom view layout res id
+         * @param layoutId Custom view layout res id
          * @return This Alerter
          */
         @JvmStatic
         fun create(activity: Activity?, @LayoutRes layoutId: Int): Alerter {
-            if (activity == null) {
-                throw IllegalArgumentException("Activity cannot be null!")
-            }
+            requireNotNull(activity) { "Activity cannot be null!" }
 
             val alerter = Alerter()
 
             //Hide current Alert, if one is active
-            Alerter.clearCurrent(activity)
+            clearCurrent(activity)
 
             alerter.setActivity(activity)
             alerter.alert = Alert(activity, layoutId)
