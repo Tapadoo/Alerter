@@ -16,7 +16,7 @@ A customisable Alert view is dynamically added to the Decor View of the Window, 
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:4.1.0'
+    implementation 'com.tapadoo.android:alerter:$current-version'
 }
 ```
 
@@ -239,10 +239,6 @@ Alerter.create(this@DemoActivity)
 ```
 
 ![Verbose Alert](./documentation/alert_with_custom_layout.gif)
-
-## Sample
-
-Clone this repo and check out the `app-base` module.
 
 ## Licence
 

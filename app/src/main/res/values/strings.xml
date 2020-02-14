@@ -19,4 +19,6 @@
     <string name="with_custom_layout">With Custom Layout</string>
     <string name="with_right_icon">With Right Icon</string>
     <string name="with_only_right_icon">With Only Right Icon</string>
+    <string name="default_bottom_alert">Default Bottom Alert</string>
+    <string name="default_center_alert">Default Center Alert</string>
 </resources>

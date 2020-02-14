@@ -2,6 +2,7 @@ package com.tapadoo.alerter.demo
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
@@ -9,7 +10,6 @@ import android.widget.Toast
 import com.tapadoo.alerter.Alerter
 import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
-import com.tapadoo.alerter.demo.R
 import kotlinx.android.synthetic.main.content_example.*
 import kotlinx.android.synthetic.main.custom_layout.view.*
 
@@ -174,7 +174,7 @@ class KotlinDemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithRightIcon() {
-        Alerter.create(this)
+        Alerter.create(this@KotlinDemoActivity)
             .setText("Alert text...")
             .setIcon(R.drawable.alerter_ic_mail_outline)
             .setIconColorFilter(0) // Optional - Removes white tint
@@ -186,12 +186,28 @@ class KotlinDemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithOnlyRightIcon() {
-        Alerter.create(this)
+        Alerter.create(this@KotlinDemoActivity)
             .setText("Alert text...")
             .showIcon(false)
             .setRightIcon(R.drawable.alerter_ic_face)
             .showRightIcon(true)
             .show()
+
+    private fun showAlertFromCenter() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.CENTER)
+                .show()
+    }
+
+
+    private fun showAlertFromBottom() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.BOTTOM)
+                .show()
     }
 
     private fun setupOnClickListeners() {
@@ -261,6 +277,14 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnShowAlertWithOnlyRightIcon.setOnClickListener {
             showAlertWithOnlyRightIcon()
+
+        btnCenterAlert.setOnClickListener {
+            showAlertFromCenter()
+        }
+
+        btnBottomAlert.setOnClickListener {
+            showAlertFromBottom()
+
         }
     }
 }
