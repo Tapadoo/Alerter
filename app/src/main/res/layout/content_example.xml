@@ -142,6 +142,25 @@
             android:text="@string/default_bottom_alert"
             android:textColor="@android:color/white" />
 
-    </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShowAlertWithRightIcon"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/with_right_icon" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShowAlertWithOnlyRightIcon"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/with_only_right_icon" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRightIconOnTop"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/right_icon_on_top" />
+    </LinearLayout>
 </ScrollView>

@@ -173,7 +173,6 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
-
     private fun showAlertFromCenter() {
         Alerter.create(this@KotlinDemoActivity)
                 .setTitle(R.string.title_activity_example)
@@ -189,6 +188,39 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setText("Alert text...")
                 .setLayoutGravity(Gravity.BOTTOM)
                 .show()
+    }
+
+    private fun showAlertWithRightIcon() {
+        Alerter.create(this@KotlinDemoActivity)
+            .setText("Alert text...")
+            .setIcon(R.drawable.alerter_ic_mail_outline)
+            .setIconColorFilter(0) // Optional - Removes white tint
+            .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
+            .setRightIconSize(R.dimen.custom_icon_size)  // Optional - default is 38dp
+            .show()
+    }
+
+    private fun showAlertWithOnlyRightIcon() {
+        Alerter.create(this@KotlinDemoActivity)
+            .setText("Alert text...")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
+            .show()
+    }
+
+    private fun showAlertRightIconOnTop() {
+        Alerter.create(this)
+            .setText("The alert scales to accommodate larger bodies of text." +
+                "The alert scales to accommodate larger bodies of text. " +
+                "The alert scales to accommodate larger bodies of text.")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .setRightIconPosition(Gravity.TOP) // Optional - default is center
+            .showRightIcon(true)
+            .show()
     }
 
     private fun setupOnClickListeners() {
@@ -258,6 +290,18 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnBottomAlert.setOnClickListener {
             showAlertFromBottom()
+        }
+
+        btnShowAlertWithRightIcon.setOnClickListener {
+            showAlertWithRightIcon()
+        }
+
+        btnShowAlertWithOnlyRightIcon.setOnClickListener {
+            showAlertWithOnlyRightIcon()
+        }
+
+        btnRightIconOnTop.setOnClickListener {
+            showAlertRightIconOnTop()
         }
     }
 }
