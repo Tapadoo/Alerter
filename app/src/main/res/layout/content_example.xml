@@ -127,6 +127,22 @@
             android:text="@string/with_custom_layout" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCenterAlert"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_center_alert"
+            android:textColor="@android:color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBottomAlert"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_bottom_alert"
+            android:textColor="@android:color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnShowAlertWithRightIcon"
             style="@style/ExampleButton"
             android:layout_width="match_parent"
@@ -147,5 +163,4 @@
             android:layout_height="wrap_content"
             android:text="@string/right_icon_on_top" />
     </LinearLayout>
-
 </ScrollView>

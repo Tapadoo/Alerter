@@ -10,7 +10,6 @@ import android.widget.Toast
 import com.tapadoo.alerter.Alerter
 import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
-import com.tapadoo.alerter.demo.R
 import kotlinx.android.synthetic.main.content_example.*
 import kotlinx.android.synthetic.main.custom_layout.view.*
 
@@ -174,6 +173,23 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertFromCenter() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.CENTER)
+                .show()
+    }
+
+
+    private fun showAlertFromBottom() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.BOTTOM)
+                .show()
+    }
+
     private fun showAlertWithRightIcon() {
         Alerter.create(this)
             .setText("Alert text...")
@@ -266,6 +282,14 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertWithCustomLayout.setOnClickListener {
             showAlertWithCustomLayout()
+        }
+
+        btnCenterAlert.setOnClickListener {
+            showAlertFromCenter()
+        }
+
+        btnBottomAlert.setOnClickListener {
+            showAlertFromBottom()
         }
 
         btnShowAlertWithRightIcon.setOnClickListener {
