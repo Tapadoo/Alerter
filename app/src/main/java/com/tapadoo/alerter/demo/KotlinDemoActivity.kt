@@ -173,6 +173,23 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertFromCenter() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.CENTER)
+                .show()
+    }
+
+
+    private fun showAlertFromBottom() {
+        Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setLayoutGravity(Gravity.BOTTOM)
+                .show()
+    }
+
     private fun showAlertWithRightIcon() {
         Alerter.create(this@KotlinDemoActivity)
             .setText("Alert text...")
@@ -192,22 +209,18 @@ class KotlinDemoActivity : AppCompatActivity() {
             .setRightIcon(R.drawable.alerter_ic_face)
             .showRightIcon(true)
             .show()
-
-    private fun showAlertFromCenter() {
-        Alerter.create(this@KotlinDemoActivity)
-                .setTitle(R.string.title_activity_example)
-                .setText("Alert text...")
-                .setLayoutGravity(Gravity.CENTER)
-                .show()
     }
 
-
-    private fun showAlertFromBottom() {
-        Alerter.create(this@KotlinDemoActivity)
-                .setTitle(R.string.title_activity_example)
-                .setText("Alert text...")
-                .setLayoutGravity(Gravity.BOTTOM)
-                .show()
+    private fun showAlertRightIconOnTop() {
+        Alerter.create(this)
+            .setText("The alert scales to accommodate larger bodies of text." +
+                "The alert scales to accommodate larger bodies of text. " +
+                "The alert scales to accommodate larger bodies of text.")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .setRightIconPosition(Gravity.TOP) // Optional - default is center
+            .showRightIcon(true)
+            .show()
     }
 
     private fun setupOnClickListeners() {
@@ -271,20 +284,24 @@ class KotlinDemoActivity : AppCompatActivity() {
             showAlertWithCustomLayout()
         }
 
-        btnShowAlertWithRightIcon.setOnClickListener {
-            showAlertWithRightIcon()
-        }
-
-        btnShowAlertWithOnlyRightIcon.setOnClickListener {
-            showAlertWithOnlyRightIcon()
-
         btnCenterAlert.setOnClickListener {
             showAlertFromCenter()
         }
 
         btnBottomAlert.setOnClickListener {
             showAlertFromBottom()
+        }
 
+        btnShowAlertWithRightIcon.setOnClickListener {
+            showAlertWithRightIcon()
+        }
+
+        btnShowAlertWithOnlyRightIcon.setOnClickListener {
+            showAlertWithOnlyRightIcon()
+        }
+
+        btnRightIconOnTop.setOnClickListener {
+            showAlertRightIconOnTop()
         }
     }
 }

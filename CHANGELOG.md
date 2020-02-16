@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 5.1.2 - 16/02/2020
+* Added support for rightIcon.
+
 ## 5.1.1 - 28/01/2020
 * Minor refactoring
 

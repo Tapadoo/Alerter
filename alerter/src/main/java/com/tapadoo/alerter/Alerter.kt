@@ -439,6 +439,18 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set the right icons's position for the Alert
+     *
+     * @param gravity Gravity int
+     * @return This Alerter
+     */
+    fun setRightIconPosition(gravity: Int): Alerter {
+        alert?.setRightIconPosition(gravity)
+
+        return this
+    }
+
+    /**
      * Set the onClickListener for the Alert
      *
      * @param onClickListener The onClickListener for the Alert

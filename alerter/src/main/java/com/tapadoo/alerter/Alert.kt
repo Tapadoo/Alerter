@@ -232,7 +232,7 @@ class Alert @JvmOverloads constructor(context: Context,
 
             if (enableProgress) {
                 ivIcon?.visibility = View.INVISIBLE
-                ivRightIcon.visibility = View.INVISIBLE
+                ivRightIcon?.visibility = View.INVISIBLE
                 pbProgress?.visibility = View.VISIBLE
             } else {
                 if (showIcon) {
@@ -245,13 +245,13 @@ class Alert @JvmOverloads constructor(context: Context,
                     flIconContainer?.visibility = View.GONE
                 }
                 if (showRightIcon) {
-                    ivRightIcon.visibility = View.VISIBLE
+                    ivRightIcon?.visibility = View.VISIBLE
 
                     if (enableRightIconPurse) {
                         ivRightIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
                     }
                 } else {
-                    flRightIconContainer.visibility = View.GONE
+                    flRightIconContainer?.visibility = View.GONE
                 }
             }
         }
@@ -630,7 +630,24 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
-     * Set if the alerter is isDismissable or not
+     * Set right icon position
+     *
+     * @param position gravity of an right icon's parent. Can be: Gravity.TOP,
+     * Gravity.CENTER, Gravity.CENTER_VERTICAL or Gravity.BOTTOM
+     */
+    fun setRightIconPosition(position: Int) {
+        if (position == Gravity.TOP
+            || position == Gravity.CENTER
+            || position == Gravity.CENTER_VERTICAL
+            || position == Gravity.BOTTOM) {
+            flRightIconContainer.layoutParams = (flRightIconContainer.layoutParams as LinearLayout.LayoutParams).apply {
+                gravity = position
+            }
+        }
+    }
+
+    /**
+     * Set if the alerter is isDismissible or not
      *
      * @param dismissible True if alert can be dismissed
      */
