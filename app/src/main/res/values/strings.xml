@@ -22,4 +22,5 @@
     <string name="with_right_icon">With Right Icon</string>
     <string name="with_only_right_icon">With Only Right Icon</string>
     <string name="right_icon_on_top">Right icon on top</string>
+    <string name="text_and_icon_horizontal">Center Horizontal icon and text </string>
 </resources>

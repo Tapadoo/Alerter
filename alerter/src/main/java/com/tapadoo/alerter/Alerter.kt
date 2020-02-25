@@ -135,6 +135,12 @@ class Alerter private constructor() {
         return this
     }
 
+
+    fun centerImageAndTextHorizontally(): Alerter {
+        alert?.centerImageAndTextHorizontally()
+        return this
+    }
+
     /**
      * Sets the Alert Text
      *

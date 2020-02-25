@@ -305,6 +305,22 @@ class Alert @JvmOverloads constructor(context: Context,
         }
     }
 
+
+    /**
+     * set the gravity to the icon and the text to be center horizontal for the default view
+     */
+    fun centerImageAndTextHorizontally() {
+        (llContainer?.layoutParams as? LinearLayout.LayoutParams)?.apply {
+            gravity = Gravity.CENTER
+            height = LinearLayout.LayoutParams.MATCH_PARENT
+        }
+
+        (llTextContainer?.layoutParams as? LinearLayout.LayoutParams)?.apply {
+            width = LinearLayout.LayoutParams.WRAP_CONTENT
+            weight = 0.0F
+        }
+    }
+
     /**
      * Removes Alert View from its Parent Layout
      */
@@ -637,9 +653,9 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun setRightIconPosition(position: Int) {
         if (position == Gravity.TOP
-            || position == Gravity.CENTER
-            || position == Gravity.CENTER_VERTICAL
-            || position == Gravity.BOTTOM) {
+                || position == Gravity.CENTER
+                || position == Gravity.CENTER_VERTICAL
+                || position == Gravity.BOTTOM) {
             flRightIconContainer.layoutParams = (flRightIconContainer.layoutParams as LinearLayout.LayoutParams).apply {
                 gravity = position
             }

@@ -223,6 +223,17 @@ class KotlinDemoActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun centerTextAndIcon(){
+        Alerter.create(this)
+                .setText("short title")
+                .showIcon(true)
+                .setRightIcon(R.drawable.alerter_ic_face)
+                .centerImageAndTextHorizontally()
+                .showRightIcon(true)
+                .show()
+    }
+
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -302,6 +313,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnRightIconOnTop.setOnClickListener {
             showAlertRightIconOnTop()
+        }
+
+        btnImageAndTextHorizontalCenter.setOnClickListener {
+            centerTextAndIcon()
         }
     }
 }
