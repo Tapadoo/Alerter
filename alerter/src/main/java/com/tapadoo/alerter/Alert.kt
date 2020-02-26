@@ -312,7 +312,6 @@ class Alert @JvmOverloads constructor(context: Context,
     fun centerImageAndTextHorizontally() {
         (llContainer?.layoutParams as? LinearLayout.LayoutParams)?.apply {
             gravity = Gravity.CENTER
-            height = LinearLayout.LayoutParams.MATCH_PARENT
         }
 
         (llTextContainer?.layoutParams as? LinearLayout.LayoutParams)?.apply {
