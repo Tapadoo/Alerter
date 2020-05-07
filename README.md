@@ -10,7 +10,7 @@ complexity of your layouts.
 ## General
 
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
-A customisable Alert view is dynamically added to the Decor View of the Window, overlaying all content. 
+A customisable Alert View is dynamically added to the Decor View of the Window, overlaying all content. 
 
 ## Gradle
 
