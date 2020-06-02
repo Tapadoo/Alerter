@@ -136,8 +136,8 @@ class Alert @JvmOverloads constructor(context: Context,
 
             if (layoutGravity != Gravity.TOP) {
                 setPadding(
-                        0, getDimenPixelSize(R.dimen.alerter_padding_default),
-                        0, getDimenPixelSize(R.dimen.alerter_alert_padding)
+                        paddingLeft, getDimenPixelSize(R.dimen.alerter_padding_default),
+                        paddingRight, getDimenPixelSize(R.dimen.alerter_alert_padding)
                 )
             }
         }
