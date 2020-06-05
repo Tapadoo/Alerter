@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 5.1.3 - 06/06/2020
+* Bug Fixes
+
 ## 5.1.2 - 16/02/2020
 * Added support for rightIcon.
 
@@ -67,7 +70,7 @@ All notable changes to this project will be documented in this file.
 * Added isShowing method
 * Added additional icon setting methods
 * Added styling methods
-* added progress bar
+* Added progress bar
 
 ## 1.0.9 - 27/06/2017
 * Added Swipe to Dismiss
