@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.1.4 - 26/06/2020
+## 6.0.0 - 27/06/2020
 * Support custom sound
 
 ## 5.1.3 - 06/06/2020
