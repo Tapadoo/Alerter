@@ -1,6 +1,7 @@
 package com.tapadoo.alerter.demo;
 
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -226,7 +227,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
-                .enableSound(true)
+                .setSound(Uri.parse("android.resource://"+getPackageName()+"/raw/ringtone"))
                 .show();
     }
 

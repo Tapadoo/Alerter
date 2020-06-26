@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -74,9 +75,9 @@ class Alert @JvmOverloads constructor(context: Context,
     private var vibrationEnabled = true
 
     /**
-     * Flag to enable / disable sound
+     * Uri to set sound
      */
-    private var soundEnabled = false
+    private var soundUri : Uri? = null
 
     /**
      * Sets the Layout Gravity of the Alert
@@ -219,15 +220,9 @@ class Alert @JvmOverloads constructor(context: Context,
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-
-            if (soundEnabled) {
-                try {
-                    val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                    val r = RingtoneManager.getRingtone(context, notification)
-                    r.play()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            soundUri?.let {
+                val r = RingtoneManager.getRingtone(context, soundUri)
+                r.play()
             }
 
             if (enableProgress) {
@@ -757,12 +752,12 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
-     * Enable or Disable sound
+     * Set sound Uri
      *
-     * @param soundEnabled True to enable, false to disable
+     * @param soundUri To set sound Uri (raw folder)
      */
-    fun setSoundEnabled(soundEnabled: Boolean) {
-        this.soundEnabled = soundEnabled
+    fun setSound(soundUri: Uri?) {
+        this.soundUri = soundUri
     }
 
     /**
