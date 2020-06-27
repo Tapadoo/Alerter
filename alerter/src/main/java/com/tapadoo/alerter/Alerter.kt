@@ -6,6 +6,8 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.media.RingtoneManager
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -582,17 +584,18 @@ class Alerter private constructor() {
     }
 
     /**
-     * Enable or Disable Sound
+     * Set sound Uri
+     * if set null, sound will be disabled
      *
-     * @param enable True to enable, False to disable
+     * @param uri To set sound Uri (raw folder)
      * @return This Alerter
      */
-    fun enableSound(enable: Boolean): Alerter {
-        alert?.setSoundEnabled(enable)
+    @JvmOverloads
+    fun setSound(uri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)): Alerter {
+        alert?.setSound(uri)
 
         return this
     }
-
     /**
      * Disable touch events outside of the Alert
      *
