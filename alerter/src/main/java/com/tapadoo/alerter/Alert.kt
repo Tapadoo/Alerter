@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.ContextThemeWrapper
@@ -77,7 +78,7 @@ class Alert @JvmOverloads constructor(context: Context,
     /**
      * Uri to set sound
      */
-    private var soundUri : Uri? = null
+    private var soundUri: Uri? = null
 
     /**
      * Sets the Layout Gravity of the Alert
@@ -632,9 +633,9 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun setRightIconPosition(position: Int) {
         if (position == Gravity.TOP
-            || position == Gravity.CENTER
-            || position == Gravity.CENTER_VERTICAL
-            || position == Gravity.BOTTOM) {
+                || position == Gravity.CENTER
+                || position == Gravity.CENTER_VERTICAL
+                || position == Gravity.BOTTOM) {
             flRightIconContainer.layoutParams = (flRightIconContainer.layoutParams as LinearLayout.LayoutParams).apply {
                 gravity = position
             }
@@ -778,6 +779,20 @@ class Alert @JvmOverloads constructor(context: Context,
         llAlertBackground?.apply {
             this.setPadding(this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom / 2)
         }
+    }
+
+    /**
+     * @return the TextView for the title
+     */
+    fun getTitle(): TextView {
+        return tvTitle
+    }
+
+    /**
+     * @return the TextView for the text
+     */
+    fun getText(): TextView {
+        return tvText
     }
 
     override fun canDismiss(): Boolean {

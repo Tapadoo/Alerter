@@ -1,5 +1,6 @@
 package com.tapadoo.alerter.demo
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
@@ -120,6 +121,15 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTextAppearance(R.style.AlertTextAppearance_Text)
                 .setTextTypeface(Typeface.createFromAsset(assets, "ScopeOne-Regular.ttf"))
                 .show()
+    }
+
+    private fun showAlertWithCustomColor() {
+        var alert = Alerter.create(this@KotlinDemoActivity)
+                .setTitle("Yellow Alert Title")
+                .setText("Red Alert text...")
+                .show()
+        alert?.getTitle()?.setTextColor(Color.YELLOW)
+        alert?.getText()?.setTextColor(Color.RED)
     }
 
     private fun showAlertSwipeToDismissEnabled() {
@@ -263,6 +273,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnAlertWithCustomFont.setOnClickListener {
             showAlertWithCustomFont()
+        }
+
+        btnAlertWithCustomColor.setOnClickListener {
+            showAlertWithCustomColor()
         }
 
         btnAlertSwipeToDismissEnabled.setOnClickListener {
