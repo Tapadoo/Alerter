@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.1.1 - 03/06/2020
+* Updated negative margin to fix overshoot on Samsung S10
+
 ## 6.1.0 - 27/06/2020
 * Readded getters for title & text TextView
 
