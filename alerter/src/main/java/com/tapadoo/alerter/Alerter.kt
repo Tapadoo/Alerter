@@ -525,6 +525,17 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set whether to show the animation on focus/pressed states
+     *
+     * @param enabled True to show the animation, false otherwise
+     */
+    fun enableClickAnimation(enabled: Boolean): Alerter {
+        alert?.enableClickAnimation(enabled)
+
+        return this
+    }
+
+    /**
      * Enable or disable infinite duration of the alert
      *
      * @param infiniteDuration True if the duration of the alert is infinite

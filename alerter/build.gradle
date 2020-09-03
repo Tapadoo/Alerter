@@ -14,7 +14,7 @@ apply from: rootProject.file('quality.gradle')
 
 final String GROUP_ID = "com.tapadoo.android"
 
-final String VERSION = "6.1.0"
+final String VERSION = "6.2.0"
 
 final String DESCRIPTION = "An Android Alerting Library"
 final String GITHUB_URL = "https://github.com/Tapadoo/Alerter"

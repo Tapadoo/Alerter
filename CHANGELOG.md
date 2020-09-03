@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.2.0 - 03/09/2020
+* Added the ability to enable\disable click animation
+
 ## 6.1.0 - 27/06/2020
 * Readded getters for title & text TextView
 
