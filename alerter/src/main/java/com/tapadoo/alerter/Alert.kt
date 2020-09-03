@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.TextViewCompat
 import com.tapadoo.alerter.utils.getDimenPixelSize
+import com.tapadoo.alerter.utils.getRippleDrawable
 import com.tapadoo.alerter.utils.notchHeight
 import kotlinx.android.synthetic.main.alerter_alert_default_layout.view.*
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
@@ -56,6 +57,7 @@ class Alert @JvmOverloads constructor(context: Context,
     private var enableProgress: Boolean = false
 
     private var showRightIcon: Boolean = false
+    private var enableClickAnimation: Boolean = true
     private var enableRightIconPurse = true
 
     private var runningAnimation: Runnable? = null
@@ -133,6 +135,13 @@ class Alert @JvmOverloads constructor(context: Context,
         super.onAttachedToWindow()
 
         llAlertBackground.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                foreground = if (enableClickAnimation.not()) {
+                    null
+                } else {
+                    context.getRippleDrawable()
+                }
+            }
 
             (layoutParams as LayoutParams).gravity = layoutGravity
 
@@ -623,6 +632,15 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun showRightIcon(showRightIcon: Boolean) {
         this.showRightIcon = showRightIcon
+    }
+
+    /**
+     * Set whether to show the animation on focus/pressed states
+     *
+     * @param enabled True to show the animation, false otherwise
+     */
+    fun enableClickAnimation(enabled: Boolean) {
+        this.enableClickAnimation = enabled
     }
 
     /**
