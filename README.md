@@ -246,4 +246,4 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 Copyright 2017 Tapadoo, Dublin.
 
-![Alt Text](https://tapadoo.com/wp-content/themes/tapadoo/assets/images/tapadoo_logo_dark.png)
+![Alt Text](https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png)
