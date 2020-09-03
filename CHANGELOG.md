@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.2.1 - 03/06/2020
+## 6.2.1 - 03/09/2020
 * Updated negative margin to fix overshoot on Samsung S10
 
 ## 6.2.0 - 03/09/2020
