@@ -7,6 +7,11 @@ complexity of your layouts.
 
 ![Header](./documentation/header.gif)
 
+<video style="width:100%" controls>
+  <source src="./documentation/header.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
 ## General
 
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
@@ -246,4 +251,4 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 Copyright 2017 Tapadoo, Dublin.
 
-<img src="https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png" width="100"/>
+<img src="https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png" width="200"/>
