@@ -240,6 +240,10 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_with_custom_layout.gif)
 
+# Contributing & Reporting Issues
+
+[Please read this if you're reporting an issue, or thinking of contributing!](./CONTRIBUTING.md)
+
 ## Licence
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
