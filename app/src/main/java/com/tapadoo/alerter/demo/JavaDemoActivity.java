@@ -2,6 +2,7 @@ package com.tapadoo.alerter.demo;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -41,6 +42,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertWithCustomFont).setOnClickListener(this);
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled).setOnClickListener(this);
         findViewById(com.tapadoo.alerter.demo.R.id.btnAlertSound).setOnClickListener(this);
+        findViewById(com.tapadoo.alerter.demo.R.id.btnShowAlertWithOverlay).setOnClickListener(this);
     }
 
     @Override
@@ -73,12 +75,14 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
             showAlertWithCustomFont();
         } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled) {
             showAlertSwipeToDismissEnabled();
-        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound) {
             showAlertSound();
-        }else if (i == com.tapadoo.alerter.demo.R.id.btnCenterAlert){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnCenterAlert) {
             showAlertFromCenter();
-        }else if (i == com.tapadoo.alerter.demo.R.id.btnBottomAlert){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnBottomAlert) {
             showAlertFromBottom();
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnShowAlertWithOverlay) {
+            showAlerterWithOverlay();
         } else {
             showAlertDefault();
         }
@@ -132,12 +136,12 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text.")
+                        "The alert scales to accommodate larger bodies of text. " +
+                        "The alert scales to accommodate larger bodies of text.")
                 .show();
     }
 
-    private void showAlertCallbacks(){
+    private void showAlertCallbacks() {
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
@@ -243,6 +247,16 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .setTitle(com.tapadoo.alerter.demo.R.string.title_activity_example)
                 .setText("Alert text...")
                 .setLayoutGravity(Gravity.BOTTOM)
+                .show();
+    }
+
+    private void showAlerterWithOverlay() {
+        Alerter.create(JavaDemoActivity.this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableOverlay(true)
+                .setOverlayBackground(R.color.alert_overlay_color)
+                .setBackgroundColorRes(com.tapadoo.alerter.demo.R.color.colorAccent)
                 .show();
     }
 }

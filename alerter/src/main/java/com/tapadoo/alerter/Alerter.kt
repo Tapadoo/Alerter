@@ -583,6 +583,31 @@ class Alerter private constructor() {
         activityWeakReference = WeakReference(activity)
     }
 
+
+    /**
+     * Set the overlay background color from a color resource
+     *
+     * @param color The color resource
+     * @return This Alerter
+     */
+    fun setOverlayBackground(@ColorRes colorResId: Int): Alerter {
+        activityWeakReference?.get()?.let {
+            alert?.setOverlayBackgroundColor(ContextCompat.getColor(it, colorResId))
+        }
+        return this
+    }
+
+    /**
+     * Enable or disable overlay background
+     *
+     * @param enable True to enable, False to disable
+     * @return This Alerter
+     */
+    fun enableOverlay(enable: Boolean): Alerter {
+        alert?.enableOverlay(enable)
+        return this
+    }
+
     companion object {
 
         private var activityWeakReference: WeakReference<Activity>? = null

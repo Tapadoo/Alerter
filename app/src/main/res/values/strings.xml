@@ -19,4 +19,5 @@
     <string name="with_custom_layout">With Custom Layout</string>
     <string name="default_bottom_alert">Default Bottom Alert</string>
     <string name="default_center_alert">Default Center Alert</string>
+    <string name="with_overlay">With overlay</string>
 </resources>
