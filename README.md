@@ -5,7 +5,7 @@ complexity of your layouts.
 
 [![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg)](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23245-blue.svg)](http://androidweekly.net/issues/issue-245)
 
-[![Header](./documentation/header.png)](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
+[![Header](./documentation/header.gif)]
 
 ## General
 
@@ -246,4 +246,4 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 Copyright 2017 Tapadoo, Dublin.
 
-![Alt Text](https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png)
+![Alt Text](https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png =250x)
