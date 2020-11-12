@@ -5,7 +5,7 @@ complexity of your layouts.
 
 [![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg)](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23245-blue.svg)](http://androidweekly.net/issues/issue-245)
 
-![Header](./documentation/header.gif)
+![Header](./documentation/header_transparent.png)
 
 ## General
 
