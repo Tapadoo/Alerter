@@ -191,6 +191,16 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlerterWithOverlay() {
+        Alerter.create(this)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .enableOverlay(true)
+                .setOverlayBackground(R.color.alert_overlay_color)
+                .setBackgroundColorRes(R.color.colorAccent)
+                .show()
+    }
+
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
@@ -258,6 +268,10 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnBottomAlert.setOnClickListener {
             showAlertFromBottom()
+        }
+
+        btnShowAlertWithOverlay.setOnClickListener {
+            showAlerterWithOverlay()
         }
     }
 }

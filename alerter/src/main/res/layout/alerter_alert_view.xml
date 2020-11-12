@@ -7,6 +7,16 @@
     android:background="@android:color/transparent"
     android:clickable="false">
 
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/alert_default_overlay_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/llAlertBackground"
         style="@style/AlertStyle"
