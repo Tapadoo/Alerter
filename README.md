@@ -7,9 +7,7 @@ complexity of your layouts.
 
 ![Header](./documentation/header.gif)
 
-<video style="width:100%" controls>
-  <source src="./documentation/header.mp4" type="video/mp4">
-Your browser does not support the video tag.
+<video style="width:100%" controls  src="./documentation/header.mp4" type="video/mp4">
 </video>
 
 ## General
