@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -16,6 +17,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.ContextThemeWrapper
@@ -23,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.TextViewCompat
 import com.tapadoo.alerter.utils.getDimenPixelSize
+import com.tapadoo.alerter.utils.getRippleDrawable
 import com.tapadoo.alerter.utils.notchHeight
 import kotlinx.android.synthetic.main.alerter_alert_default_layout.view.*
 import kotlinx.android.synthetic.main.alerter_alert_view.view.*
@@ -53,6 +56,10 @@ class Alert @JvmOverloads constructor(context: Context,
     private var enableInfiniteDuration: Boolean = false
     private var enableProgress: Boolean = false
 
+    private var showRightIcon: Boolean = false
+    private var enableClickAnimation: Boolean = true
+    private var enableRightIconPurse = true
+
     private var runningAnimation: Runnable? = null
 
     private var isDismissible = true
@@ -71,9 +78,9 @@ class Alert @JvmOverloads constructor(context: Context,
     private var vibrationEnabled = true
 
     /**
-     * Flag to enable / disable sound
+     * Uri to set sound
      */
-    private var soundEnabled = false
+    private var soundUri: Uri? = null
 
     /**
      * Sets the Layout Gravity of the Alert
@@ -128,13 +135,20 @@ class Alert @JvmOverloads constructor(context: Context,
         super.onAttachedToWindow()
 
         llAlertBackground.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                foreground = if (enableClickAnimation.not()) {
+                    null
+                } else {
+                    context.getRippleDrawable()
+                }
+            }
 
             (layoutParams as LayoutParams).gravity = layoutGravity
 
             if (layoutGravity != Gravity.TOP) {
                 setPadding(
-                        0, getDimenPixelSize(R.dimen.alerter_padding_default),
-                        0, getDimenPixelSize(R.dimen.alerter_alert_padding)
+                        paddingLeft, getDimenPixelSize(R.dimen.alerter_padding_default),
+                        paddingRight, getDimenPixelSize(R.dimen.alerter_alert_padding)
                 )
             }
         }
@@ -216,28 +230,34 @@ class Alert @JvmOverloads constructor(context: Context,
             if (vibrationEnabled) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-
-            if (soundEnabled) {
-                try {
-                    val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                    val r = RingtoneManager.getRingtone(context, notification)
-                    r.play()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            soundUri?.let {
+                val r = RingtoneManager.getRingtone(context, soundUri)
+                r.play()
             }
 
             if (enableProgress) {
                 ivIcon?.visibility = View.INVISIBLE
+                ivRightIcon?.visibility = View.INVISIBLE
                 pbProgress?.visibility = View.VISIBLE
-            } else if (showIcon) {
-                ivIcon?.visibility = View.VISIBLE
-                // Only pulse if we're not showing the progress
-                if (enableIconPulse) {
-                    ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
-                }
             } else {
-                flIconContainer?.visibility = View.GONE
+                if (showIcon) {
+                    ivIcon?.visibility = View.VISIBLE
+                    // Only pulse if we're not showing the progress
+                    if (enableIconPulse) {
+                        ivIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                    }
+                } else {
+                    flIconContainer?.visibility = View.GONE
+                }
+                if (showRightIcon) {
+                    ivRightIcon?.visibility = View.VISIBLE
+
+                    if (enableRightIconPurse) {
+                        ivRightIcon?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alerter_pulse))
+                    }
+                } else {
+                    flRightIconContainer?.visibility = View.GONE
+                }
             }
         }
     }
@@ -527,6 +547,120 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
+     * Set the inline right icon for the Alert
+     *
+     * @param iconId Drawable resource id of the right icon to use in the Alert
+     */
+    fun setRightIcon(@DrawableRes iconId: Int) {
+        ivRightIcon?.setImageDrawable(AppCompatResources.getDrawable(context, iconId))
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int) {
+        ivRightIcon?.setColorFilter(color)
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param colorFilter ColorFilter
+     */
+    fun setRightIconColorFilter(colorFilter: ColorFilter) {
+        ivRightIcon?.colorFilter = colorFilter
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     * @param mode  PorterDuff.Mode
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode) {
+        ivRightIcon?.setColorFilter(color, mode)
+    }
+
+    /**
+     * Set the inline right icon for the Alert
+     *
+     * @param bitmap Bitmap image of the right icon to use in the Alert.
+     */
+    fun setRightIcon(bitmap: Bitmap) {
+        ivRightIcon?.setImageBitmap(bitmap)
+    }
+
+    /**
+     * Set the inline right icon for the Alert
+     *
+     * @param drawable Drawable image of the right icon to use in the Alert.
+     */
+    fun setRightIcon(drawable: Drawable) {
+        ivRightIcon?.setImageDrawable(drawable)
+    }
+
+    /**
+     * Set the inline right icon size for the Alert
+     *
+     * @param size Dimension int.
+     */
+    fun setRightIconSize(@DimenRes size: Int) {
+        val pixelSize = context.resources.getDimensionPixelSize(size)
+        setRightIconPixelSize(pixelSize)
+    }
+
+    /**
+     * Set the inline right icon size for the Alert
+     *
+     * @param size Icon size in pixel.
+     */
+    fun setRightIconPixelSize(@Px size: Int) {
+        ivRightIcon.layoutParams = ivRightIcon.layoutParams.apply {
+            width = size
+            height = size
+            minimumWidth = size
+            minimumHeight = size
+        }
+    }
+
+    /**
+     * Set whether to show the right icon in the alert or not
+     *
+     * @param showRightIcon True to show the right icon, false otherwise
+     */
+    fun showRightIcon(showRightIcon: Boolean) {
+        this.showRightIcon = showRightIcon
+    }
+
+    /**
+     * Set whether to show the animation on focus/pressed states
+     *
+     * @param enabled True to show the animation, false otherwise
+     */
+    fun enableClickAnimation(enabled: Boolean) {
+        this.enableClickAnimation = enabled
+    }
+
+    /**
+     * Set right icon position
+     *
+     * @param position gravity of an right icon's parent. Can be: Gravity.TOP,
+     * Gravity.CENTER, Gravity.CENTER_VERTICAL or Gravity.BOTTOM
+     */
+    fun setRightIconPosition(position: Int) {
+        if (position == Gravity.TOP
+                || position == Gravity.CENTER
+                || position == Gravity.CENTER_VERTICAL
+                || position == Gravity.BOTTOM) {
+            flRightIconContainer.layoutParams = (flRightIconContainer.layoutParams as LinearLayout.LayoutParams).apply {
+                gravity = position
+            }
+        }
+    }
+
+    /**
      * Set if the alerter is isDismissible or not
      *
      * @param dismissible True if alert can be dismissed
@@ -571,6 +705,15 @@ class Alert @JvmOverloads constructor(context: Context,
      */
     fun pulseIcon(shouldPulse: Boolean) {
         this.enableIconPulse = shouldPulse
+    }
+
+    /**
+     * Set if the Right Icon should pulse or not
+     *
+     * @param shouldPulse True if the right icon should be animated
+     */
+    fun pulseRightIcon(shouldPulse: Boolean) {
+        this.enableRightIconPurse = shouldPulse
     }
 
     /**
@@ -628,12 +771,12 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
-     * Enable or Disable sound
+     * Set sound Uri
      *
-     * @param soundEnabled True to enable, false to disable
+     * @param soundUri To set sound Uri (raw folder)
      */
-    fun setSoundEnabled(soundEnabled: Boolean) {
-        this.soundEnabled = soundEnabled
+    fun setSound(soundUri: Uri?) {
+        this.soundUri = soundUri
     }
 
     /**
@@ -654,6 +797,20 @@ class Alert @JvmOverloads constructor(context: Context,
         llAlertBackground?.apply {
             this.setPadding(this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom / 2)
         }
+    }
+
+    /**
+     * @return the TextView for the title
+     */
+    fun getTitle(): TextView {
+        return tvTitle
+    }
+
+    /**
+     * @return the TextView for the text
+     */
+    fun getText(): TextView {
+        return tvText
     }
 
     override fun canDismiss(): Boolean {

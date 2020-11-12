@@ -5,18 +5,18 @@ complexity of your layouts.
 
 [![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg)](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23245-blue.svg)](http://androidweekly.net/issues/issue-245)
 
-[![Header](./documentation/header.png)](https://play.google.com/store/apps/details?id=com.tapadoo.alerter_demo)
+![Header](./documentation/header.png)
 
 ## General
 
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
-A customisable Alert view is dynamically added to the Decor View of the Window, overlaying all content. 
+A customisable Alert View is dynamically added to the Decor View of the Window, overlaying all content. 
 
 ## Gradle
 
 ```groovy
 dependencies {
-    implementation 'com.tapadoo.android:alerter:4.1.0'
+    implementation 'com.tapadoo.android:alerter:$current-version'
 }
 ```
 
@@ -240,9 +240,9 @@ Alerter.create(this@DemoActivity)
 
 ![Verbose Alert](./documentation/alert_with_custom_layout.gif)
 
-## Sample
+# Contributing & Reporting Issues
 
-Clone this repo and check out the `app-base` module.
+[Please read this if you're reporting an issue, or thinking of contributing!](./CONTRIBUTING.md)
 
 ## Licence
 
@@ -250,4 +250,4 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 Copyright 2017 Tapadoo, Dublin.
 
-![Alt Text](https://tapadoo.com/wp-content/themes/tapadoo/assets/images/tapadoo_logo_dark.png)
+<img src="https://2upm2b1wdft320vzjj34rpga-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/logo-tapadoo-dark.png" width="200"/>

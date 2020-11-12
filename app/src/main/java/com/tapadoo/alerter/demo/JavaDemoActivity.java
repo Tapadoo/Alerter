@@ -1,7 +1,10 @@
 package com.tapadoo.alerter.demo;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -9,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alert;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
@@ -71,13 +75,15 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
             showAlertWithProgress();
         } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertWithCustomFont) {
             showAlertWithCustomFont();
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertWithCustomColor) {
+            showAlertWithCustomColor();
         } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSwipeToDismissEnabled) {
             showAlertSwipeToDismissEnabled();
-        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnAlertSound) {
             showAlertSound();
-        }else if (i == com.tapadoo.alerter.demo.R.id.btnCenterAlert){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnCenterAlert) {
             showAlertFromCenter();
-        }else if (i == com.tapadoo.alerter.demo.R.id.btnBottomAlert){
+        } else if (i == com.tapadoo.alerter.demo.R.id.btnBottomAlert) {
             showAlertFromBottom();
         } else {
             showAlertDefault();
@@ -132,12 +138,12 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text. " +
-                         "The alert scales to accommodate larger bodies of text.")
+                        "The alert scales to accommodate larger bodies of text. " +
+                        "The alert scales to accommodate larger bodies of text.")
                 .show();
     }
 
-    private void showAlertCallbacks(){
+    private void showAlertCallbacks() {
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
@@ -185,6 +191,15 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .show();
     }
 
+    private void showAlertWithCustomColor() {
+        Alert alert = Alerter.create(JavaDemoActivity.this)
+                .setTitle("Yellow Alert Title")
+                .setText("Red Alert text...")
+                .show();
+        alert.getTitle().setTextColor(Color.YELLOW);
+        alert.getText().setTextColor(Color.RED);
+    }
+
     private void showAlertSwipeToDismissEnabled() {
         Alerter.create(JavaDemoActivity.this)
                 .setTitle("Alert Title")
@@ -226,7 +241,7 @@ public class JavaDemoActivity extends AppCompatActivity implements View.OnClickL
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
-                .enableSound(true)
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/raw/ringtone"))
                 .show();
     }
 

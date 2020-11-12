@@ -8,6 +8,7 @@
 	android:clipToPadding="false"
 	tools:background="@android:color/darker_gray"
 	tools:foreground="?android:attr/selectableItemBackground"
+	android:orientation="horizontal"
 	tools:style="@style/AlertStyle">
 
 	<FrameLayout
@@ -39,7 +40,8 @@
 	</FrameLayout>
 
 	<LinearLayout
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
+		android:layout_weight="1"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
 		android:orientation="vertical">
@@ -75,4 +77,22 @@
 			tools:visibility="visible" />
 
 	</LinearLayout>
+
+	<FrameLayout
+		android:id="@+id/flRightIconContainer"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/ivRightIcon"
+			android:layout_width="@dimen/alerter_alert_icn_size"
+			android:layout_height="@dimen/alerter_alert_icn_size"
+			android:maxWidth="@dimen/alerter_alert_icn_size"
+			android:maxHeight="@dimen/alerter_alert_icn_size"
+			android:visibility="gone"
+			app:srcCompat="@drawable/alerter_ic_notifications"
+			app:tint="@color/alert_default_icon_color"
+			tools:visibility="visible" />
+	</FrameLayout>
 </LinearLayout>

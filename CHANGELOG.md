@@ -1,6 +1,24 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.2.1 - 03/09/2020
+* Updated negative margin to fix overshoot on Samsung S10
+
+## 6.2.0 - 03/09/2020
+* Added the ability to enable\disable click animation
+
+## 6.1.0 - 27/06/2020
+* Readded getters for title & text TextView
+
+## 6.0.0 - 27/06/2020
+* Support custom sound
+
+## 5.1.3 - 06/06/2020
+* Bug Fixes
+
+## 5.1.2 - 16/02/2020
+* Added support for rightIcon.
+
 ## 5.1.1 - 28/01/2020
 * Minor refactoring
 
@@ -64,7 +82,7 @@ All notable changes to this project will be documented in this file.
 * Added isShowing method
 * Added additional icon setting methods
 * Added styling methods
-* added progress bar
+* Added progress bar
 
 ## 1.0.9 - 27/06/2017
 * Added Swipe to Dismiss

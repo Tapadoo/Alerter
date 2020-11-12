@@ -6,6 +6,8 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.media.RingtoneManager
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -342,6 +344,115 @@ class Alerter private constructor() {
     }
 
     /**
+     * Set the Alert's Right Icon
+     *
+     * @param iconId The Drawable's Resource Idw
+     * @return This Alerter
+     */
+    fun setRightIcon(@DrawableRes rightIconId: Int): Alerter {
+        alert?.setRightIcon(rightIconId)
+
+        return this
+    }
+
+    /**
+     * Set the Alert's Right Icon
+     *
+     * @param bitmap The Bitmap object to use for the right icon.
+     * @return This Alerter
+     */
+    fun setRightIcon(bitmap: Bitmap): Alerter {
+        alert?.setRightIcon(bitmap)
+
+        return this
+    }
+
+    /**
+     * Set the Alert's Right Icon
+     *
+     * @param drawable The Drawable to use for the right icon.
+     * @return This Alerter
+     */
+    fun setRightIcon(drawable: Drawable): Alerter {
+        alert?.setRightIcon(drawable)
+
+        return this
+    }
+
+    /**
+     * Set the Alert's Right Icon size
+     *
+     * @param size Dimension int.
+     * @return This Alerter
+     */
+    fun setRightIconSize(@DimenRes size: Int): Alerter {
+        alert?.setRightIconSize(size)
+
+        return this
+    }
+
+    /**
+     * Set the Alert's Right Icon size
+     *
+     * @param size Right Icon size in pixel.
+     * @return This Alerter
+     */
+    fun setRightIconPixelSize(@Px size: Int): Alerter {
+        alert?.setRightIconPixelSize(size)
+
+        return this
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     * @return This Alerter
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int): Alerter {
+        alert?.setRightIconColorFilter(color)
+
+        return this
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param colorFilter ColorFilter
+     * @return This Alerter
+     */
+    fun setRightIconColorFilter(colorFilter: ColorFilter): Alerter {
+        alert?.setRightIconColorFilter(colorFilter)
+
+        return this
+    }
+
+    /**
+     * Set the right icon color for the Alert
+     *
+     * @param color Color int
+     * @param mode  PorterDuff.Mode
+     * @return This Alerter
+     */
+    fun setRightIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode): Alerter {
+        alert?.setRightIconColorFilter(color, mode)
+
+        return this
+    }
+
+    /**
+     * Set the right icons's position for the Alert
+     *
+     * @param gravity Gravity int
+     * @return This Alerter
+     */
+    fun setRightIconPosition(gravity: Int): Alerter {
+        alert?.setRightIconPosition(gravity)
+
+        return this
+    }
+
+    /**
      * Set the onClickListener for the Alert
      *
      * @param onClickListener The onClickListener for the Alert
@@ -385,6 +496,41 @@ class Alerter private constructor() {
      */
     fun showIcon(showIcon: Boolean): Alerter {
         alert?.showIcon(showIcon)
+
+        return this
+    }
+
+    /**
+     * Enable or Disable Right Icon Pulse Animations
+     *
+     * @param pulse True if the right icon should pulse
+     * @return This Alerter
+     */
+    fun enableRightIconPulse(pulse: Boolean): Alerter {
+        alert?.pulseRightIcon(pulse)
+
+        return this
+    }
+
+    /**
+     * Set whether to show the right icon in the alert or not
+     *
+     * @param showRightIcon True to show the right icon, false otherwise
+     * @return This Alerter
+     */
+    fun showRightIcon(showRightIcon: Boolean): Alerter {
+        alert?.showRightIcon(showRightIcon)
+
+        return this
+    }
+
+    /**
+     * Set whether to show the animation on focus/pressed states
+     *
+     * @param enabled True to show the animation, false otherwise
+     */
+    fun enableClickAnimation(enabled: Boolean): Alerter {
+        alert?.enableClickAnimation(enabled)
 
         return this
     }
@@ -449,17 +595,18 @@ class Alerter private constructor() {
     }
 
     /**
-     * Enable or Disable Sound
+     * Set sound Uri
+     * if set null, sound will be disabled
      *
-     * @param enable True to enable, False to disable
+     * @param uri To set sound Uri (raw folder)
      * @return This Alerter
      */
-    fun enableSound(enable: Boolean): Alerter {
-        alert?.setSoundEnabled(enable)
+    @JvmOverloads
+    fun setSound(uri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)): Alerter {
+        alert?.setSound(uri)
 
         return this
     }
-
     /**
      * Disable touch events outside of the Alert
      *

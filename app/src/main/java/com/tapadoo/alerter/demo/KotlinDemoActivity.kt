@@ -1,12 +1,14 @@
 package com.tapadoo.alerter.demo
 
+import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.tapadoo.alerter.Alerter
 import com.tapadoo.alerter.OnHideAlertListener
 import com.tapadoo.alerter.OnShowAlertListener
@@ -121,6 +123,15 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .show()
     }
 
+    private fun showAlertWithCustomColor() {
+        var alert = Alerter.create(this@KotlinDemoActivity)
+                .setTitle("Yellow Alert Title")
+                .setText("Red Alert text...")
+                .show()
+        alert?.getTitle()?.setTextColor(Color.YELLOW)
+        alert?.getText()?.setTextColor(Color.RED)
+    }
+
     private fun showAlertSwipeToDismissEnabled() {
         Alerter.create(this@KotlinDemoActivity)
                 .setTitle("Alert Title")
@@ -159,7 +170,7 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTitle("Alert Title")
                 .setText("Alert text...")
                 .setBackgroundColorRes(R.color.colorAccent)
-                .enableSound(true)
+                .setSound(Uri.parse("android.resource://$packageName/raw/ringtone"))
                 .show()
     }
 
@@ -172,7 +183,6 @@ class KotlinDemoActivity : AppCompatActivity() {
                 }
                 .show()
     }
-
 
     private fun showAlertFromCenter() {
         Alerter.create(this@KotlinDemoActivity)
@@ -189,6 +199,39 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setText("Alert text...")
                 .setLayoutGravity(Gravity.BOTTOM)
                 .show()
+    }
+
+    private fun showAlertWithRightIcon() {
+        Alerter.create(this@KotlinDemoActivity)
+            .setText("Alert text...")
+            .setIcon(R.drawable.alerter_ic_mail_outline)
+            .setIconColorFilter(0) // Optional - Removes white tint
+            .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
+            .setRightIconSize(R.dimen.custom_icon_size)  // Optional - default is 38dp
+            .show()
+    }
+
+    private fun showAlertWithOnlyRightIcon() {
+        Alerter.create(this@KotlinDemoActivity)
+            .setText("Alert text...")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .showRightIcon(true)
+            .show()
+    }
+
+    private fun showAlertRightIconOnTop() {
+        Alerter.create(this)
+            .setText("The alert scales to accommodate larger bodies of text." +
+                "The alert scales to accommodate larger bodies of text. " +
+                "The alert scales to accommodate larger bodies of text.")
+            .showIcon(false)
+            .setRightIcon(R.drawable.alerter_ic_face)
+            .setRightIconPosition(Gravity.TOP) // Optional - default is center
+            .showRightIcon(true)
+            .show()
     }
 
     private fun setupOnClickListeners() {
@@ -232,6 +275,10 @@ class KotlinDemoActivity : AppCompatActivity() {
             showAlertWithCustomFont()
         }
 
+        btnAlertWithCustomColor.setOnClickListener {
+            showAlertWithCustomColor()
+        }
+
         btnAlertSwipeToDismissEnabled.setOnClickListener {
             showAlertSwipeToDismissEnabled()
         }
@@ -258,6 +305,18 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnBottomAlert.setOnClickListener {
             showAlertFromBottom()
+        }
+
+        btnShowAlertWithRightIcon.setOnClickListener {
+            showAlertWithRightIcon()
+        }
+
+        btnShowAlertWithOnlyRightIcon.setOnClickListener {
+            showAlertWithOnlyRightIcon()
+        }
+
+        btnRightIconOnTop.setOnClickListener {
+            showAlertRightIconOnTop()
         }
     }
 }
