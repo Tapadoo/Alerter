@@ -7,9 +7,6 @@ complexity of your layouts.
 
 ![Header](./documentation/header.gif)
 
-<video style="width:100%" controls  src="./documentation/header.mp4" type="video/mp4">
-</video>
-
 ## General
 
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
