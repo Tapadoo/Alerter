@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.*
+import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import java.lang.ref.WeakReference
@@ -41,8 +42,12 @@ class Alerter private constructor() {
         get() {
             var decorView: ViewGroup? = null
 
-            activityWeakReference?.get()?.let {
-                decorView = it.window.decorView as ViewGroup
+            dialogWeakReference?.get()?.window?.let {
+                decorView = it.decorView as ViewGroup
+            } ?: kotlin.run {
+                activityWeakReference?.get()?.let {
+                    decorView = it.window.decorView as ViewGroup
+                }
             }
 
             return decorView
@@ -607,6 +612,7 @@ class Alerter private constructor() {
 
         return this
     }
+
     /**
      * Disable touch events outside of the Alert
      *
@@ -730,9 +736,19 @@ class Alerter private constructor() {
         activityWeakReference = WeakReference(activity)
     }
 
+    /**
+     * Creates a weak reference to the calling Dialog
+     *
+     * @param appCompatDialog The calling Dialog
+     */
+    private fun setDialog(appCompatDialog: AppCompatDialog) {
+        dialogWeakReference = WeakReference(appCompatDialog)
+    }
+
     companion object {
 
         private var activityWeakReference: WeakReference<Activity>? = null
+        private var dialogWeakReference: WeakReference<AppCompatDialog>? = null
 
         /**
          * Creates the Alert, and maintains a reference to the calling Activity
@@ -746,22 +762,38 @@ class Alerter private constructor() {
         }
 
         /**
-         * Creates the Alert with custom view, and maintains a reference to the calling Activity
+         * Creates the Alert, and maintains a reference to the calling Activity or Dialog
          *
          * @param activity The calling Activity
+         * @param appCompatDialog The calling AppCompatDialog
+         * @return This Alerter
+         */
+        @JvmStatic
+        fun create(activity: Activity?, appCompatDialog: AppCompatDialog? = null): Alerter {
+            return create(activity, R.layout.alerter_alert_default_layout, appCompatDialog)
+        }
+
+        /**
+         * Creates the Alert with custom view, and maintains a reference to the calling Activity or Dialog
+         *
+         * @param activity The calling Activity
+         * @param dialog The calling AppCompatDialog
          * @param layoutId Custom view layout res id
          * @return This Alerter
          */
         @JvmStatic
-        fun create(activity: Activity?, @LayoutRes layoutId: Int): Alerter {
+        fun create(activity: Activity?, @LayoutRes layoutId: Int, dialog: AppCompatDialog? = null): Alerter {
             requireNotNull(activity) { "Activity cannot be null!" }
 
             val alerter = Alerter()
 
             //Hide current Alert, if one is active
-            clearCurrent(activity)
+            clearCurrent(activity, dialog)
 
             alerter.setActivity(activity)
+            dialog?.let {
+                alerter.setDialog(dialog)
+            }
             alerter.alert = Alert(activity, layoutId)
 
             return alerter
@@ -771,10 +803,17 @@ class Alerter private constructor() {
          * Cleans up the currently showing alert view, if one is present
          *
          * @param activity The current Activity
+         * @param appCompatDialog The current AppCompatDialog
          */
         @JvmStatic
-        fun clearCurrent(activity: Activity?) {
-            (activity?.window?.decorView as? ViewGroup)?.let {
+        fun clearCurrent(activity: Activity?, appCompatDialog: AppCompatDialog?) {
+            val mViewGroup = appCompatDialog?.let {
+                it.window?.decorView as? ViewGroup
+            } ?: kotlin.run {
+                activity?.window?.decorView as? ViewGroup
+            }
+
+            mViewGroup?.let {
                 //Find all Alert Views in Parent layout
                 for (i in 0..it.childCount) {
                     val childView = if (it.getChildAt(i) is Alert) it.getChildAt(i) as Alert else null
@@ -791,7 +830,7 @@ class Alerter private constructor() {
         @JvmStatic
         fun hide() {
             activityWeakReference?.get()?.let {
-                clearCurrent(it)
+                clearCurrent(it, dialogWeakReference?.get())
             }
         }
 
