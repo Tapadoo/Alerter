@@ -46,18 +46,18 @@ class CustomBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun showAlertDefault(view: AppCompatDialog?) {
+    private fun showAlertDefault(view: Dialog?) {
         view?.let {
-            Alerter.create(requireActivity(), appCompatDialog = it)
+            Alerter.create(dialog = it)
                     .setTitle(R.string.title_activity_example)
                     .setText("Alert text...")
                     .show()
         }
     }
 
-    private fun showAlertColoured(view: AppCompatDialog?) {
+    private fun showAlertColoured(view: Dialog?) {
         view?.let {
-            Alerter.create(requireActivity(), appCompatDialog = it)
+            Alerter.create(dialog = it)
                     .setTitle("Alert Title")
                     .setText("Alert text...")
                     .setBackgroundColorRes(R.color.colorAccent)
@@ -65,9 +65,9 @@ class CustomBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun showAlertWithIcon(view: AppCompatDialog?) {
+    private fun showAlertWithIcon(view: Dialog?) {
         view?.let {
-            Alerter.create(requireActivity(), appCompatDialog = it)
+            Alerter.create(dialog = it)
                     .setText("Alert text...")
                     .setIcon(R.drawable.alerter_ic_mail_outline)
                     .setIconColorFilter(0) // Optional - Removes white tint
