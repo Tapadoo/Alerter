@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.layout_modal_bottom_sheet.btnAlertColoured
@@ -14,19 +13,8 @@ import kotlinx.android.synthetic.main.layout_modal_bottom_sheet.btnAlertDefault
 
 class CustomBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
-    var appCompatDialog: AppCompatDialog? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_modal_bottom_sheet, container, false)
-    }
-
-    override fun setupDialog(dialog: Dialog, style: Int) {
-        super.setupDialog(dialog, style)
-        if (dialog is AppCompatDialog) {
-
-            // If the dialog is an AppCompatDialog, we'll handle it
-            appCompatDialog = dialog
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,15 +22,15 @@ class CustomBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         btnAlertDefault.setOnClickListener {
             //handle click event
-            showAlertDefault(appCompatDialog)
+            showAlertDefault(dialog)
         }
         btnAlertColoured.setOnClickListener {
             //handle click event
-            showAlertColoured(appCompatDialog)
+            showAlertColoured(dialog)
         }
         btnAlertCustomIcon.setOnClickListener {
             //handle click event
-            showAlertWithIcon(appCompatDialog)
+            showAlertWithIcon(dialog)
         }
     }
 
@@ -76,12 +64,4 @@ class CustomBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    override fun onDestroy() {
-        appCompatDialog = null
-        super.onDestroy()
-    }
-
-    companion object {
-        const val TAG = "CustomBottomSheetDialogFragment"
-    }
 }

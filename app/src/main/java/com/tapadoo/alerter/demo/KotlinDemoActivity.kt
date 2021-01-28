@@ -321,7 +321,7 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnBottomSheetModal.setOnClickListener {
             CustomBottomSheetDialogFragment().apply {
-                show(supportFragmentManager, CustomBottomSheetDialogFragment.TAG)
+                show(supportFragmentManager, CustomBottomSheetDialogFragment::class.java.canonicalName)
             }
         }
     }
