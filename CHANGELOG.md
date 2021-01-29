@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.0.0 - 27/01/2021
+* Added support in Dialog.
+
 ## 6.2.1 - 03/09/2020
 * Updated negative margin to fix overshoot on Samsung S10
 

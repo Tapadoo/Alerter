@@ -1,6 +1,5 @@
 //noinspection GrPackage
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 final String QUALITY_DIR       = "quality"
@@ -37,35 +36,6 @@ task checkstyle(type: Checkstyle) {
     source SOURCE
     include INCLUDE_JAVA
     exclude EXCLUDE_GENERATED
-    classpath = files()
-}
-
-/*
- * Find Bugs -  a program which uses static analysis to look for bugs in Java code.
- */
-task findbugs(type: FindBugs) {
-    ignoreFailures = false
-    effort = "max"
-    reportLevel = "high"
-    excludeFilter = new File("${project.rootDir}/${QUALITY_DIR}/findbugs/findbugs-filter.xml")
-    classes = files("${project.buildDir}/intermediates/classes")
-
-    source SOURCE
-    include INCLUDE_JAVA
-    exclude EXCLUDE_GENERATED
-
-    reports {
-        xml.enabled = false
-        html.enabled = true
-
-        xml {
-            destination new File("$project.buildDir/reports/findbugs/findbugs.xml")
-        }
-        html {
-            destination new File("$project.buildDir/reports/findbugs/findbugs.html")
-        }
-    }
-
     classpath = files()
 }
 
