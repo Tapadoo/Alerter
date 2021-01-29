@@ -1,6 +1,7 @@
 package com.tapadoo.alerter
 
 import android.app.Activity
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
@@ -8,10 +9,12 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.*
+import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import java.lang.ref.WeakReference
@@ -33,32 +36,15 @@ class Alerter private constructor() {
     private var alert: Alert? = null
 
     /**
-     * Get the enclosing Decor View
-     *
-     * @return The Decor View of the Activity the Alerter was called from
-     */
-    private val activityDecorView: ViewGroup?
-        get() {
-            var decorView: ViewGroup? = null
-
-            activityWeakReference?.get()?.let {
-                decorView = it.window.decorView as ViewGroup
-            }
-
-            return decorView
-        }
-
-    /**
      * Shows the Alert, after it's built
      *
      * @return An Alert object check can be altered or hidden
      */
     fun show(): Alert? {
         //This will get the Activity Window's DecorView
-        activityWeakReference?.get()?.let {
-            it.runOnUiThread {
-                //Add the new Alert to the View Hierarchy
-                activityDecorView?.addView(alert)
+        decorView?.get()?.let {
+            android.os.Handler(Looper.getMainLooper()).post {
+                it.addView(alert)
             }
         }
 
@@ -204,8 +190,8 @@ class Alerter private constructor() {
      * @return This Alerter
      */
     fun setBackgroundColorRes(@ColorRes colorResId: Int): Alerter {
-        activityWeakReference?.get()?.let {
-            alert?.setAlertBackgroundColor(ContextCompat.getColor(it, colorResId))
+        decorView?.get()?.let {
+            alert?.setAlertBackgroundColor(ContextCompat.getColor(it.context.applicationContext, colorResId))
         }
 
         return this
@@ -607,6 +593,7 @@ class Alerter private constructor() {
 
         return this
     }
+
     /**
      * Disable touch events outside of the Alert
      *
@@ -721,67 +708,78 @@ class Alerter private constructor() {
         return alert?.layoutContainer
     }
 
-    /**
-     * Creates a weak reference to the calling Activity
-     *
-     * @param activity The calling Activity
-     */
-    private fun setActivity(activity: Activity) {
-        activityWeakReference = WeakReference(activity)
-    }
-
     companion object {
 
-        private var activityWeakReference: WeakReference<Activity>? = null
+        private var decorView: WeakReference<ViewGroup>? = null
 
         /**
-         * Creates the Alert, and maintains a reference to the calling Activity
+         * Creates the Alert
          *
          * @param activity The calling Activity
          * @return This Alerter
          */
         @JvmStatic
-        fun create(activity: Activity?): Alerter {
-            return create(activity, R.layout.alerter_alert_default_layout)
+        @JvmOverloads
+        fun create(activity: Activity, layoutId: Int = R.layout.alerter_alert_default_layout): Alerter {
+            return create(activity = activity, dialog = null, layoutId = layoutId)
         }
 
         /**
-         * Creates the Alert with custom view, and maintains a reference to the calling Activity
+         * Creates the Alert
+         *
+         * @param dialog The calling Dialog
+         * @return This Alerter
+         */
+        @JvmStatic
+        @JvmOverloads
+        fun create(dialog: Dialog, layoutId: Int = R.layout.alerter_alert_default_layout): Alerter {
+            return create(activity = null, dialog = dialog, layoutId = layoutId)
+        }
+
+        /**
+         * Creates the Alert with custom view, and maintains a reference to the calling Activity or Dialog's
+         * DecorView
          *
          * @param activity The calling Activity
+         * @param dialog The calling Dialog
          * @param layoutId Custom view layout res id
          * @return This Alerter
          */
         @JvmStatic
-        fun create(activity: Activity?, @LayoutRes layoutId: Int): Alerter {
-            requireNotNull(activity) { "Activity cannot be null!" }
-
+        private fun create(activity: Activity? = null, dialog: Dialog? = null, @LayoutRes layoutId: Int): Alerter {
             val alerter = Alerter()
 
             //Hide current Alert, if one is active
-            clearCurrent(activity)
+            clearCurrent(activity, dialog)
 
-            alerter.setActivity(activity)
-            alerter.alert = Alert(activity, layoutId)
+            alerter.alert = dialog?.window?.let {
+                decorView = WeakReference(it.decorView as ViewGroup)
+                Alert(context = it.decorView.context, layoutId = layoutId)
+            } ?: run {
+                activity?.window?.let {
+                    decorView = WeakReference(it.decorView as ViewGroup)
+                    Alert(context = it.decorView.context, layoutId = layoutId)
+                }
+            }
 
             return alerter
         }
 
         /**
-         * Cleans up the currently showing alert view, if one is present
+         * Cleans up the currently showing alert view, if one is present. Either pass
+         * the calling Activity, or the calling Dialog
          *
          * @param activity The current Activity
+         * @param dialog The current Dialog
          */
         @JvmStatic
-        fun clearCurrent(activity: Activity?) {
-            (activity?.window?.decorView as? ViewGroup)?.let {
-                //Find all Alert Views in Parent layout
-                for (i in 0..it.childCount) {
-                    val childView = if (it.getChildAt(i) is Alert) it.getChildAt(i) as Alert else null
-                    if (childView != null && childView.windowToken != null) {
-                        ViewCompat.animate(childView).alpha(0f).withEndAction(getRemoveViewRunnable(childView))
-                    }
-                }
+        fun clearCurrent(activity: Activity?, dialog: Dialog?) {
+            dialog?.let {
+                it.window?.decorView as? ViewGroup
+            } ?: kotlin.run {
+                activity?.window?.decorView as? ViewGroup
+            }?.also {
+                removeAlertFromParent(it)
             }
         }
 
@@ -790,8 +788,18 @@ class Alerter private constructor() {
          */
         @JvmStatic
         fun hide() {
-            activityWeakReference?.get()?.let {
-                clearCurrent(it)
+            decorView?.get()?.let {
+                removeAlertFromParent(it)
+            }
+        }
+
+        private fun removeAlertFromParent(decorView: ViewGroup) {
+            //Find all Alert Views in Parent layout
+            for (i in 0..decorView.childCount) {
+                val childView = if (decorView.getChildAt(i) is Alert) decorView.getChildAt(i) as Alert else null
+                if (childView != null && childView.windowToken != null) {
+                    ViewCompat.animate(childView).alpha(0f).withEndAction(getRemoveViewRunnable(childView))
+                }
             }
         }
 
@@ -805,7 +813,7 @@ class Alerter private constructor() {
             get() {
                 var isShowing = false
 
-                activityWeakReference?.get()?.let {
+                decorView?.get()?.let {
                     isShowing = it.findViewById<View>(R.id.llAlertBackground) != null
                 }
 

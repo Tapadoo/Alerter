@@ -175,7 +175,7 @@ class KotlinDemoActivity : AppCompatActivity() {
     }
 
     private fun showAlertWithCustomLayout() {
-       Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
+        Alerter.create(this@KotlinDemoActivity, R.layout.custom_layout)
                 .setBackgroundColorRes(R.color.colorAccent)
                 .also { alerter ->
                     val tvCustomView = alerter.getLayoutContainer()?.tvCustomLayout
@@ -203,35 +203,35 @@ class KotlinDemoActivity : AppCompatActivity() {
 
     private fun showAlertWithRightIcon() {
         Alerter.create(this@KotlinDemoActivity)
-            .setText("Alert text...")
-            .setIcon(R.drawable.alerter_ic_mail_outline)
-            .setIconColorFilter(0) // Optional - Removes white tint
-            .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
-            .setRightIcon(R.drawable.alerter_ic_face)
-            .showRightIcon(true)
-            .setRightIconSize(R.dimen.custom_icon_size)  // Optional - default is 38dp
-            .show()
+                .setText("Alert text...")
+                .setIcon(R.drawable.alerter_ic_mail_outline)
+                .setIconColorFilter(0) // Optional - Removes white tint
+                .setIconSize(R.dimen.custom_icon_size) // Optional - default is 38dp
+                .setRightIcon(R.drawable.alerter_ic_face)
+                .showRightIcon(true)
+                .setRightIconSize(R.dimen.custom_icon_size)  // Optional - default is 38dp
+                .show()
     }
 
     private fun showAlertWithOnlyRightIcon() {
         Alerter.create(this@KotlinDemoActivity)
-            .setText("Alert text...")
-            .showIcon(false)
-            .setRightIcon(R.drawable.alerter_ic_face)
-            .showRightIcon(true)
-            .show()
+                .setText("Alert text...")
+                .showIcon(false)
+                .setRightIcon(R.drawable.alerter_ic_face)
+                .showRightIcon(true)
+                .show()
     }
 
     private fun showAlertRightIconOnTop() {
         Alerter.create(this)
-            .setText("The alert scales to accommodate larger bodies of text." +
-                "The alert scales to accommodate larger bodies of text. " +
-                "The alert scales to accommodate larger bodies of text.")
-            .showIcon(false)
-            .setRightIcon(R.drawable.alerter_ic_face)
-            .setRightIconPosition(Gravity.TOP) // Optional - default is center
-            .showRightIcon(true)
-            .show()
+                .setText("The alert scales to accommodate larger bodies of text." +
+                        "The alert scales to accommodate larger bodies of text. " +
+                        "The alert scales to accommodate larger bodies of text.")
+                .showIcon(false)
+                .setRightIcon(R.drawable.alerter_ic_face)
+                .setRightIconPosition(Gravity.TOP) // Optional - default is center
+                .showRightIcon(true)
+                .show()
     }
 
     private fun setupOnClickListeners() {
@@ -317,6 +317,12 @@ class KotlinDemoActivity : AppCompatActivity() {
 
         btnRightIconOnTop.setOnClickListener {
             showAlertRightIconOnTop()
+        }
+
+        btnBottomSheetModal.setOnClickListener {
+            CustomBottomSheetDialogFragment().apply {
+                show(supportFragmentManager, CustomBottomSheetDialogFragment::class.java.canonicalName)
+            }
         }
     }
 }

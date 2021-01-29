@@ -14,7 +14,7 @@ apply from: rootProject.file('quality.gradle')
 
 final String GROUP_ID = "com.tapadoo.android"
 
-final String VERSION = "6.2.1"
+final String VERSION = "7.0.0"
 
 final String DESCRIPTION = "An Android Alerting Library"
 final String GITHUB_URL = "https://github.com/Tapadoo/Alerter"
@@ -124,9 +124,9 @@ configurations {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.annotation:annotation:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
 
     // Local Unit Tests - in src/test
     testImplementation 'junit:junit:4.12'

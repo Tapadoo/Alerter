@@ -169,5 +169,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/right_icon_on_top" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBottomSheetModal"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_modal" />
     </LinearLayout>
 </ScrollView>
