@@ -118,6 +118,11 @@ class Alert @JvmOverloads constructor(context: Context,
 
     val layoutContainer: View? by lazy { findViewById<View>(R.id.vAlertContentContainer) }
 
+    private val navigationBarHeight by lazy {
+        val dimenId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        resources.getDimensionPixelSize(dimenId)
+    }
+
     init {
         inflate(context, R.layout.alerter_alert_view, this)
 
@@ -155,7 +160,7 @@ class Alert @JvmOverloads constructor(context: Context,
 
         (layoutParams as MarginLayoutParams).apply {
             if (layoutGravity != Gravity.TOP) {
-                bottomMargin = getDimenPixelSize(R.dimen.navigation_bar_height)
+                bottomMargin = navigationBarHeight
             }
         }
 
