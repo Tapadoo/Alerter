@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.0.1 - 05/02/2021
+* updated navigation_bar height getter.
+
 ## 7.0.0 - 27/01/2021
 * Added support in Dialog.
 
