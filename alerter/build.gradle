@@ -1,8 +1,3 @@
-//Plugins
-plugins {
-    id "com.jfrog.bintray" version "1.8.4"
-}
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "maven-publish"
@@ -14,7 +9,7 @@ apply from: rootProject.file('quality.gradle')
 
 final String GROUP_ID = "com.tapadoo.android"
 
-final String VERSION = "7.0.1"
+final String VERSION = "7.1.0"
 
 final String DESCRIPTION = "An Android Alerting Library"
 final String GITHUB_URL = "https://github.com/Tapadoo/Alerter"
@@ -43,33 +38,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-}
-
-//BinTray configuration - credentials stored in user's gradle.properties
-bintray {
-    user = getBinTrayUser()
-    key = getBinTrayKey()
-
-    publications = ['Alerter']
-
-    pkg {
-        repo = 'maven'
-        name = project.getName()
-        desc = DESCRIPTION
-        vcsUrl = GITHUB_URL + '.git'
-        websiteUrl = GITHUB_URL
-        issueTrackerUrl = GITHUB_URL + '/issues'
-        licenses = ['MIT']
-        publish = true
-
-        version {
-            name = VERSION // Version name i.e. "1.0"
-            desc = DESCRIPTION
-            vcsTag = VERSION
-            released = new Date()
-        }
-    }
 }
 
 // Create the POM configuration - required for jCenter uploading
@@ -94,26 +62,28 @@ task javadocJar(type: Jar) {
 }
 
 // Create the publication with the pom configuration:
-publishing {
-    publications {
-        Alerter(MavenPublication) {
-            groupId GROUP_ID
-            version VERSION
-            artifactId project.getName()
+afterEvaluate {
+    publishing {
+        publications {
+            Alerter(MavenPublication) {
+                groupId GROUP_ID
+                version VERSION
+                artifactId project.getName()
 
-            //from components.android
-            artifact sourcesJar
-            artifact javadocJar
+                //from components.android
+                artifact sourcesJar
+                artifact javadocJar
 
-            // Tell maven to prepare the generated "*.aar" file for publishing
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                // Tell maven to prepare the generated "*.aar" file for publishing
+                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('description', DESCRIPTION)
-                root.appendNode('name', project.getName())
-                root.appendNode('url', GITHUB_URL)
-                root.children().last() + pomConfig
+                pom.withXml {
+                    def root = asNode()
+                    root.appendNode('description', DESCRIPTION)
+                    root.appendNode('name', project.getName())
+                    root.appendNode('url', GITHUB_URL)
+                    root.children().last() + pomConfig
+                }
             }
         }
     }
@@ -124,8 +94,7 @@ configurations {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.annotation:annotation:1.2.0"
     implementation "androidx.appcompat:appcompat:1.2.0"
 
     // Local Unit Tests - in src/test
@@ -133,34 +102,14 @@ dependencies {
 
     // Instrumentation Tests - in src/androidTest
     androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
-}
-
-task showBintrayProps {
-    doLast {
-        println "Bintray user/password: ${getBinTrayUser()}/${getBinTrayKey()}"
-    }
 }
 
 dokka {
     outputFormat = 'javadoc'
     outputDirectory = "$buildDir/javadoc"
 }
-
-bintrayUpload.dependsOn 'generatePomFileForAlerterPublication'
-bintrayUpload.dependsOn 'dokka'
-
-def final getBinTrayUser() {
-    final String BINTRAY_USER = "BINTRAY_USER"
-    return project.hasProperty(BINTRAY_USER) ? project.getProperty(BINTRAY_USER) : null
-}
-
-def final getBinTrayKey() {
-    final String BINTRAY_KEY = "BINTRAY_KEY"
-    return project.hasProperty(BINTRAY_KEY) ? project.getProperty(BINTRAY_KEY) : null
-}
-
