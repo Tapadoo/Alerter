@@ -12,26 +12,22 @@ complexity of your layouts.
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
 A customisable Alert View is dynamically added to the Decor View of the Window, overlaying all content. 
 
-## Gradle
+## Install
 
+Include the JitPack.io Maven repo in your project's build.gradle file
 ```groovy
-dependencies {
-    implementation 'com.tapadoo.android:alerter:$current-version'
+allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
 }
 ```
 
-## Kotlin
-
-Version 3.0.0 and above requires Kotlin
-
-## AndroidX
-
-Version 4.0.0 includes support for AndroidX dependencies. If you experience issues with this update, 
-please ensure you have enabled AndroidX & Jetifier in your `gradle.properties` file:
-
-```properties
-android.useAndroidX=true
-android.enableJetifier=true
+```groovy
+dependencies {
+    implementation 'com.github.tapadoo:alerter:$current-version'
+}
 ```
 
 # Usage
