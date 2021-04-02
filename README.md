@@ -3,7 +3,7 @@
 This library aims to overcome the limitations of Toasts and Snackbars, while reducing the
 complexity of your layouts.
 
-[![Download](https://api.bintray.com/packages/tapadoo/maven/alerter/images/download.svg)](https://bintray.com/tapadoo/maven/alerter/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23245-blue.svg)](http://androidweekly.net/issues/issue-245)
+[![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Alerter-blue.svg?style=flat)](https://android-arsenal.com/details/1/5302) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23245-blue.svg)](http://androidweekly.net/issues/issue-245)
 
 ![Header](./documentation/header.png)
 
@@ -12,26 +12,25 @@ complexity of your layouts.
 With simplicity in mind, the Alerter employs the builder pattern to facilitate easy integration into any app.
 A customisable Alert View is dynamically added to the Decor View of the Window, overlaying all content. 
 
-## Gradle
+## Install
+
+Include the JitPack.io Maven repo in your project's build.gradle file
 
 ```groovy
-dependencies {
-    implementation 'com.tapadoo.android:alerter:$current-version'
+allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
 }
 ```
 
-## Kotlin
+Then add this dependency to your app's build.gradle file
 
-Version 3.0.0 and above requires Kotlin
-
-## AndroidX
-
-Version 4.0.0 includes support for AndroidX dependencies. If you experience issues with this update, 
-please ensure you have enabled AndroidX & Jetifier in your `gradle.properties` file:
-
-```properties
-android.useAndroidX=true
-android.enableJetifier=true
+```groovy
+dependencies {
+    implementation 'com.github.tapadoo:alerter:$current-version'
+}
 ```
 
 # Usage
