@@ -15,6 +15,7 @@ A customisable Alert View is dynamically added to the Decor View of the Window, 
 ## Install
 
 Include the JitPack.io Maven repo in your project's build.gradle file
+
 ```groovy
 allprojects {
  repositories {
@@ -23,6 +24,8 @@ allprojects {
  }
 }
 ```
+
+Then add this dependency to your app's build.gradle file
 
 ```groovy
 dependencies {
