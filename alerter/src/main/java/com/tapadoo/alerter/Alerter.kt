@@ -785,6 +785,19 @@ class Alerter private constructor() {
         }
 
         /**
+         * Cleans up the currently showing alert view, if one is present. Either pass
+         * the calling Activity, or the calling Dialog
+         *
+         * @param activity The current Activity
+         * @param listener OnHideAlertListener to known when Alert is dismissed
+         */
+        @JvmStatic
+        @JvmOverloads
+        fun clearCurrent(activity: Activity?, listener: OnHideAlertListener? = null) {
+            clearCurrent(activity, null, listener)
+        }
+
+        /**
          * Hides the currently showing alert view, if one is present
          * @param listener to known when Alert is dismissed
          */
