@@ -770,34 +770,38 @@ class Alerter private constructor() {
          *
          * @param activity The current Activity
          * @param dialog The current Dialog
+         * @param listener OnHideAlertListener to known when Alert is dismissed
          */
         @JvmStatic
-        fun clearCurrent(activity: Activity?, dialog: Dialog?) {
+        @JvmOverloads
+        fun clearCurrent(activity: Activity?, dialog: Dialog?, listener: OnHideAlertListener? = null) {
             dialog?.let {
                 it.window?.decorView as? ViewGroup
             } ?: kotlin.run {
                 activity?.window?.decorView as? ViewGroup
             }?.also {
-                removeAlertFromParent(it)
+                removeAlertFromParent(it, listener)
             }
         }
 
         /**
          * Hides the currently showing alert view, if one is present
+         * @param listener to known when Alert is dismissed
          */
         @JvmStatic
-        fun hide() {
+        @JvmOverloads
+        fun hide(listener: OnHideAlertListener? = null) {
             decorView?.get()?.let {
-                removeAlertFromParent(it)
+                removeAlertFromParent(it, listener)
             }
         }
 
-        private fun removeAlertFromParent(decorView: ViewGroup) {
+        private fun removeAlertFromParent(decorView: ViewGroup, listener: OnHideAlertListener?) {
             //Find all Alert Views in Parent layout
             for (i in 0..decorView.childCount) {
                 val childView = if (decorView.getChildAt(i) is Alert) decorView.getChildAt(i) as Alert else null
                 if (childView != null && childView.windowToken != null) {
-                    ViewCompat.animate(childView).alpha(0f).withEndAction(getRemoveViewRunnable(childView))
+                    ViewCompat.animate(childView).alpha(0f).withEndAction(getRemoveViewRunnable(childView, listener))
                 }
             }
         }
@@ -819,10 +823,12 @@ class Alerter private constructor() {
                 return isShowing
             }
 
-        private fun getRemoveViewRunnable(childView: Alert?): Runnable {
+        private fun getRemoveViewRunnable(childView: Alert?, listener: OnHideAlertListener?): Runnable {
             return Runnable {
                 childView?.let {
-                    (childView.parent as? ViewGroup)?.removeView(childView)
+                    (childView.parent as? ViewGroup)?.removeView(childView).also {
+                        listener?.onHide()
+                    }
                 }
             }
         }
