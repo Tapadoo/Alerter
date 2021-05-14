@@ -781,7 +781,7 @@ class Alerter private constructor() {
                 activity?.window?.decorView as? ViewGroup
             }?.also {
                 removeAlertFromParent(it, listener)
-            }
+            } ?: listener?.onHide()
         }
 
         /**
@@ -806,7 +806,7 @@ class Alerter private constructor() {
         fun hide(listener: OnHideAlertListener? = null) {
             decorView?.get()?.let {
                 removeAlertFromParent(it, listener)
-            }
+            } ?: listener?.onHide()
         }
 
         private fun removeAlertFromParent(decorView: ViewGroup, listener: OnHideAlertListener?) {
@@ -839,10 +839,9 @@ class Alerter private constructor() {
         private fun getRemoveViewRunnable(childView: Alert?, listener: OnHideAlertListener?): Runnable {
             return Runnable {
                 childView?.let {
-                    (childView.parent as? ViewGroup)?.removeView(childView).also {
-                        listener?.onHide()
-                    }
+                    (childView.parent as? ViewGroup)?.removeView(childView)
                 }
+                listener?.onHide()
             }
         }
     }
