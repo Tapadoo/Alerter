@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.2.0 - 14/05/2021
+* OnHideAlertListener added to hide() and clearCurrent() methods.
+
 ## 7.0.1 - 05/02/2021
 * updated navigation_bar height getter.
 
