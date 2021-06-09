@@ -190,7 +190,7 @@ class Alerter private constructor() {
      */
     fun setBackgroundColorRes(@ColorRes colorResId: Int): Alerter {
         decorView?.get()?.let {
-            alert?.setAlertBackgroundColor(ContextCompat.getColor(it.context.applicationContext, colorResId))
+            alert?.setAlertBackgroundColor(ContextCompat.getColor(it.context, colorResId))
         }
 
         return this
