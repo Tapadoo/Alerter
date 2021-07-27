@@ -3,6 +3,7 @@ package com.tapadoo.alerter
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
@@ -10,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.view.animation.Animation
@@ -118,9 +120,36 @@ class Alert @JvmOverloads constructor(context: Context,
 
     val layoutContainer: View? by lazy { findViewById<View>(R.id.vAlertContentContainer) }
 
+    private val currentDisplay: Display? by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            context.display
+        } else {
+            @Suppress("DEPRECATION")
+            (context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+        }
+    }
+
+    private val physicalScreenHeight: Int
+        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            DisplayMetrics().also { currentDisplay?.getRealMetrics(it) }.heightPixels
+        } else {
+            usableScreenHeight
+        }
+
+    private val usableScreenHeight: Int
+        get() = Resources.getSystem().displayMetrics.heightPixels
+
+    private val cutoutsHeight: Int
+        get() = when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ->
+                currentDisplay?.cutout?.run { safeInsetTop + safeInsetBottom } ?: 0
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.P ->
+                rootWindowInsets?.displayCutout?.run { safeInsetTop + safeInsetBottom } ?: 0
+            else -> 0
+        }
+
     private val navigationBarHeight by lazy {
-        val dimenId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
-        resources.getDimensionPixelSize(dimenId)
+        physicalScreenHeight - usableScreenHeight - cutoutsHeight
     }
 
     init {

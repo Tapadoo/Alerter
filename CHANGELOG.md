@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.2.1 - 27/07/2021
+* Fixed alert may has extra bottom margin when displayed with Gravity.BOTTOM
+
 ## 7.2.0 - 14/05/2021
 * OnHideAlertListener added to hide() and clearCurrent() methods.
 
@@ -80,7 +83,7 @@ All notable changes to this project will be documented in this file.
 * Updated build tools & support libs
 * Added methods to set icon tint
 
-## 2.0.2 - 11/12/2017 
+## 2.0.2 - 11/12/2017
 * Added fixed for the Alert drawing under the status bar
 
 ## 2.0.1 - 18/09/2017
@@ -98,7 +101,7 @@ All notable changes to this project will be documented in this file.
 * Added setAlertBackgroundColor to allow the use of color ints
 
 ## 1.0.8 - 09/05/2017
-* Added disable vibration option 
+* Added disable vibration option
 * Updated Alert dismiss method
 * Added method to hide icon
 * Added method to disable outside touch
