@@ -129,15 +129,15 @@ class Alert @JvmOverloads constructor(context: Context,
         }
     }
 
-    private val usableScreenHeight: Int
-        get() = Resources.getSystem().displayMetrics.heightPixels
-
     private val physicalScreenHeight: Int
         get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             DisplayMetrics().also { currentDisplay?.getRealMetrics(it) }.heightPixels
         } else {
             usableScreenHeight
         }
+
+    private val usableScreenHeight: Int
+        get() = Resources.getSystem().displayMetrics.heightPixels
 
     private val cutoutsHeight: Int
         get() = when {
