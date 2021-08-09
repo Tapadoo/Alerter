@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.2.2 - 09/08/2021
+* bugfix notchHeight() cast
+
 ## 7.2.1 - 27/07/2021
 * Fixed alert may has extra bottom margin when displayed with Gravity.BOTTOM
 

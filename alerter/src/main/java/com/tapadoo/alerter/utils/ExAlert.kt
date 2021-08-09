@@ -14,7 +14,7 @@ import com.tapadoo.alerter.R
 fun Alert.getDimenPixelSize(@DimenRes id: Int) = resources.getDimensionPixelSize(id)
 
 @RequiresApi(Build.VERSION_CODES.P)
-fun Alert.notchHeight() = (context as? Activity)?.window?.decorView?.rootWindowInsets?.displayCutout?.safeInsetTop
+fun Alert.notchHeight() = rootWindowInsets?.displayCutout?.safeInsetTop
         ?: 0
 
 fun Context.getRippleDrawable(): Drawable? {
