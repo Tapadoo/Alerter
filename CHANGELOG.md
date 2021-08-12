@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.2.3 - 12/08/2021
+## 7.2.4 - 12/08/2021
 * Added ability to set background elevation
 
 ## 7.2.2 - 09/08/2021
