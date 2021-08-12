@@ -29,6 +29,14 @@
             android:textColor="@android:color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAlertDefaultWithElevation"
+            style="@style/ExampleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_alert_with_elevation"
+            android:textColor="@android:color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertColoured"
             style="@style/ExampleButton"
             android:layout_width="match_parent"

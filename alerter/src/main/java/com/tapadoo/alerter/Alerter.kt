@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
@@ -699,6 +700,20 @@ class Alerter private constructor() {
      */
     fun setButtonTypeface(typeface: Typeface): Alerter {
         alert?.buttonTypeFace = typeface
+
+        return this
+    }
+
+    /**
+     *  Set elevation of the alert background.
+     *
+     *  Only available for version LOLLIPOP and above.
+     *
+     *  @param elevation Elevation value, in pixel.
+     */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun setElevation(elevation: Float): Alerter {
+        alert?.setBackgroundElevation(elevation)
 
         return this
     }

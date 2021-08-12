@@ -3,6 +3,7 @@ package com.tapadoo.alerter.demo
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -38,6 +39,16 @@ class KotlinDemoActivity : AppCompatActivity() {
                 .setTitle(R.string.title_activity_example)
                 .setText("Alert text...")
                 .show()
+    }
+
+    private fun showAlertDefaultWithElevation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Alerter.create(this@KotlinDemoActivity)
+                .setTitle(R.string.title_activity_example)
+                .setText("Alert text...")
+                .setElevation(30f)
+                .show()
+        }
     }
 
     private fun showAlertColoured() {
@@ -237,6 +248,10 @@ class KotlinDemoActivity : AppCompatActivity() {
     private fun setupOnClickListeners() {
         btnAlertDefault.setOnClickListener {
             showAlertDefault()
+        }
+
+        btnAlertDefaultWithElevation.setOnClickListener {
+            showAlertDefaultWithElevation()
         }
 
         btnAlertColoured.setOnClickListener {

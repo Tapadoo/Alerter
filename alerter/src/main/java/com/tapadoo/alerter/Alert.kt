@@ -814,6 +814,18 @@ class Alert @JvmOverloads constructor(context: Context,
     }
 
     /**
+     *  Set elevation of the alert background.
+     *
+     *  Only available for version LOLLIPOP and above.
+     *
+     *  @param elevation Elevation value, in pixel.
+     */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun setBackgroundElevation(elevation: Float) {
+        llAlertBackground.elevation = elevation
+    }
+
+    /**
      * Show a button with the given text, and on click listener
      *
      * @param text The text to display on the button
