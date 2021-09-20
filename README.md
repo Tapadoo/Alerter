@@ -19,7 +19,6 @@ Include the JitPack.io Maven repo in your project's build.gradle file
 ```groovy
 allprojects {
  repositories {
-    jcenter()
     maven { url "https://jitpack.io" }
  }
 }
